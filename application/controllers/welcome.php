@@ -27,7 +27,8 @@ class Welcome extends CI_Controller {
 	{
 		//change this code after install
 		
-		echo "works";
+		$this->load->spark('twiggy/0.8.5');
+		$this->twiggy->display('welcome');
 		
 	}
 	
