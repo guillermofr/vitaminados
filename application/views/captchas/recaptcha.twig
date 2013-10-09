@@ -1,0 +1,46 @@
+{% extends 'welcome.twig' %}
+
+{% block head %}
+
+<script type="text/javascript" src="http://www.google.com/recaptcha/api/js/recaptcha_ajax.js"></script>
+
+	<style>
+		#recaptcha_div {
+			display: inline-block;
+		}
+	</style>
+
+
+	<!-- Wrapping the Recaptcha create method in a javascript function -->
+	<script type="text/javascript">
+		function showRecaptcha(element) {
+			Recaptcha.create("6Le4k-gSAAAAAECeZdUtyfsjN2r51xBiBQHJSaY9", element, {
+				theme: "red",
+				callback: Recaptcha.focus_response_field});
+		}
+
+		$(function(){
+			showRecaptcha('recaptcha_div');
+		});
+	</script>
+</head>
+
+{% endblock %}
+
+{% block content %}
+
+<!-- ... your HTML <body> content ... -->
+ 	<h1>A rellenar captchas!!! =)</h1>
+    
+<form method="POST" action="/welcome">
+
+    <div id="recaptcha_div"></div>
+
+    <input type="hidden" name="consecutivos" value="{{ consecutivos }}"/>
+    <input type="hidden" name="type" value="recaptcha"/>
+    <button type="submit" class="moar">MOARRR!</button>
+</form>
+    <h2>Captchas rellenados consecutivos: {{ consecutivos }} </h2>
+<!-- ... more of your HTML  content ... -->
+
+{% endblock %}

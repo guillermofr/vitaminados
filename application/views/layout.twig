@@ -4,7 +4,42 @@
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>Ejemplo web</title>
+	<title>VITAMINADOS</title>
+
+	<style>
+
+		body {
+			text-align: center;
+		}
+
+		.moar {
+			background-color: #fdd;
+			border: 3px solid #f77;
+			color: tomato;
+			font-size: 39px;
+			clear:both;
+			display: block;
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+	</style>
+
+	<script type="text/javascript" src="/assets/js/libs/jquery-1.7.2.min.js"></script>
+
+	<script>
+		$(function(){
+			$(document).keypress(function(e) {
+			    if(e.which == 13) {
+			        $('form').submit();
+			    }
+			});
+		})
+
+	</script>
+
+	{% block head %}{% endblock %}
 </head>
 
 <body>
