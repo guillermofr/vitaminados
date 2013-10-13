@@ -1,2 +1,18 @@
 {% extends 'layout.twig' %}
 
+
+{% block content %}
+
+ 	<h1>A rellenar captchas!!! =)</h1>
+    
+	<form method="POST" action="/welcome">
+
+	    {% block captcha %}{% endblock %}
+
+	    <input type="hidden" name="consecutivos" value="{{ consecutivos }}"/>
+	    <input type="hidden" name="type" value="recaptcha"/>
+	    <button type="submit" class="moar">MOARRR!</button>
+	</form>
+    <h2>Captchas rellenados consecutivos: {{ consecutivos }} </h2>
+
+{% endblock %}

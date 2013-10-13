@@ -27,20 +27,6 @@
 
 {% endblock %}
 
-{% block content %}
-
-<!-- ... your HTML <body> content ... -->
- 	<h1>A rellenar captchas!!! =)</h1>
-    
-<form method="POST" action="/welcome">
-
+{% block captcha %}
     <div id="recaptcha_div"></div>
-
-    <input type="hidden" name="consecutivos" value="{{ consecutivos }}"/>
-    <input type="hidden" name="type" value="recaptcha"/>
-    <button type="submit" class="moar">MOARRR!</button>
-</form>
-    <h2>Captchas rellenados consecutivos: {{ consecutivos }} </h2>
-<!-- ... more of your HTML  content ... -->
-
 {% endblock %}
