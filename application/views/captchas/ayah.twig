@@ -1,27 +1,9 @@
-{% extends 'welcome.twig' %}
+{% extends 'jugar.twig' %}
 
 {% block head %}
 
-</head>
-
 {% endblock %}
 
-{% block content %}
-
-<!-- ... your HTML <body> content ... -->
- 	<h1>A rellenar captchas!!! =)</h1>
-
-<!-- Now we’re going to build the form that PlayThru is attached to.
-In this example, the form submits to itself.-->
-<form method="post" action="/welcome">
-        {{ ayah_game|raw }}
-        <!-- Make sure the name of your ‘Submit’ matches the name on line 9. -->
-        <input type="hidden" name="consecutivos" value="{{ consecutivos }}"/>
-    	<input type="hidden" name="type" value="ayah"/>
-    	<button type="submit" class="moar">MOARRR!</button>
-</form>
-
-    <h2>Captchas rellenados consecutivos: {{ consecutivos }} </h2>
-<!-- ... more of your HTML  content ... -->
-
+{% block captcha %}
+    {{ ayah_game|raw }}
 {% endblock %}

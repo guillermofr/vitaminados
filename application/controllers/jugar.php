@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Welcome extends CI_Controller {
+class Jugar extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -23,10 +23,8 @@ class Welcome extends CI_Controller {
         parent::__construct();
     }
 
-	public function index()
-	{
-
-		$num_games = 2;
+    public function index(){
+    	$num_games = 3;
 
 
 		//change this code after install
@@ -70,12 +68,15 @@ class Welcome extends CI_Controller {
 
 
 		// selector de juego que aparecerá en el siguiente turno
-		switch($consecutivos%$num_games) {
+		switch(0) {
 			case 0:
 				$type = 'recaptcha';
 			break;
 			case 1:
 				$type = 'ayah';
+			break;
+			case 2:
+				$type = 'recaptcha';
 			break;
 			//añadir aquí resto de juegos para que aparezcan
 
@@ -94,6 +95,7 @@ class Welcome extends CI_Controller {
 				$ayah = new AYAH();
 				$data = array('consecutivos' => $consecutivos,'type' => 'ayah','ayah_game'=> $ayah->getPublisherHTML());
 			break;
+
 		}
 
 
@@ -101,7 +103,8 @@ class Welcome extends CI_Controller {
 		$this->twiggy->display('captchas/'.$type,$data);
 
 		
-	}
+    }
+
 	
 }
 

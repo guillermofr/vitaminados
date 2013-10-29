@@ -3,15 +3,17 @@
 
 {% block content %}
 
- 	<h1>A rellenar captchas!!! =)</h1>
-    
-	<form method="POST" action="/welcome">
+	<form method="POST" action="/jugar"  >
 
+		<h2>Rellena este captcha para conseguir puntos</h2>
 	    {% block captcha %}{% endblock %}
 
 	    <input type="hidden" name="consecutivos" value="{{ consecutivos }}"/>
 	    <input type="hidden" name="type" value="recaptcha"/>
-	    <button type="submit" class="moar">MOARRR!</button>
+
+	    <span style="display:block;">
+	    	<button type="submit" class="btn btn-2 btn-2a">Validar captcha</button>
+		</span>
 	</form>
     <h2>Captchas rellenados consecutivos: {{ consecutivos }} </h2>
 
