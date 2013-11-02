@@ -156,7 +156,7 @@ class Bitauth
 				// If user logged in, they must have remembered their password.
 				if( ! empty($user->forgot_code))
 				{
-					$data['forgot_code'] = '';
+					//$data['forgot_code'] = '';
 				}
 
 				// Update last login timestamp and IP

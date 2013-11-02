@@ -1,20 +1,129 @@
 {% extends 'layout.twig' %}
 
 
+
 {% block content %}
 
-	<form method="POST" action="/jugar"  >
 
-		<h2>Rellena este captcha para conseguir puntos</h2>
-	    {% block captcha %}{% endblock %}
+	{% if logueado %}
 
-	    <input type="hidden" name="consecutivos" value="{{ consecutivos }}"/>
-	    <input type="hidden" name="type" value="recaptcha"/>
+		{% if fullname %}
 
-	    <span style="display:block;">
-	    	<button type="submit" class="btn btn-2 btn-2a">Validar captcha</button>
-		</span>
-	</form>
-    <h2>Captchas rellenados consecutivos: {{ consecutivos }} </h2>
+		<div class="container">
+			<div class="span6">
+
+				
+						
+				<form method="POST" action="/jugar" id="form_juego">
+
+					<h1>Hola {{ fullname }} </h1>
+					<h2>Rellena este captcha para conseguir puntos</h2>
+				    {% block captcha %}{% endblock %}
+
+				    <input type="hidden" name="consecutivos" value="{{ consecutivos }}"/>
+				    <input type="hidden" name="type" value="recaptcha"/>
+
+				    <span style="display:block;">
+				    	<button type="submit" class="btn btn-2 btn-2a">Validar captcha</button>
+					</span>
+
+					  <h2>Captchas rellenados consecutivos: {{ consecutivos }} </h2>
+			    <p>Cada racha de 10 captchas obtendrás una vitamina, con racha de 50 supervitamina!</p>
+				</form>
+
+
+
+				<div id="info_juego">
+					<div><span class="titulo">Usuario</span> {{ fullname }}</div>
+					<div><span class="titulo">Puntación</span> 0</div>
+					<div><span class="titulo">Posición en ranking</span> 1</div>
+					<div><span class="titulo">Vitaminas disponibles</span> <br/>
+						<section id="set-1">
+						<div id="vitaminero" class="hi-icon-wrap hi-icon-effect-1 hi-icon-effect-1a">
+							
+							<img class="hi-icon hi-icon-mobile" src="https://identicons.github.com/2.png" width="30px"/>
+							<img class="hi-icon hi-icon-mobile" src="https://identicons.github.com/2.png" width="30px"/>
+							<img class="hi-icon hi-icon-mobile" src="https://identicons.github.com/2.png" width="30px"/>
+							<img class="hi-icon hi-icon-mobile" src="https://identicons.github.com/2.png" width="30px"/>
+							<img class="hi-icon hi-icon-mobile" src="https://identicons.github.com/2.png" width="30px"/>
+							<img class="hi-icon hi-icon-mobile" src="https://identicons.github.com/2.png" width="30px"/>
+							<img class="hi-icon hi-icon-mobile" src="https://identicons.github.com/2.png" width="30px"/>
+							<img class="hi-icon hi-icon-mobile" src="https://identicons.github.com/2.png" width="30px"/>
+							<img class="hi-icon hi-icon-mobile" src="https://identicons.github.com/2.png" width="30px"/>
+							<img class="hi-icon hi-icon-mobile" src="https://identicons.github.com/3.png" width="30px"/>
+							<img class="hi-icon hi-icon-mobile" src="https://identicons.github.com/4.png" width="30px"/>
+							<img class="hi-icon hi-icon-mobile" src="https://identicons.github.com/4.png" width="30px"/>
+							<img class="hi-icon hi-icon-mobile" src="https://identicons.github.com/4.png" width="30px"/>
+							<img class="hi-icon hi-icon-mobile" src="https://identicons.github.com/4.png" width="30px"/>
+							<img class="hi-icon hi-icon-mobile" src="https://identicons.github.com/5.png" width="30px"/>
+							<img class="hi-icon hi-icon-mobile" src="https://identicons.github.com/5.png" width="30px"/>
+							<img class="hi-icon hi-icon-mobile" src="https://identicons.github.com/5.png" width="30px"/>
+							<img class="hi-icon hi-icon-mobile" src="https://identicons.github.com/6.png" width="30px"/>
+							<img class="hi-icon hi-icon-mobile" src="https://identicons.github.com/6.png" width="30px"/>
+							<img class="hi-icon hi-icon-mobile" src="https://identicons.github.com/6.png" width="30px"/>
+							<img class="hi-icon hi-icon-mobile" src="https://identicons.github.com/6.png" width="30px"/>
+							<img class="hi-icon hi-icon-mobile" src="https://identicons.github.com/7.png" width="30px"/>
+							<img class="hi-icon hi-icon-mobile" src="https://identicons.github.com/8.png" width="30px"/>
+							<img class="hi-icon hi-icon-mobile" src="https://identicons.github.com/9.png" width="30px"/>
+							<img class="hi-icon hi-icon-mobile" src="https://identicons.github.com/9.png" width="30px"/>
+							<img class="hi-icon hi-icon-mobile" src="https://identicons.github.com/12.png" width="30px"/>
+						</div>
+					</section>
+
+
+					</div>
+				</div>
+
+
+				<br clear="left"/>
+
+
+
+
+
+			</div>
+
+			<div class="span6">
+
+			</div>
+
+		</div>
+
+
+
+
+	    {% else %}
+
+	    <form method="POST" action="/login/setNick"  >
+
+			<h2>Para poder jugar necesitas terner un nombre</h2>
+
+			<input type="text" name="nick" placeholder="Nick/Apodo" id='nick_input'/>
+
+		    <span style="display:block;">
+		    	<button type="submit" class="btn btn-2 btn-2a">Guardar Nick</button>
+			</span>
+		</form>
+	   
+
+
+	    {% endif %}
+
+    {% else %}
+
+    <h2>Necesitas estar logueado para participar en la partida</h2>
+    <form method="POST" action="/login">
+    	<label for="email">Introduce tu correo electrónico</label>
+    	<input type="email" name="email" placeholder="Correo electrónico" id="login_input"/>
+    	<button type="submit" class="btn btn-2 btn-2a">Login</button>
+    	<p style="width: 56%;margin: auto;">
+    	Esta página no necesita preguntarte una clave o contraseña, al darnos tu 
+    	dirección de correo, la comprobaremos en la base de datos de la Murcia lan party y 
+    	te enviaremos un correo con un link para entrar a jugar.</p>
+    	<p>Sólo los participantes de la MLP podrán optar a premios</p>
+    </form>
+
+
+    {% endif %}
 
 {% endblock %}

@@ -21,10 +21,14 @@ class Jugar extends CI_Controller {
 	function __construct()
     {
         parent::__construct();
+        $this->load->add_package_path(APPPATH.'third_party/bitauth');
+        $this->load->library('bitauth');
+
     }
 
     public function index(){
     	$num_games = 3;
+    	$this->load->library('bitauth');
 
 
 		//change this code after install
@@ -98,6 +102,13 @@ class Jugar extends CI_Controller {
 
 		}
 
+		if( ! $this->bitauth->logged_in())
+		{
+		    $data['logueado'] = false;
+		} else {
+		    $data['logueado'] = true;
+		    $data['fullname'] = $this->bitauth->fullname;
+		}
 
 		$this->twiggy->set($data);
 		$this->twiggy->display('captchas/'.$type,$data);

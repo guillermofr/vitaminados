@@ -59,6 +59,51 @@
 			text-decoration:none;
 		}
 
+		#nick_input,#login_input{
+			padding: 8px;
+			width: 444px;
+			display: block;
+			margin: auto;
+			margin-top: 15px;
+		}
+		#cerrar_session {
+			position:absolute;
+			top: 0px;
+			left: 0px;
+			color:#666;
+			font-size: 14px;
+		}
+		.cl-effect-6 a::before {
+			background: #666;
+		}
+
+		#form_juego {
+			width:50%;
+			float:left;
+		}
+
+		#info_juego {
+			width:49%;
+			float:right;
+			text-align: left;
+			padding:50px;
+		}
+
+		#info_juego .titulo{
+			font-size: 30px;
+			margin: 20px;
+		}
+
+		#vitaminero{
+			background: #EFEFEF;
+			color: #666;
+			padding: 27px;
+			margin: 8px 20px;
+			font-size: 26px;
+			border: 5px solid #fff;
+		}
+
+
 	</style>
 
 	<script type="text/javascript" src="/assets/js/libs/jquery-1.7.2.min.js"></script>
@@ -83,6 +128,11 @@
 				
 			</div>
 			<header>
+				{% if logueado %}
+					<nav class="cl-effect-6" id="cl-effect-6">
+						<a id="cerrar_session" href="/login/out">Cerrar Sessión</a>
+					</nav>
+				{% endif %}
 				<h1>Vitaminados (Beta) <span>Un juego para putear a los demás y putearte tu mismo.</span></h1>
 				<p>Jugar con moderación, el grado de enfermedad puede ser épico.</p>
 			</header>
