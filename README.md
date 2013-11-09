@@ -16,10 +16,10 @@ solo tienes que indicarme varias cosas
 - descripción de la vitamina
 - tiempo en minutos para que caduque
 - categoría de la vitamina
- * hay tres tipos de categoría:
-   - categoría 1: hay posibilidad de que salga con rachas de 500 captchas
-   - categoría 2: hay posibilidad de que salga con rachas de 50 captchas
-   - categoría 3: hay posibilidad de que salga con rachas de 10 captchas
+	- hay tres tipos de categoría:
+		- categoría 1: hay posibilidad de que salga con rachas de 500 captchas
+		- categoría 2: hay posibilidad de que salga con rachas de 50 captchas
+		- categoría 3: hay posibilidad de que salga con rachas de 10 captchas
 - nombre del fichero con el código 
 
 y por ultimo
