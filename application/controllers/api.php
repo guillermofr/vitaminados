@@ -110,6 +110,35 @@ class Api extends CI_Controller {
     }
 
 
+    function load_ganadores(){
+
+      $this->load->model('usuario');
+      $CI = & get_instance();
+    $CI->load->add_package_path(APPPATH.'third_party/bitauth/');
+    $CI->load->library('bitauth');
+
+      $usuarios = $this->usuario->get_ganadores();
+
+      $html = '';
+
+      $rank = 1;
+
+      //for ($i = 0 ; $i<14 ;$i++) 
+      foreach ($usuarios as $u) {
+        $html .= "<div class='rank'> 
+          <img class='rank-img' src='http://1.gravatar.com/avatar/".$u->user_id."?s=50&d=monsterid&r=G' />
+          <span class='rank-nick'>".recortar_texto($u->fullname,10)."</span>
+          <span class='rank-puntos'>".$u->puntos."</span>
+          <span class='rank-rank'>".$rank++."#</span>
+          <span class='rank-racha'>combo<br>x".$u->racha."</span>
+        </div>";
+      }
+
+      $html .= "<br clear='left'/></div>";
+      echo $html;
+
+    }
+
     function usar_vitamina($instancia_vitamina_id = 0,$target_id = 0){
       $this->load->model(array('usuario' , 'vitamina'));
       $CI = & get_instance();
