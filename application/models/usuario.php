@@ -46,12 +46,15 @@ class Usuario extends MY_Model{
 		$user = $CI->bitauth->get_user_by_username($CI->bitauth->username);
 		$user = $user->user_id;
 		
-		$res = $this->db->query("select * from bitauth_userdata where user_id != $user order by puntos desc");
+		$res = $this->db->query("select * from bitauth_userdata where user_id != $user and fullname != '' order by puntos desc");
 		return $res->result();	
 	}
 
 	function get_rank($user_id){
-		return 6 . "#";
+
+		$q = $this->db->query("select count(1) rank from bitauth_userdata where fullname != '' and puntos > (select puntos from bitauth_userdata where user_id = $user_id) group by puntos");
+
+		return $q->num_rows() +1 . "#";
 	}
 
 	function get_ranking(){
@@ -64,7 +67,7 @@ class Usuario extends MY_Model{
 		$user = $CI->bitauth->get_user_by_username($CI->bitauth->username);
 		$user = $user->user_id;
 		
-		$res = $this->db->query("select * from bitauth_userdata order by puntos desc");
+		$res = $this->db->query("select * from bitauth_userdata where fullname != '' order by puntos desc");
 		return $res->result();	
 	}
 

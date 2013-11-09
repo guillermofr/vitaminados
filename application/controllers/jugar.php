@@ -67,15 +67,15 @@ class Jugar extends CI_Controller {
 
 				//adjudicar vitaminas nuevas
 
-				if ($this->bitauth->racha % 200 == 0){
+				if ($this->bitauth->racha % 500 == 0){
 					//megasupervitamina
 					$this->vitamina->crear_nueva(1);
 
-				} else if ($this->bitauth->racha % 4 == 0){
+				} else if ($this->bitauth->racha % 50 == 0){
 					//supervitamina
 					$this->vitamina->crear_nueva(2);
 
-				} else if ($this->bitauth->racha % 3 == 0){
+				} else if ($this->bitauth->racha % 10 == 0){
 					//vitamina
 					$this->vitamina->crear_nueva(3);
 				}
@@ -133,7 +133,7 @@ class Jugar extends CI_Controller {
 		$data['logueado'] = $this->bitauth->logged_in();
 		$data['user'] = ($data['logueado'])?$this->bitauth->get_user_by_id($this->bitauth->user_id):false;
 		$data['vitaminas'] = $this->vitamina->get_vitaminas();
-		$data['ranking'] = $this->usuario->get_rank($this->bitauth->user_id);
+		$data['ranking'] = ($data['logueado'])?$this->usuario->get_rank($this->bitauth->user_id):'0';
 
 		$this->twiggy->set($data);
 		$this->twiggy->display('captchas/'.$type,$data);

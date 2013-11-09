@@ -37,7 +37,25 @@ class Login extends CI_Controller {
 			$search = $this->db->query("select * from bitauth_users where username = $email");
 			if (!$search->num_rows()){
 				//obtener datos de la mlp para registrarlo o registrarlo sin nick
+
+				$this->load->helper('inti');
+				$url = 'http://murcialanparty.com/mlp13/jsonrpc.php';
+
+			    $client = new JsonIntiClient($url);
+				// Params request
+
+			    $mlp_data = array('nick'=>'','clan'=>'');
+			    $rtn = $client->sendRequest('getNickClanByEmail', $this->input->post('email'));
+			    if (!$rtn->isError()){
+			    	$t = $rtn->getResult();
+			    	if (isset($t['nick']))
+			    	 	$mlp_data = $rtn->getResult();
+			    }
+			    	
 				$user = array(
+					'fullname' => $mlp_data['nick'],
+					'clan' => $mlp_data['clan'],
+					'participante' => ($mlp_data['nick'] != '')?1:0,
 				    'username' => $this->input->post('email'),
 				    'password' => 'mipeneesmipassword'
 				);	
@@ -53,7 +71,7 @@ class Login extends CI_Controller {
 			$this->email->subject('Link de acceso');
 			$this->email->message('Pincha en el enlace para entrar en la web a jugar: <a href="vitaminados.local/jugar">Enlace</a>');	
 
-			echo "<a href='/login/in/$code'>$code</a>"; exit;
+			echo "Simulación de link recibido en correo<br><a href='/login/in/$code'>$code</a>"; exit;
 
 			/*if ($this->email->send()){
 				$this->twiggy->set(array('enviado'=>true));	

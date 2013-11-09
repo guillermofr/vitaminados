@@ -80,7 +80,7 @@
 
 						</div>
 
-					<div><span class="titulo">Vitaminas disponibles</span> <br/>
+					<div><span class="ficha-titulo">Vitaminas disponibles</span> <br/>
 						
 
 						<div id="vitaminero" >
@@ -111,8 +111,9 @@
 	    {% else %}
 
 	    <form method="POST" action="/login/setNick"  >
-
-			<h2>Para poder jugar necesitas terner un nombre</h2>
+			<h2>No hemos encontrado tu correo en la base de datos de participantes de la MurciaLanParty.</h2>
+			<p>Para poder jugar necesitas terner un nombre</p>
+			<p>Al no ser participante de la MLP no podrás optar a premios, pero podrás jugar como los demás y fastidiarles la racha!</p>
 
 			<input type="text" name="nick" placeholder="Nick/Apodo" id='nick_input'/>
 
