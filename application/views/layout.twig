@@ -10,9 +10,58 @@
 		<link rel="stylesheet" type="text/css" href="/assets/css/normalize.css" />
 		<link rel="stylesheet" type="text/css" href="/assets/css/demo.css" />
 		<link rel="stylesheet" type="text/css" href="/assets/css/component.css" />
+		<script src="/assets/js/jquery.min.js"></script>
 		<script src="/assets/js/modernizr.custom.js"></script>
 
+	<script>
+
+		$(document).ready(function () {
+			$(document).keypress(function(e) {
+			    if(e.which == 13) {
+			        $('form').submit();
+			    }
+			});
+			
+			$('.vitamina').live('click',function(e){
+				$('#modal-1 h3').html(e.currentTarget.title);
+				$('#modal-1 img.modal-image').attr('src',e.currentTarget.src);
+				$('#modal-1 span.modal-text').load("/api/load_vitamina_desc/"+e.currentTarget.name);
+				$('#modal-1 button.md-use').attr('name',e.currentTarget.id);	
+			});
+
+			$('#modal-1 button.md-use').live('click',function(e){
+				$('#modal-2 h3').html('Seleccionar objetivo');
+				$('#modal-2 #aplicar_vitamina').val(e.currentTarget.name);
+				$('#modal-2 .md-content div').load("/api/load_targets");
+				
+			});
+
+			$('#modal-2 .md-cancel').live('click',function(){
+				$('.md-overlay').click();
+			});
+
+			$('#modal-2 .target').live('click',function(e){
+				//TODO llamar a ejecutar vitamina (ajax)
+				alert("aplico la vitamina " + $("#aplicar_vitamina").val() + " sobre user " + e.currentTarget.childNodes[1].value);
+
+				$('.md-overlay').click();
+				$('img#'+$("#aplicar_vitamina").val()).hide();
+			});
+
+		})
+	</script>
+
+
 	<style>
+
+
+		.modal-image{
+			float:left;
+		}
+		.modal-text{
+			float:right;
+			width: 60%;
+		}
 
 		header {
 			background:white;
@@ -20,22 +69,22 @@
 
 		body {
 			text-align: center;
-			background: #f06060;
+			background: rgb(231, 76, 60);
 			color: white;
 		}
 
 
 		.btn-2a:hover {
-			box-shadow: 0 4px #ab3c3c;
+			box-shadow: 0 3px #A53629;
 			top: 2px;
 		}
 		.btn-2a {
 			border-radius: 0 0 5px 5px;
 		}
 		.btn-2 {
-			background: #cb4e4e;
+			background: #CD4436;
 			color: #fff;
-			box-shadow: 0 6px #ab3c3c;
+			box-shadow: 0 6px #A53629;
 			-webkit-transition: none;
 			-moz-transition: none;
 			transition: none;
@@ -59,6 +108,36 @@
 			text-decoration:none;
 		}
 
+
+		.md-content button {
+		display: inline-block;
+		margin: 3px;
+		font-size: 0.8em;
+		padding: 12px;
+		margin-top: 27px;
+		}
+
+
+		button {
+			border: none;
+			border-image-source: initial;
+			border-image-slice: initial;
+			border-image-width: initial;
+			border-image-outset: initial;
+			border-image-repeat: initial;
+			padding: 0.6em 1.2em;
+			background: #A1B412;
+			color: rgb(255, 255, 255);
+			font-family: Lato, Calibri, Arial, sans-serif;
+			font-size: 1em;
+			letter-spacing: 1px;
+			text-transform: uppercase;
+			cursor: pointer;
+			display: inline-block;
+			margin: 3px 2px;
+			border-radius: 2px;
+		}
+
 		#nick_input,#login_input{
 			padding: 8px;
 			width: 444px;
@@ -78,7 +157,7 @@
 		}
 
 		#form_juego {
-			width:50%;
+			width:49%;
 			float:left;
 		}
 
@@ -94,7 +173,7 @@
 			margin: 20px;
 		}
 
-		#vitaminero{
+		#vitaminero , #efectos{
 			background: #EFEFEF;
 			color: #666;
 			padding: 27px;
@@ -103,20 +182,71 @@
 			border: 5px solid #fff;
 		}
 
+		.vitamina {
+			cursor:pointer;
+		}
+
+
+		/* modal */
+
+#modal-2 .md-content {
+height: 600px;
+overflow-y: auto;
+overflow-x: hidden;
+}
+
+.target:hover {
+background: #E5FF19;
+color: #444;
+}
+
+.target {
+cursor:pointer;
+position: relative;
+display: inline-block;
+width: 23%;
+padding: 11px;
+margin: 2px 4px;
+background: #B7CB14;
+}
+
+.target img {
+float: left;
+margin-top: 13px;
+border-radius: 35px;
+border: solid 3px #E5FF19;
+}
+
+.target .target-nick {
+float: left;
+clear: left;
+margin-top: 3px;
+margin-bottom: -6px;
+font-size: 13px;
+}
+
+.target .target-puntos {
+position: absolute;
+top: 0px;
+right: 0px;
+padding: 0px 10px;
+border-top: solid 6px #E5FF19;
+}
+
+.target .target-racha {
+position: absolute;
+bottom: 24px;
+background: #CDE707;
+border-radius: 30px;
+padding: 4px;
+color: #444;
+font-size: 12px;
+left: 69px;
+}
 
 	</style>
 
-	<script type="text/javascript" src="/assets/js/libs/jquery-1.7.2.min.js"></script>
 
-	<script>
-		$(function(){
-			$(document).keypress(function(e) {
-			    if(e.which == 13) {
-			        $('form').submit();
-			    }
-			});
-		})
-	</script>
 
 	{% block head %}{% endblock %}
 	</head>
@@ -148,6 +278,24 @@
 
 			{% block content %}{% endblock %}
 		</div>
+
+
+
+		<div class="md-overlay"></div><!-- the overlay element -->
+
+		<!-- classie.js by @desandro: https://github.com/desandro/classie -->
+		<script src="/assets/js/classie.js"></script>
+		<script src="/assets/js/modalEffects.js"></script>
+
+		<!-- for the blur effect -->
+		<!-- by @derSchepp https://github.com/Schepp/CSS-Filters-Polyfill -->
+		<script>
+			// this is important for IEs
+			var polyfilter_scriptpath = '/assets/js/';
+		</script>
+		<script src="/assets/js/cssParser.js"></script>
+		<script src="/assets/js/css-filters-polyfill.js"></script>
+
 	</body>
 
 </html>

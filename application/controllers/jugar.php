@@ -24,12 +24,12 @@ class Jugar extends CI_Controller {
         $this->load->add_package_path(APPPATH.'third_party/bitauth');
         $this->load->library('bitauth');
 
+        $this->load->model(array('vitamina','usuario'));
+
     }
 
     public function index(){
     	$num_games = 3;
-    	$this->load->library('bitauth');
-
 
 		//change this code after install
 		$this->load->spark('twiggy/0.8.5');
@@ -37,13 +37,14 @@ class Jugar extends CI_Controller {
 		//checkeo del captcha 
 		if ($_POST){
 
-			$consecutivos = $this->input->post('consecutivos');
-
 			$captchacorrecto = false;
 
 			//segun el type lo comprobaremos de una forma u otra, estos check solo tienen
 			//que darle un valor a captchacorrecto (true/false)
 			switch($this->input->post('type')){
+				case 'simple':
+					include('includes/simple_check.php');
+				break;
 				case 'recaptcha':
 					include('includes/recaptcha_check.php');
 				break;
@@ -52,29 +53,50 @@ class Jugar extends CI_Controller {
 				break;
 				default:
 					// hackerrr!!
-					$consecutivos = 0;
+					$this->usuario->reset_racha();
 				break;
 			}
 
 			//acción por defecto al rellenar captchas
 			if ($captchacorrecto) {
-				//TODO contabilizar combos y adjudicar vitaminas nuevas
-				$consecutivos++;
+				//TODO contabilizar combos y adjudicar vitaminas nueva
+
+				$this->usuario->aumenta_puntuacion();
+
+				//aumentar puntuación según el combo
+
+				//adjudicar vitaminas nuevas
+
+				if ($this->bitauth->racha % 200 == 0){
+					//megasupervitamina
+					$this->vitamina->crear_nueva(1);
+
+				} else if ($this->bitauth->racha % 50 == 0){
+					//supervitamina
+					$this->vitamina->crear_nueva(2);
+
+				} else if ($this->bitauth->racha % 3 == 0){
+					//vitamina
+					$this->vitamina->crear_nueva(3);
+				}
+
+				
+
 			} else {
 				//seteamos a 0 el combo y no damos una mierda
-				$consecutivos=0;
+				$this->usuario->reset_racha();
 			}
 
 		} else {
 			//primera carga de la web
-			$consecutivos = 0;
+			$this->usuario->reset_racha();
 		}
 
 
 		// selector de juego que aparecerá en el siguiente turno
 		switch(0) {
 			case 0:
-				$type = 'recaptcha';
+				$type = 'simple';
 			break;
 			case 1:
 				$type = 'ayah';
@@ -90,25 +112,29 @@ class Jugar extends CI_Controller {
 		}
 
 		switch ($type){
+
+			case 'simple':
+				$data = array('type' => 'simple');
+			break;
+
 			case 'recaptcha':
-				$data = array('consecutivos' => $consecutivos,'type' => 'recaptcha'); 
+				$data = array('type' => 'recaptcha'); 
 			break;
 
 			case 'ayah': 
 				$this->load->helper('ayah/ayah');
 				$ayah = new AYAH();
-				$data = array('consecutivos' => $consecutivos,'type' => 'ayah','ayah_game'=> $ayah->getPublisherHTML());
+				$data = array('type' => 'ayah','ayah_game'=> $ayah->getPublisherHTML());
 			break;
 
 		}
 
-		if( ! $this->bitauth->logged_in())
-		{
-		    $data['logueado'] = false;
-		} else {
-		    $data['logueado'] = true;
-		    $data['fullname'] = $this->bitauth->fullname;
-		}
+
+		$data['logueado'] = $this->bitauth->logged_in();
+		 
+			$data['user'] = ($data['logueado'])?$this->bitauth->get_user_by_id($this->bitauth->user_id):false;
+		$data['vitaminas'] = $this->vitamina->get_vitaminas();
+
 
 		$this->twiggy->set($data);
 		$this->twiggy->display('captchas/'.$type,$data);

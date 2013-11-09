@@ -7,85 +7,92 @@
 
 	{% if logueado %}
 
-		{% if fullname %}
+		{% if user.fullname %}
+
+		<div class="md-modal md-effect-11" id="modal-1">
+			<div class="md-content">
+				<h3></h3>
+				<div>
+					<div>
+					<img class='modal-image' width='200px'src=''/>
+					<span class="modal-text"> </span>
+					</div>
+					<br clear="both"/>
+					<button class="md-close">Cerrar descripción</button>
+					<button class="md-trigger md-use" data-modal="modal-2">Usar esta vitamina</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="md-modal md-effect-11" id="modal-2">
+			<div class="md-content">
+				<input type="hidden" id="aplicar_vitamina" value="0"/>
+				<h3></h3>
+				<div>
+					<div></div>
+					<br clear="both"/>
+					<button class="md-close">Cerrar descripción</button>
+				</div>
+			</div>
+		</div>
 
 		<div class="container">
-			<div class="span6">
+			
+				<form id="form_juego" method="POST" action="/jugar" >
 
-				
-						
-				<form method="POST" action="/jugar" id="form_juego">
-
-					<h1>Hola {{ fullname }} </h1>
+					<h1>Hola {{ user.fullname }} </h1>
 					<h2>Rellena este captcha para conseguir puntos</h2>
 				    {% block captcha %}{% endblock %}
 
-				    <input type="hidden" name="consecutivos" value="{{ consecutivos }}"/>
-				    <input type="hidden" name="type" value="recaptcha"/>
+				    <input type="hidden" name="type" value="{{ type }}"/>
 
 				    <span style="display:block;">
 				    	<button type="submit" class="btn btn-2 btn-2a">Validar captcha</button>
 					</span>
 
-					  <h2>Captchas rellenados consecutivos: {{ consecutivos }} </h2>
+					  <h2>Captchas rellenados consecutivos: {{ user.racha }} </h2>
 			    <p>Cada racha de 10 captchas obtendrás una vitamina, con racha de 50 supervitamina!</p>
 				</form>
 
 
 
 				<div id="info_juego">
-					<div><span class="titulo">Usuario</span> {{ fullname }}</div>
-					<div><span class="titulo">Puntación</span> 0</div>
+					<div><span class="titulo">Usuario</span> {{ user.fullname }}</div>
+					<div><span class="titulo">Puntación</span> {{ user.puntos }}</div>
 					<div><span class="titulo">Posición en ranking</span> 1</div>
-					<div><span class="titulo">Vitaminas disponibles</span> <br/>
-						<section id="set-1">
-						<div id="vitaminero" class="hi-icon-wrap hi-icon-effect-1 hi-icon-effect-1a">
-							
-							<img class="hi-icon hi-icon-mobile" src="https://identicons.github.com/2.png" width="30px"/>
-							<img class="hi-icon hi-icon-mobile" src="https://identicons.github.com/2.png" width="30px"/>
-							<img class="hi-icon hi-icon-mobile" src="https://identicons.github.com/2.png" width="30px"/>
-							<img class="hi-icon hi-icon-mobile" src="https://identicons.github.com/2.png" width="30px"/>
-							<img class="hi-icon hi-icon-mobile" src="https://identicons.github.com/2.png" width="30px"/>
-							<img class="hi-icon hi-icon-mobile" src="https://identicons.github.com/2.png" width="30px"/>
-							<img class="hi-icon hi-icon-mobile" src="https://identicons.github.com/2.png" width="30px"/>
-							<img class="hi-icon hi-icon-mobile" src="https://identicons.github.com/2.png" width="30px"/>
-							<img class="hi-icon hi-icon-mobile" src="https://identicons.github.com/2.png" width="30px"/>
-							<img class="hi-icon hi-icon-mobile" src="https://identicons.github.com/3.png" width="30px"/>
-							<img class="hi-icon hi-icon-mobile" src="https://identicons.github.com/4.png" width="30px"/>
-							<img class="hi-icon hi-icon-mobile" src="https://identicons.github.com/4.png" width="30px"/>
-							<img class="hi-icon hi-icon-mobile" src="https://identicons.github.com/4.png" width="30px"/>
-							<img class="hi-icon hi-icon-mobile" src="https://identicons.github.com/4.png" width="30px"/>
-							<img class="hi-icon hi-icon-mobile" src="https://identicons.github.com/5.png" width="30px"/>
-							<img class="hi-icon hi-icon-mobile" src="https://identicons.github.com/5.png" width="30px"/>
-							<img class="hi-icon hi-icon-mobile" src="https://identicons.github.com/5.png" width="30px"/>
-							<img class="hi-icon hi-icon-mobile" src="https://identicons.github.com/6.png" width="30px"/>
-							<img class="hi-icon hi-icon-mobile" src="https://identicons.github.com/6.png" width="30px"/>
-							<img class="hi-icon hi-icon-mobile" src="https://identicons.github.com/6.png" width="30px"/>
-							<img class="hi-icon hi-icon-mobile" src="https://identicons.github.com/6.png" width="30px"/>
-							<img class="hi-icon hi-icon-mobile" src="https://identicons.github.com/7.png" width="30px"/>
-							<img class="hi-icon hi-icon-mobile" src="https://identicons.github.com/8.png" width="30px"/>
-							<img class="hi-icon hi-icon-mobile" src="https://identicons.github.com/9.png" width="30px"/>
-							<img class="hi-icon hi-icon-mobile" src="https://identicons.github.com/9.png" width="30px"/>
-							<img class="hi-icon hi-icon-mobile" src="https://identicons.github.com/12.png" width="30px"/>
+					<div><span class="titulo">Efectos activos</div>
+
+						<div id="efectos" class="">
+							{% if not effects %}
+								<span>No tienes efectos secundarios</span>
+							{% else %}
+								<span>Padeces de: </span>
+							{% endif %}
+
 						</div>
-					</section>
+
+					<div><span class="titulo">Vitaminas disponibles</span> <br/>
+						
+
+						<div id="vitaminero" >
+							
+							{% if not vitaminas %}
+								<span>No tienes vitaminas</span>
+							{% else %}
+								{% for v in vitaminas %}
+									
+									<img  class="md-trigger vitamina" data-modal="modal-1" title="{{v.nombre}}" name="{{v.vitamina_id}}" id="{{v.instancia}}" src="https://identicons.github.com/{{v.vitamina_id}}.png" width="30px"/>
 
 
+								{% endfor %}
+							{% endif %}
+
+						</div>
+					
 					</div>
 				</div>
 
-
-				<br clear="left"/>
-
-
-
-
-
-			</div>
-
-			<div class="span6">
-
-			</div>
+			
 
 		</div>
 
