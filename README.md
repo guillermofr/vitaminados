@@ -22,9 +22,9 @@ solo tienes que indicarme varias cosas
 		- categoría 3: hay posibilidad de que salga con rachas de 10 captchas
 - nombre del fichero con el código 
 
-y por ultimo
+y por último
 
-- el fichero que modifica las puntuaciónes. (Hay un ejemplo en application/models/vitaminas/ejemplo.php)
+- el fichero con el código que modifica las puntuaciónes. (Hay un ejemplo en application/models/vitaminas/ejemplo.php)
 
 Podeis enviarmelo por correo a killer415@gmail.com o si controlais de github, mandarme un pull 
 request con el fichero y los datos de la vitamina en el propio mensaje.

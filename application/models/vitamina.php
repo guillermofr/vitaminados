@@ -52,7 +52,7 @@ class Vitamina extends MY_Model{
 		if (!$CI->bitauth->logged_in()) return false;
 
 		$user_id = $CI->bitauth->user_id;
-		$result = $this->db->query("select p.id instancia, p.vitamina_id, p.timeout, v.nombre, v.descripcion from pastillero p, vitamina v
+		$result = $this->db->query("select p.id instancia, p.vitamina_id, p.timeout, v.nombre, v.descripcion, v.categoria from pastillero p, vitamina v
 			where
 			 p.vitamina_id = v.id and 
 			 user_id = $user_id and timeout > NOW()");
@@ -108,7 +108,9 @@ class Vitamina extends MY_Model{
 
 		if ($query->num_rows()){
 			include('vitaminas/'.$q[0]->fichero);
+			//deshabilitar
 			$this->db->query("update pastillero set timeout = 0 where id= $instancia_vitamina_id");
+			//meterlo en el log
 			$this->db->query("insert into log (from_user_id,to_user_id,vitamina_id,fecha) values ("
 				.$CI->bitauth->user_id.","
 				.$target_id.","

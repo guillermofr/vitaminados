@@ -100,7 +100,7 @@
 							{% else %}
 								{% for v in vitaminas %}
 									
-									<img  class="md-trigger vitamina" data-modal="modal-1" title="{{v.nombre}}" name="{{v.vitamina_id}}" id="{{v.instancia}}" src="https://identicons.github.com/{{v.vitamina_id}}.png" width="30px"/>
+									<img  class="md-trigger vitamina cat{{v.categoria}}" data-modal="modal-1" title="{{v.nombre}}" name="{{v.vitamina_id}}" id="{{v.instancia}}" src="https://identicons.github.com/{{v.vitamina_id}}.png" width="30px"/>
 
 
 								{% endfor %}

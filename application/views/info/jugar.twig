@@ -29,6 +29,27 @@ font-size: 74px;
 margin-bottom: -5px;
 }
 
+.info_img1 {
+	border-radius: 49px;
+	padding: 5px;
+	border: 5px solid tomato;
+	width: 93px;
+}
+
+.info_img2 {
+	border-radius: 49px;
+	padding: 5px;
+	border: 5px solid #FCC05A;
+	width: 93px;
+}
+
+.info_img3 {
+	border-radius: 49px;
+	padding: 5px;
+	border: 5px solid #7ECFA7;
+	width: 93px;
+}
+
 </style>
 	
  	<h2>¿Cómo se juega a esto?</h2>
@@ -63,7 +84,7 @@ margin-bottom: -5px;
 	 	<tr>
  	{% for v in vitaminas %}
 	 	<tr>
-		 	<td><img src="https://identicons.github.com/{{v.id}}.png" width="50px" /> </td>
+		 	<td><img clasS="info_img{{ v.categoria }}" src="https://identicons.github.com/{{v.id}}.png" width="50px" /> </td>
 		 	<td>{{ v.nombre }}</td>
 		 	<td>{{ v.descripcion }}</td>
 		 	<td>{{ v.time }}</td>
