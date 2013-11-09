@@ -1,0 +1,79 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+
+
+	<style>
+
+
+.rank {
+position: relative;
+display: inline-block;
+width: 169px;
+padding: 11px;
+margin: 2px 4px;
+background: #CD4436;
+padding-left: 30px;
+
+}
+
+.rank-rank {
+position: absolute;
+top: -7px;
+left: 3px;
+font-size: 34px;
+color: #F95F5F;
+}
+
+.rank img {
+float: left;
+margin-top: 13px;
+border-radius: 35px;
+border: solid 3px #fefefe;
+}
+
+.rank .rank-nick {
+float: left;
+clear: left;
+margin-top: 3px;
+margin-bottom: -6px;
+font-size: 13px;
+}
+
+.rank .rank-puntos {
+position: absolute;
+top: 0px;
+right: 0px;
+padding: 0px 10px;
+border-top: solid 6px #fefefe;
+}
+
+.rank .rank-racha {
+position: absolute;
+bottom: 24px;
+background: #fefefe;
+border-radius: 30px;
+padding: 4px;
+color: #444;
+font-size: 12px;
+left: 69px;
+}
+
+
+	</style>
+
+
+	<script> 
+	$(document).ready(function () {
+		$('#ranking').load("/api/load_ganadores");
+	});
+	</script>
+
+
+ 	<h2>TOP 3</h2>
+ 	<p>Participantes de la party que optan a premio</p>
+ 	
+ 	<div id="ranking"></div>
+ 	
+
+{% endblock %}
