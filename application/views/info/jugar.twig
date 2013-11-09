@@ -2,9 +2,37 @@
 
 {% block content %}
 
+<style>
+
+#listado_vitaminas {
+	margin:auto;
+	line-height: 15px;
+	max-width: 1000px;
+}
+
+#listado_vitaminas tr{
+
+}
+
+#listado_vitaminas th{
+	padding: 15px 30px;
+	text-align: left
+}
+
+#listado_vitaminas td{
+	padding: 5px 30px;
+}
+
+.info_section{
+color: #CD4436;
+font-size: 74px;
+margin-bottom: -5px;
+}
+
+</style>
 	
  	<h2>¿Cómo se juega a esto?</h2>
-
+ <div style="width:880px;display:inline-block">
  	<p>Este juego trata de tener más puntos que nadie, el que tenga más puntos
  		cuando el tiempo termine ganará la partida</p>
 
@@ -17,8 +45,39 @@
 
  	<p>Cada racha de 50 tendréis super vitaminas!!! usarlas rápido que se inutilizan
  		con el tiempo</p>
-
+</div>
+<br clear="left" />
  	<a href="/jugar" class="btn btn-2 btn-2a">Jugar!</a>
+
+ 	<h2 style="margin-top:50px">Elementos del juego</h2>
+
+ 	<p class="info_section">Vitaminas</p>
+ <div>
+ 	<table id="listado_vitaminas">
+	 	<tr>
+	 		<th></th>
+		 	<th>Nombre</th>
+		 	<th>Descripcion/effectos</th>
+		 	<th>Tiempo en caducar</th>
+		 	<th>Categoría</th>
+	 	<tr>
+ 	{% for v in vitaminas %}
+	 	<tr>
+		 	<td><img src="https://identicons.github.com/{{v.id}}.png" width="50px" /> </td>
+		 	<td>{{ v.nombre }}</td>
+		 	<td>{{ v.descripcion }}</td>
+		 	<td>{{ v.time }}</td>
+		 	<td>{{ v.categoria }}</td>
+	 	<tr>
+ 	{% endfor %}
+ </div>
+
+
+ 	</table>
+
+ 	<p class="info_section">Efectos secundarios</p>
+
+ 	<p>No implementado aún </p>
 
 
 {% endblock %}

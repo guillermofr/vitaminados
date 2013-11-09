@@ -40,6 +40,11 @@ class Vitamina extends MY_Model{
 
 	}
 
+	function get_listado(){
+		$result = $this->db->query("select * from vitamina order by categoria asc");
+		return $result->result();
+	}
+
 	function get_vitaminas(){
 		$CI = & get_instance();
 		$CI->load->add_package_path(APPPATH.'third_party/bitauth/');
@@ -92,7 +97,7 @@ class Vitamina extends MY_Model{
 
 		// sacamos el tipo y el fichero de vitamina a $instancia_vitamina_id
 
-		$query = $this->db->query("select v.fichero 
+		$query = $this->db->query("select v.fichero,v.id
 						from vitamina v, pastillero p 
 						where
 							p.vitamina_id = v.id and 
@@ -104,6 +109,10 @@ class Vitamina extends MY_Model{
 		if ($query->num_rows()){
 			include('vitaminas/'.$q[0]->fichero);
 			$this->db->query("update pastillero set timeout = 0 where id= $instancia_vitamina_id");
+			$this->db->query("insert into log (from_user_id,to_user_id,vitamina_id,fecha) values ("
+				.$CI->bitauth->user_id.","
+				.$target_id.","
+				.$q[0]->id.",NOW())");
 		} 
 	}
 

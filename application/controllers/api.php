@@ -22,10 +22,7 @@ class Api extends CI_Controller {
     {
         parent::__construct();
         $this->load->spark('twiggy/0.8.5');
-        $CI = & get_instance();
-		$CI->load->add_package_path(APPPATH.'third_party/bitauth/');
-		$CI->load->library('bitauth');
-		if (!$CI->bitauth->logged_in()) exit;
+
     }
 
     function load_vitamina_desc($id = 0){
@@ -46,6 +43,7 @@ class Api extends CI_Controller {
    		$CI = & get_instance();
 		$CI->load->add_package_path(APPPATH.'third_party/bitauth/');
 		$CI->load->library('bitauth');
+    if (!$CI->bitauth->logged_in()) return false;
 
    		$usuarios = $this->usuario->get_targets();
 
@@ -63,12 +61,22 @@ class Api extends CI_Controller {
    		
    		//for ($i = 0 ; $i<14 ;$i++) 
    		foreach ($usuarios as $u) {
-   			$html .= "<div class='target'>
+
+        if ($u->participante) {
+          $participante = 'participante';
+          $logo = "<img title='Participante' class='target-logo' src='http://www.murcialanparty.com/mlp13/nimagenes/logo.png' />";
+        } else {
+          $participante = '';
+          $logo = "";
+        }
+
+   			$html .= "<div class='target ".$participante."'>
    				<input type='hidden' name='id' value='".$u->user_id."'/>
    				<img class='target-img' src='http://1.gravatar.com/avatar/".$u->user_id."?s=50&d=monsterid&r=G' />
    				<span class='target-nick'>".recortar_texto($u->fullname,10)."</span>
    				<span class='target-puntos'>".$u->puntos."</span>
    				<span class='target-racha'>combo<br>x".$u->racha."</span>
+          ".$logo."
    			</div>";
    		}
 
@@ -82,9 +90,6 @@ class Api extends CI_Controller {
     function load_ranking(){
 
       $this->load->model('usuario');
-      $CI = & get_instance();
-    $CI->load->add_package_path(APPPATH.'third_party/bitauth/');
-    $CI->load->library('bitauth');
 
       $usuarios = $this->usuario->get_ranking();
 
@@ -94,13 +99,22 @@ class Api extends CI_Controller {
 
       //for ($i = 0 ; $i<14 ;$i++) 
       foreach ($usuarios as $u) {
-        $html .= "<div class='rank'>
+        if ($u->participante) {
+          $participante = 'participante';
+          $logo = "<img title='Participante' class='rank-logo' src='http://www.murcialanparty.com/mlp13/nimagenes/logo.png' />";
+        } else {
+          $participante = '';
+          $logo = "";
+        }
+
+        $html .= "<div class='rank ".$participante."'>
           <input type='hidden' name='id' value='".$u->user_id."'/>
           <img class='rank-img' src='http://1.gravatar.com/avatar/".$u->user_id."?s=50&d=monsterid&r=G' />
           <span class='rank-nick'>".recortar_texto($u->fullname,10)."</span>
           <span class='rank-puntos'>".$u->puntos."</span>
           <span class='rank-rank'>".$rank++."#</span>
           <span class='rank-racha'>combo<br>x".$u->racha."</span>
+          ".$logo."
         </div>";
       }
 
@@ -113,10 +127,6 @@ class Api extends CI_Controller {
     function load_ganadores(){
 
       $this->load->model('usuario');
-      $CI = & get_instance();
-    $CI->load->add_package_path(APPPATH.'third_party/bitauth/');
-    $CI->load->library('bitauth');
-
       $usuarios = $this->usuario->get_ganadores();
 
       $html = '';
@@ -141,9 +151,6 @@ class Api extends CI_Controller {
 
     function usar_vitamina($instancia_vitamina_id = 0,$target_id = 0){
       $this->load->model(array('usuario' , 'vitamina'));
-      $CI = & get_instance();
-      $CI->load->add_package_path(APPPATH.'third_party/bitauth/');
-      $CI->load->library('bitauth');
 
       if (!$instancia_vitamina_id || !$target_id) return false;
 

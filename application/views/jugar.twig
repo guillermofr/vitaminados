@@ -40,6 +40,16 @@
 
 		<div class="container">
 			
+				<script>
+				
+					$(document).keypress(function(e) {
+					    if(e.which == 13) {
+					        $('form').submit();
+					    }
+					});
+
+				</script>
+
 				<form id="form_juego" method="POST" action="/jugar" >
 
 					<h1>Hola {{ user.fullname }} </h1>

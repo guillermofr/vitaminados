@@ -24,7 +24,7 @@ class Login extends CI_Controller {
 			$this->email->to($this->input->post('email')); 
 			
 
-			//TODO
+			
 				/* aquí hay que ver si el correo enviado existe
 				en la base de datos.
 
@@ -69,7 +69,7 @@ class Login extends CI_Controller {
 			$code = $this->bitauth->forgot_password($new_user->user_id);
 
 			$this->email->subject('Link de acceso');
-			$this->email->message('Pincha en el enlace para entrar en la web a jugar: <a href="vitaminados.local/jugar">Enlace</a>');	
+			$this->email->message("Pincha en el enlace para entrar en la web a jugar: <a href=/login/in/$code'>Enlace</a>");	
 
 			echo "Simulación de link recibido en correo<br><a href='/login/in/$code'>$code</a>"; exit;
 

@@ -13,14 +13,11 @@
 		<script src="/assets/js/jquery.min.js"></script>
 		<script src="/assets/js/modernizr.custom.js"></script>
 
+	
 	<script>
 
 		$(document).ready(function () {
-			$(document).keypress(function(e) {
-			    if(e.which == 13) {
-			        $('form').submit();
-			    }
-			});
+			
 			
 			$('.vitamina').live('click',function(e){
 				$('#modal-1 h3').html(e.currentTarget.title);
@@ -217,13 +214,15 @@ color: #444;
 }
 
 .target {
-cursor:pointer;
+cursor: pointer;
 position: relative;
 display: inline-block;
-width: 23%;
+width: 122PX;
 padding: 11px;
 margin: 2px 4px;
 background: #B7CB14;
+padding-left: 30px;
+padding-top: 14px;
 }
 
 .target img {
@@ -239,6 +238,7 @@ clear: left;
 margin-top: 3px;
 margin-bottom: -6px;
 font-size: 13px;
+white-space: nowrap;
 }
 
 .target .target-puntos {
@@ -246,6 +246,7 @@ position: absolute;
 top: 0px;
 right: 0px;
 padding: 0px 10px;
+white-space: nowrap;
 border-top: solid 6px #E5FF19;
 }
 
@@ -260,6 +261,17 @@ font-size: 12px;
 left: 69px;
 }
 
+.target-logo {
+border: 0px !important;
+width: 30px;
+position: absolute;
+bottom: 2px;
+left: 0px;
+}
+
+#dimmok {
+margin-left: 165px;
+}
 	</style>
 
 
@@ -284,11 +296,11 @@ left: 69px;
 			</header>
 			<section class="color-5">
 				<nav class="cl-effect-4">
-					<a href="/info">¿Cómo se juega!?</a>
-					<a href="/info/ranking">¿Quién va ganando?</a>
-					<a href="/jugar">¡Jugar!</a>
-					<a href="/info/developer">¿Quien ha hecho esta mierda?</a>
-					<a href="/info/premios">Premios</a>
+					<a style="font-size:16px" href="/info">¿Cómo se juega!?</a>
+					<a style="font-size:16px" href="/info/ranking">¿Quién va ganando?</a>
+					<a style="font-size:30px" href="/jugar">¡Jugar!</a>
+					<a style="font-size:16px" href="/info/developer">¿Quien ha hecho esta mierda?</a>
+					<a style="font-size:16px" href="/info/premios">Premios</a>
 				</nav>
 			</section>
 

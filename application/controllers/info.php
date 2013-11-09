@@ -27,9 +27,12 @@ class Info extends CI_Controller {
     }
 
     public function index(){
+    	$this->load->model('vitamina');
+
     	$data = array();
     	$data['logueado'] = $this->bitauth->logged_in();
 		$data['user'] = ($data['logueado'])?$this->bitauth->get_user_by_id($this->bitauth->user_id):false;
+		$data['vitaminas'] = $this->vitamina->get_listado();
 		$this->twiggy->set($data);
 		$this->twiggy->display('info/jugar');
     }

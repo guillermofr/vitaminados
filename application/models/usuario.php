@@ -59,28 +59,12 @@ class Usuario extends MY_Model{
 
 	function get_ranking(){
 
-		$CI = & get_instance();
-		$CI->load->add_package_path(APPPATH.'third_party/bitauth/');
-		$CI->load->library('bitauth');
-		if (!$CI->bitauth->logged_in()) return false;
-	
-		$user = $CI->bitauth->get_user_by_username($CI->bitauth->username);
-		$user = $user->user_id;
-		
 		$res = $this->db->query("select * from bitauth_userdata where fullname != '' order by puntos desc");
 		return $res->result();	
 	}
 
 	function get_ganadores(){
 
-		$CI = & get_instance();
-		$CI->load->add_package_path(APPPATH.'third_party/bitauth/');
-		$CI->load->library('bitauth');
-		if (!$CI->bitauth->logged_in()) return false;
-	
-		$user = $CI->bitauth->get_user_by_username($CI->bitauth->username);
-		$user = $user->user_id;
-		
 		$res = $this->db->query("select * from bitauth_userdata where fullname != '' and participante = 1 order by puntos desc limit 3");
 		return $res->result();	
 	}
