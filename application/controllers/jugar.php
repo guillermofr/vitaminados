@@ -131,8 +131,7 @@ class Jugar extends CI_Controller {
 
 
 		$data['logueado'] = $this->bitauth->logged_in();
-		 
-			$data['user'] = ($data['logueado'])?$this->bitauth->get_user_by_id($this->bitauth->user_id):false;
+		$data['user'] = ($data['logueado'])?$this->bitauth->get_user_by_id($this->bitauth->user_id):false;
 		$data['vitaminas'] = $this->vitamina->get_vitaminas();
 
 

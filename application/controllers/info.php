@@ -22,21 +22,39 @@ class Info extends CI_Controller {
     {
         parent::__construct();
         $this->load->spark('twiggy/0.8.5');
+        $this->load->add_package_path(APPPATH.'third_party/bitauth');
+        $this->load->library('bitauth');
     }
 
     public function index(){
+    	$data = array();
+    	$data['logueado'] = $this->bitauth->logged_in();
+		$data['user'] = ($data['logueado'])?$this->bitauth->get_user_by_id($this->bitauth->user_id):false;
+		$this->twiggy->set($data);
 		$this->twiggy->display('info/jugar');
     }
 
     public function ranking(){
+    	$data = array();
+    	$data['logueado'] = $this->bitauth->logged_in();
+		$data['user'] = ($data['logueado'])?$this->bitauth->get_user_by_id($this->bitauth->user_id):false;
+		$this->twiggy->set($data);
 		$this->twiggy->display('info/ranking');
 	}
 
 	public function developer(){
+		$data = array();
+    	$data['logueado'] = $this->bitauth->logged_in();
+		$data['user'] = ($data['logueado'])?$this->bitauth->get_user_by_id($this->bitauth->user_id):false;
+		$this->twiggy->set($data);
 		$this->twiggy->display('info/developer');
 	}
 
 	public function premios(){
+		$data = array();
+    	$data['logueado'] = $this->bitauth->logged_in();
+		$data['user'] = ($data['logueado'])?$this->bitauth->get_user_by_id($this->bitauth->user_id):false;
+		$this->twiggy->set($data);
 		$this->twiggy->display('info/premios');
 	}
 	

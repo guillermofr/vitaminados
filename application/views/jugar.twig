@@ -9,7 +9,7 @@
 
 		{% if user.fullname %}
 
-		<div class="md-modal md-effect-11" id="modal-1">
+		<div class="md-modal md-effect-13" id="modal-1">
 			<div class="md-content">
 				<h3></h3>
 				<div>
@@ -19,12 +19,12 @@
 					</div>
 					<br clear="both"/>
 					<button class="md-close">Cerrar descripción</button>
-					<button class="md-trigger md-use" data-modal="modal-2">Usar esta vitamina</button>
+					<button class="md-trigger md-use md-setperspective" data-modal="modal-2">Usar esta vitamina</button>
 				</div>
 			</div>
 		</div>
 
-		<div class="md-modal md-effect-11" id="modal-2">
+		<div class="md-modal md-effect-4" id="modal-2">
 			<div class="md-content">
 				<input type="hidden" id="aplicar_vitamina" value="0"/>
 				<h3></h3>
@@ -35,6 +35,8 @@
 				</div>
 			</div>
 		</div>
+
+		<div class="md-overlay"></div><!-- the overlay element -->
 
 		<div class="container">
 			
@@ -50,8 +52,9 @@
 				    	<button type="submit" class="btn btn-2 btn-2a">Validar captcha</button>
 					</span>
 
-					  <h2>Captchas rellenados consecutivos: {{ user.racha }} </h2>
-			    <p>Cada racha de 10 captchas obtendrás una vitamina, con racha de 50 supervitamina!</p>
+					  <h2>Racha de captchas: {{ user.racha }} </h2>
+					    <p>Cada racha de 10 captchas obtendrás una vitamina, con racha de 50 supervitamina!</p>
+					    <p>Si llegas a una racha de 500 podrás obtener vitaminas capaces de romper el juego! O_o</p>
 				</form>
 
 
