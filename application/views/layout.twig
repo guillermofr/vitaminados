@@ -42,8 +42,8 @@
 
 			$('#modal-2 .target').live('click',function(e){
 				//TODO llamar a ejecutar vitamina (ajax)
-				alert("aplico la vitamina " + $("#aplicar_vitamina").val() + " sobre user " + e.currentTarget.childNodes[1].value);
-
+				//alert("aplico la vitamina " + $("#aplicar_vitamina").val() + " sobre user " + e.currentTarget.childNodes[1].value);
+				$.post('/api/usar_vitamina/' +$("#aplicar_vitamina").val() + "/" + e.currentTarget.childNodes[1].value);
 				$('.md-overlay').click();
 				$('img#'+$("#aplicar_vitamina").val()).hide();
 			});
@@ -168,10 +168,26 @@
 			padding:50px;
 		}
 
-		#info_juego .titulo{
+		#info_juego .ficha-titulo{
 			font-size: 30px;
 			margin: 20px;
 		}
+
+		#info_juego .ficha-img {
+			position: absolute;
+			right: 0px;
+			margin-right: 19px;
+			width: 166px;
+			border-radius: 81px;
+			border: 8px solid tomato;
+			padding: 9px;
+		}
+
+		.ficha {
+			position: relative;
+			height: 146px;
+		}
+
 
 		#vitaminero , #efectos{
 			background: #EFEFEF;

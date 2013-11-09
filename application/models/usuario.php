@@ -46,11 +46,32 @@ class Usuario extends MY_Model{
 		$user = $CI->bitauth->get_user_by_username($CI->bitauth->username);
 		$user = $user->user_id;
 		
-		$res = $this->db->query("select * from bitauth_userdata where user_id != $user order by puntos");
+		$res = $this->db->query("select * from bitauth_userdata where user_id != $user order by puntos desc");
 		return $res->result();	
 	}
 
+	function get_rank($user_id){
+		return 6 . "#";
+	}
 
+	function get_ranking(){
+
+		$CI = & get_instance();
+		$CI->load->add_package_path(APPPATH.'third_party/bitauth/');
+		$CI->load->library('bitauth');
+		if (!$CI->bitauth->logged_in()) return false;
+	
+		$user = $CI->bitauth->get_user_by_username($CI->bitauth->username);
+		$user = $user->user_id;
+		
+		$res = $this->db->query("select * from bitauth_userdata order by puntos desc");
+		return $res->result();	
+	}
+
+	function target_usable($target_id){
+		$q = $this->db->query("select * from bitauth_userdata where user_id = $target_id");
+		return $q->num_rows();
+	}
 
 	
 

@@ -61,7 +61,7 @@ class Api extends CI_Controller {
 
    		$html .= '<p>Los demás</p>';
    		
-   		for ($i = 0 ; $i<14 ;$i++) 
+   		//for ($i = 0 ; $i<14 ;$i++) 
    		foreach ($usuarios as $u) {
    			$html .= "<div class='target'>
    				<input type='hidden' name='id' value='".$u->user_id."'/>
@@ -72,13 +72,65 @@ class Api extends CI_Controller {
    			</div>";
    		}
 
-
-
    		$html .= "<br clear='left'/><button class='md-cancel'>Cancelar</button>";
 
    		echo $html;
 
    	}
+
+
+    function load_ranking(){
+
+      $this->load->model('usuario');
+      $CI = & get_instance();
+    $CI->load->add_package_path(APPPATH.'third_party/bitauth/');
+    $CI->load->library('bitauth');
+
+      $usuarios = $this->usuario->get_ranking();
+
+      $html = '<p>Lista de usuarios</p><div style="margin:auto">';
+
+      $rank = 1;
+
+      //for ($i = 0 ; $i<14 ;$i++) 
+      foreach ($usuarios as $u) {
+        $html .= "<div class='rank'>
+          <input type='hidden' name='id' value='".$u->user_id."'/>
+          <img class='rank-img' src='http://1.gravatar.com/avatar/".$u->user_id."?s=50&d=monsterid&r=G' />
+          <span class='rank-nick'>".recortar_texto($u->fullname,10)."</span>
+          <span class='rank-puntos'>".$u->puntos."</span>
+          <span class='rank-rank'>".$rank++."#</span>
+          <span class='rank-racha'>combo<br>x".$u->racha."</span>
+        </div>";
+      }
+
+      $html .= "<br clear='left'/></div>";
+      echo $html;
+
+    }
+
+
+    function usar_vitamina($instancia_vitamina_id = 0,$target_id = 0){
+      $this->load->model(array('usuario' , 'vitamina'));
+      $CI = & get_instance();
+      $CI->load->add_package_path(APPPATH.'third_party/bitauth/');
+      $CI->load->library('bitauth');
+
+      if (!$instancia_vitamina_id || !$target_id) return false;
+
+      if ($this->vitamina->vitamina_usable($instancia_vitamina_id) && $this->usuario->target_usable($target_id)){
+        //podemos hacer cambios
+
+        $this->vitamina->usar($instancia_vitamina_id,$target_id);
+
+      } else {
+        ECHO "HACKER!";
+        return false;
+      }
+
+
+
+    }
 	
 }
 

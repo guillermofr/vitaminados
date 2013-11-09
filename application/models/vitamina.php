@@ -21,8 +21,16 @@ class Vitamina extends MY_Model{
 			3º categoria <- normales x10
 		*/
 
-		$vitamina_id = 1;
-		$timeout = 60;   	
+		//buscamos las vitaminas de dicha categoría y las contamos
+			$vitaminas = $this->db->query("select * from vitamina where categoria = $categoria");
+			$num_vitaminas = $vitaminas->num_rows();
+			$res_vitaminas = $vitaminas->result_array();
+		
+		//hacemos un random para seleccionar una
+			$random = rand(0,$num_vitaminas-1);
+
+			$vitamina_id = $res_vitaminas[$random]['id'];
+			$timeout = 	 $res_vitaminas[$random]['time'];
 
 		$user_id = $this->bitauth->user_id;
 
@@ -56,8 +64,47 @@ class Vitamina extends MY_Model{
 			return $temp[0]->descripcion;
 	}
 
-	function usar_vitamina($vitamina_id){
+
+
+	function vitamina_usable($instancia_vitamina_id){
+		$CI = & get_instance();
+		$CI->load->add_package_path(APPPATH.'third_party/bitauth/');
+		$CI->load->library('bitauth');
+		if (!$CI->bitauth->logged_in()) return false;
+
+		$q = $this->db->query("select * from pastillero where id = $instancia_vitamina_id and user_id = ". $CI->bitauth->user_id . " and timeout > NOW() ");
 		
+		if ($q->num_rows()){
+			return true;
+		} else {
+			return false;
+		}
+		
+
+	}
+
+
+	function usar($instancia_vitamina_id,$target_id){
+		$CI = & get_instance();
+		$CI->load->add_package_path(APPPATH.'third_party/bitauth/');
+		$CI->load->library('bitauth');
+		if (!$CI->bitauth->logged_in()) return false;
+
+		// sacamos el tipo y el fichero de vitamina a $instancia_vitamina_id
+
+		$query = $this->db->query("select v.fichero 
+						from vitamina v, pastillero p 
+						where
+							p.vitamina_id = v.id and 
+							p.id = $instancia_vitamina_id and
+							p.timeout > NOW()");
+		// hacemos include del código respectivo, rutas vitaminas/code
+		$q = $query->result();
+
+		if ($query->num_rows()){
+			include('vitaminas/'.$q[0]->fichero);
+			$this->db->query("update pastillero set timeout = 0 where id= $instancia_vitamina_id");
+		} 
 	}
 
 }

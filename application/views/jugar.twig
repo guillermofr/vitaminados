@@ -60,10 +60,16 @@
 
 
 				<div id="info_juego">
-					<div><span class="titulo">Usuario</span> {{ user.fullname }}</div>
-					<div><span class="titulo">Puntación</span> {{ user.puntos }}</div>
-					<div><span class="titulo">Posición en ranking</span> 1</div>
-					<div><span class="titulo">Efectos activos</div>
+
+					<div class="ficha">
+						<img class="ficha-img" src="http://1.gravatar.com/avatar/{{user.user_id}}?s=200&d=monsterid&r=G"/>
+
+						<div><span class="ficha-titulo">Usuario</span> {{ user.fullname }}</div>
+						<div><span class="ficha-titulo">Puntación</span> {{ user.puntos }}</div>
+						<div><span class="ficha-titulo">Posición en ranking</span> {{ranking}}</div>
+
+					</div>
+					<div><span class="ficha-titulo">Efectos activos</div>
 
 						<div id="efectos" class="">
 							{% if not effects %}
