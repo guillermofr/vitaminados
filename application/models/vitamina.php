@@ -52,10 +52,20 @@ class Vitamina extends MY_Model{
 		if (!$CI->bitauth->logged_in()) return false;
 
 		$user_id = $CI->bitauth->user_id;
-		$result = $this->db->query("select p.id instancia, p.vitamina_id, p.timeout, v.nombre, v.descripcion, v.categoria from pastillero p, vitamina v
+		$result = $this->db->query("select 
+				p.id instancia, 
+				p.vitamina_id, 
+				v.time, 
+				p.timeout, 
+				UNIX_TIMESTAMP(p.timeout) - UNIX_TIMESTAMP(NOW()) as queda,
+				v.nombre, 
+				v.descripcion, 
+				v.categoria 
+			from 
+				pastillero p, vitamina v
 			where
-			 p.vitamina_id = v.id and 
-			 user_id = $user_id and timeout > NOW()");
+				p.vitamina_id = v.id and 
+				user_id = $user_id and timeout > NOW()");
 
 		return $result->result();
 	}

@@ -75,7 +75,7 @@ class Jugar extends CI_Controller {
 					//supervitamina
 					$this->vitamina->crear_nueva(2);
 
-				} else if ($this->bitauth->racha % 10 == 0){
+				} else if ($this->bitauth->racha % 1 == 0){
 					//vitamina
 					$this->vitamina->crear_nueva(3);
 				}
