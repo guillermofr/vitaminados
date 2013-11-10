@@ -83,7 +83,7 @@
 				//alert("aplico la vitamina " + $("#aplicar_vitamina").val() + " sobre user " + e.currentTarget.childNodes[1].value);
 				$.post('/api/usar_vitamina/' +$("#aplicar_vitamina").val() + "/" + e.currentTarget.childNodes[1].value);
 				$('.md-overlay').click();
-				$('img#'+$("#aplicar_vitamina").val()).hide();
+				$('img#'+$("#aplicar_vitamina").val()).parent().hide();
 			});
 
 		
@@ -279,7 +279,7 @@
 		}
 
 		.vitaminapack {
-			width: 70px;
+			width: 98px;
 			display: inline-block;
 			white-space: nowrap;
 			position: relative;

@@ -75,7 +75,7 @@ class Jugar extends CI_Controller {
 					//supervitamina
 					$this->vitamina->crear_nueva(2);
 
-				} else if ($this->bitauth->racha % 1 == 0){
+				} else if ($this->bitauth->racha % 10 == 0){
 					//vitamina
 					$this->vitamina->crear_nueva(3);
 				}
@@ -94,6 +94,7 @@ class Jugar extends CI_Controller {
 
 
 		// selector de juego que aparecerá en el siguiente turno
+		//TODO en lugar de poner un 0 para forzarlo hay que hacer un random o una secuencia
 		switch(0) {
 			case 0:
 				$type = 'simple';
