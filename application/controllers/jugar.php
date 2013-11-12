@@ -51,6 +51,10 @@ class Jugar extends CI_Controller {
 				case 'ayah':
 					include('includes/ayah_check.php');
 				break;
+				case 'securimage':
+					include('includes/securimage_check.php');
+				break;
+
 				default:
 					// hackerrr!!
 					$this->usuario->reset_racha();
@@ -95,7 +99,7 @@ class Jugar extends CI_Controller {
 
 		// selector de juego que aparecerá en el siguiente turno
 		//TODO en lugar de poner un 0 para forzarlo hay que hacer un random o una secuencia
-		switch(0) {
+		switch(3) {
 			case 0:
 				$type = 'simple';
 			break;
@@ -104,6 +108,9 @@ class Jugar extends CI_Controller {
 			break;
 			case 2:
 				$type = 'recaptcha';
+			break;
+			case 3:
+				$type = 'securimage';
 			break;
 			//añadir aquí resto de juegos para que aparezcan
 
@@ -126,6 +133,13 @@ class Jugar extends CI_Controller {
 				$this->load->helper('ayah/ayah');
 				$ayah = new AYAH();
 				$data = array('type' => 'ayah','ayah_game'=> $ayah->getPublisherHTML());
+			break;
+
+			case 'securimage':
+
+				
+
+				$data = array('type' => 'securimage');
 			break;
 
 		}

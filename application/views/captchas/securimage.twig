@@ -1,0 +1,11 @@
+{% extends 'jugar.twig' %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block captcha %}
+    <img id="captcha" src="/generador/securimage" alt="CAPTCHA Image" /><br/>
+    <input type="text" name="captcha_code" size="10" maxlength="6" />
+	<a style="color: white;" href="#" onclick="document.getElementById('captcha').src = '/generador/securimage?' + Math.random(); return false">[ Cambiar a otra ]</a>
+{% endblock %}
