@@ -26,6 +26,39 @@ class Generador extends CI_Controller {
     function securimage(){
     	$this->load->helper('securimage/securimage');
 		$image = new Securimage();
+
+		// setting the background color to white
+		$image->image_bg_color = new Securimage_Color('#E74C3C');
+		// setting the text color to a dark grey
+		$image->text_color = new Securimage_Color('#ffffff');
+		// setting the line color to a dark gray to match the text
+		$image->line_color = new Securimage_Color('#ffffff');
+
+
+		$this->load->add_package_path(APPPATH.'third_party/bitauth');
+        $this->load->library('bitauth');
+
+        if ($this->bitauth->logged_in()) {
+        	
+        	
+        	$own = $this->bitauth->get_user_by_id($this->bitauth->user_id);
+			$own_puntos = $own->puntos;
+			$own_racha = $own->racha;
+
+
+
+        	$image->perturbation = $own_racha /300;
+			$image->num_lines = $own_racha/14; 
+
+        } else {
+
+        	$image->perturbation = 0;
+			$image->num_lines = 0; 
+
+        }
+
+
+
 		$image->show();
     }
 	
