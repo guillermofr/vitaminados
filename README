@@ -1,30 +1,30 @@
-Creamture is an Open Source Framework based in CodeIgniter.
+vitaminados
+===========
 
-Original project of SeViR (Jose Francisco Rives Lirola)
-DIGIO Soluciones Digitales http://www.digio.es - & Accesium
-Technology - http://www.accesium.es -
+Minijuego para la MurciaLanParty
 
-FEATURES
-_________________________________________________________________
+###Instalación en local:
+-bajarse el repositorio y ponerlo en vhost vitaminados.local para que funcionen las keys
 
-Simply install and open the welcome page, you have all you need
-there ;-)
+###Descripción y documentación del proyecto:
+https://docs.google.com/document/d/1nQqEwko32vlDea4zCIhbDJZfVC7DzzCLGCYiUeF4Vt8/edit?usp=sharing
 
+###¿Quieres colaborar?
+Crea tus propias vitaminas y envíamelas para incluirlas al juego
+solo tienes que indicarme varias cosas
+- nombre de la vitamina
+- descripción de la vitamina
+- tiempo en minutos para que caduque
+- categoría de la vitamina
+	- hay tres tipos de categoría:
+		- categoría 1: hay posibilidad de que salga con rachas de 500 captchas
+		- categoría 2: hay posibilidad de que salga con rachas de 50 captchas
+		- categoría 3: hay posibilidad de que salga con rachas de 10 captchas
+- nombre del fichero con el código 
 
-INSTALLATION
-_________________________________________________________________
+y por último
 
-Decompress all the files, point your virtual host to the "public"
-folder.
-Save the public assets to the "public" folder (imgs, js, css,...)
+- el fichero con el código que modifica las puntuaciónes. (Hay un ejemplo en application/models/vitaminas/ejemplo.php)
 
-AGREEMENTS
-_________________________________________________________________
-
-* lfrancop for the bugfixes
-* jcavard for his initial Language Application Editor, thanks for
-your fantastic idea, we have to improve it
-* wiredesignz for HMVC Implementation
-* Andreas Suderlund for SimpleTest CI library
-* CodeIgniter Reactor Team
-* All the people who has made this project a reality
+Podeis enviarmelo por correo a killer415@gmail.com o si controlais de github, mandarme un pull 
+request con el fichero y los datos de la vitamina en el propio mensaje.
