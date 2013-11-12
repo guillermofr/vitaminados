@@ -29,7 +29,7 @@ class Jugar extends CI_Controller {
     }
 
     public function index(){
-    	$num_games = 3;
+    	$num_games = 4;
 
 		//change this code after install
 		$this->load->spark('twiggy/0.8.5');
@@ -99,9 +99,10 @@ class Jugar extends CI_Controller {
 
 		// selector de juego que aparecerá en el siguiente turno
 		//TODO en lugar de poner un 0 para forzarlo hay que hacer un random o una secuencia
-		switch(3) {
+		switch($this->bitauth->racha % $num_games) {
+		//switch(3) {
 			case 0:
-				$type = 'simple';
+				$type = 'securimage';
 			break;
 			case 1:
 				$type = 'ayah';
@@ -110,7 +111,7 @@ class Jugar extends CI_Controller {
 				$type = 'recaptcha';
 			break;
 			case 3:
-				$type = 'securimage';
+				$type = 'simple';
 			break;
 			//añadir aquí resto de juegos para que aparezcan
 
@@ -122,7 +123,13 @@ class Jugar extends CI_Controller {
 		switch ($type){
 
 			case 'simple':
-				$data = array('type' => 'simple');
+
+				$rand1 = rand(1,$this->bitauth->racha);
+				$rand2 = rand(1,$this->bitauth->racha);
+
+				$this->session->set_userdata('simple_check',$rand1 + $rand2);
+
+				$data = array('type' => 'simple','rand1'=>$rand1,'rand2'=>$rand2);
 			break;
 
 			case 'recaptcha':
@@ -136,9 +143,6 @@ class Jugar extends CI_Controller {
 			break;
 
 			case 'securimage':
-
-				
-
 				$data = array('type' => 'securimage');
 			break;
 

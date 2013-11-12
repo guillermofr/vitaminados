@@ -51,6 +51,21 @@ margin-bottom: -5px;
 	width: 93px;
 }
 
+ul {
+	display: inline-block;
+	width: 777px;
+	list-style: none;
+
+}
+ul span{
+	display: block;
+	background:#CD4436;
+	font-size: 30px;
+	border-bottom: 3px solid;
+	margin: 12px 0px;
+	padding: 16px;
+}
+
 </style>
 	
  	<h2>¿Cómo se juega a esto?</h2>
@@ -67,39 +82,64 @@ margin-bottom: -5px;
 
  	<p>Cada racha de 50 tendréis super vitaminas!!! usarlas rápido que se inutilizan
  		con el tiempo</p>
+
+ 	<p>Si consigues llegar a una racha de 500 captchas tendrás una vitamina tan poderosa que 
+ 		te podría catapultar al primer puesto de la tabla!</p>
+
+ 		<p>mucha suerte!</p>
 </div>
 <br clear="left" />
  	<a href="/jugar" class="btn btn-2 btn-2a">Jugar!</a>
 
+ 	<br clear="left" />
+
+
  	<h2 style="margin-top:50px">Elementos del juego</h2>
 
+ 	<p class="info_section">Interfaz</p>
+
+ 		<h2>Captchas</h2>
+ 		<img src="/assets/img/captchas.png" />
+ 		<p>4 tipos de captchas que irán rotando e incrementando su dificultad a medida que los combos o rachas sean más largos</p>
+ 		<h2>Vitaminas</h2>
+ 		<img src="/assets/img/timer.png" />
+ 		<p>Cada una de las vitaminas que tengas en el inventario tendrá un tiempo restante para poder usarla.<br> Este tiempo
+ 			se representa con un anillo gris alrededor de el icono</p><p>Úsala antes de que se acabe o la perderás!</p>
+
+
  	<p class="info_section">Vitaminas</p>
- <div>
- 	<table id="listado_vitaminas">
-	 	<tr>
-	 		<th></th>
-		 	<th>Nombre</th>
-		 	<th>Descripcion/effectos</th>
-		 	<th>Tiempo en caducar(minutos)</th>
-		 	<!--th>Categoría</th-->
-	 	<tr>
- 	{% for v in vitaminas %}
-	 	<tr>
-		 	<td><img clasS="info_img{{ v.categoria }}" src="https://identicons.github.com/{{v.id}}.png" width="50px" /> </td>
-		 	<td>{{ v.nombre }}</td>
-		 	<td>{{ v.descripcion }}</td>
-		 	<td>{{ v.time }}</td>
-		 	<!--td>{{ v.categoria }}</td-->
-	 	<tr>
- 	{% endfor %}
- </div>
 
+	 	<h2>Tipos de vitaminas</h2>
 
- 	</table>
+	 	<p>Las vitaminas se pueden dividir en 3 categorías:</p>
+	 	<ul>
 
- 	<p class="info_section">Efectos secundarios</p>
+	 			<li><span style="color:tomato">SuperMegaVitaminas</span> Se obtienen al rellenar 500 capchas seguidos sin fallar. Tienen un gran poder y son capaces de desbalancear el juego</li>
+	 			<li><span style="color:gold">SuperVitaminas</span> Se obtienen cada vez que rellenes 50 seguidas sin fallar, sus efectos son poderosos pero no tan drásticos.</li>
+	 			<li><span style="color:#7ECFA7">Vitaminas</span> Son las más comunes y pueden llegar a molestar mucho. Úsalas con sabiduría y podrás fastidiar a tus enemigos.</li>
+	 	</ul>
 
- 	<p>No implementado aún </p>
+	 	<h2>Listado de vitaminas</h2>
+		 <div>
+		 	<table id="listado_vitaminas">
+			 	<tr>
+			 		<th></th>
+				 	<th>Nombre</th>
+				 	<th>Descripcion/effectos</th>
+				 	<th>Tiempo en caducar(minutos)</th>
+				 	<!--th>Categoría</th-->
+			 	<tr>
+		 	{% for v in vitaminas %}
+			 	<tr>
+				 	<td><img clasS="info_img{{ v.categoria }}" src="https://identicons.github.com/{{v.id}}.png" width="50px" /> </td>
+				 	<td>{{ v.nombre }}</td>
+				 	<td>{{ v.descripcion }}</td>
+				 	<td>{{ v.time }}</td>
+				 	<!--td>{{ v.categoria }}</td-->
+			 	<tr>
+		 	{% endfor %}
+ 			</table>
+ 		</div>
 
 
 {% endblock %}

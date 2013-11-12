@@ -1,7 +1,7 @@
 <?php
 
 	if ($this->input->post('resultado')){
-		if ($this->input->post('resultado') == 2){
+		if ($this->input->post('resultado') == $this->session->userdata('simple_check')){
 	  		$captchacorrecto = true;
 		}else {
 	  		$captchacorrecto = false;	
