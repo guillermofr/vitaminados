@@ -16,7 +16,8 @@
 
 #listado_vitaminas th{
 	padding: 15px 30px;
-	text-align: left
+	text-align: left;
+	white-space: nowrap;
 }
 
 #listado_vitaminas td{
@@ -79,8 +80,8 @@ margin-bottom: -5px;
 	 		<th></th>
 		 	<th>Nombre</th>
 		 	<th>Descripcion/effectos</th>
-		 	<th>Tiempo en caducar</th>
-		 	<th>Categoría</th>
+		 	<th>Tiempo en caducar(minutos)</th>
+		 	<!--th>Categoría</th-->
 	 	<tr>
  	{% for v in vitaminas %}
 	 	<tr>
@@ -88,7 +89,7 @@ margin-bottom: -5px;
 		 	<td>{{ v.nombre }}</td>
 		 	<td>{{ v.descripcion }}</td>
 		 	<td>{{ v.time }}</td>
-		 	<td>{{ v.categoria }}</td>
+		 	<!--td>{{ v.categoria }}</td-->
 	 	<tr>
  	{% endfor %}
  </div>

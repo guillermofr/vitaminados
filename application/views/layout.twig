@@ -81,9 +81,12 @@
 			$('#modal-2 .target').live('click',function(e){
 				//TODO llamar a ejecutar vitamina (ajax)
 				//alert("aplico la vitamina " + $("#aplicar_vitamina").val() + " sobre user " + e.currentTarget.childNodes[1].value);
-				$.post('/api/usar_vitamina/' +$("#aplicar_vitamina").val() + "/" + e.currentTarget.childNodes[1].value);
-				$('.md-overlay').click();
-				$('img#'+$("#aplicar_vitamina").val()).parent().hide();
+				$.post('/api/usar_vitamina/' +$("#aplicar_vitamina").val() + "/" + e.currentTarget.childNodes[1].value,function(){
+					$('.md-overlay').click();
+					$('img#'+$("#aplicar_vitamina").val()).parent().hide();
+					location.reload(true);
+				});
+				
 			});
 
 		

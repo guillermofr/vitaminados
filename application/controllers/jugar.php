@@ -89,7 +89,7 @@ class Jugar extends CI_Controller {
 
 		} else {
 			//primera carga de la web
-			$this->usuario->reset_racha();
+			
 		}
 
 
