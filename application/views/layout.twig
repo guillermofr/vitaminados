@@ -242,13 +242,14 @@
 			margin-right: 19px;
 			width: 166px;
 			border-radius: 81px;
-			border: 8px solid tomato;
+			border: 8px solid white;
 			padding: 9px;
 		}
 
 		.ficha {
 			position: relative;
 			height: 146px;
+			padding-left: 20px;
 		}
 
 
@@ -387,7 +388,30 @@ margin-left: 165px;
 					</nav>
 				{% endif %}
 				<h1>Vitaminados (Beta) <span>Un juego para putear a los demás y putearte tu mismo.</span></h1>
-				<p>Jugar con moderación, el grado de enfermedad puede ser épico.</p>
+				
+
+				<div style="display:inline-block">
+				<!-- START COUNTDOWN -->
+				<script src="/assets/js/countdown.js" type="text/javascript"></script>
+				<script type="application/javascript">
+
+				var myCountdownTest = new Countdown({
+												 	year	: 2013,
+													month	: 12, 
+													day		: 7,
+													width	: 450, 
+													height	: 150,
+													rangeHi  : "day",
+													padding  : 0.7, 
+													});
+
+
+
+				</script>
+				<!-- END COUNTDOWN -->
+				<p>Para acabar la partida</p>
+				</div>
+				
 			</header>
 			<section class="color-5">
 				<nav class="cl-effect-4">
@@ -405,6 +429,8 @@ margin-left: 165px;
 
 
 		<div class="md-overlay"></div><!-- the overlay element -->
+
+
 
 		<!-- classie.js by @desandro: https://github.com/desandro/classie -->
 		<script src="/assets/js/classie.js"></script>

@@ -72,14 +72,14 @@
 				<div id="info_juego">
 
 					<div class="ficha">
-						<img class="ficha-img" src="http://1.gravatar.com/avatar/{{user.user_id}}?s=200&d=monsterid&r=G"/>
+						<img style="border-color:{{clancolor}}" class="ficha-img" src="http://1.gravatar.com/avatar/{{user.user_id}}?s=200&d=monsterid&r=G"/>
 
-						<div><span class="ficha-titulo">Usuario</span> {{ user.fullname }}</div>
-						<div><span class="ficha-titulo">Puntación</span> {{ user.puntos }}</div>
-						<div><span class="ficha-titulo">Posición en ranking</span> {{ranking}}</div>
+						<div>Usuario<span class="ficha-titulo">{{ user.fullname }}</span></div>
+						<div>Puntación<span class="ficha-titulo">{{ user.puntos }}</span> </div>
+						<div>Posición en ranking<span class="ficha-titulo">{{ranking}}</span> </div>
 
 					</div>
-					<div><span class="ficha-titulo">Efectos activos</div>
+					<!--div><span class="ficha-titulo">Efectos activos</div>
 
 						<div id="efectos" class="">
 							{% if not effects %}
@@ -88,7 +88,7 @@
 								<span>Padeces de: </span>
 							{% endif %}
 
-						</div>
+						</div-->
 
 					<div><span class="ficha-titulo">Vitaminas disponibles</span> <br/>
 						
@@ -110,7 +110,23 @@
 							{% endif %}
 
 						</div>
+
+					<div><span class="ficha-titulo">Últimos 5 ataques contra ti</span> <br/>
 					
+						<div id="efectos" >
+							
+							{% if not ataques %}
+								<span>Nadie te ha atacado aún.</span>
+							{% else %}
+								{% for a in ataques %}
+									
+
+
+								{% endfor %}
+							{% endif %}
+
+						</div>
+
 					</div>
 				</div>
 

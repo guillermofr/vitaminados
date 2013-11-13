@@ -15,3 +15,4 @@ function recortar_texto($texto, $limite=100){
     }   
     return $resultado;
 }
+

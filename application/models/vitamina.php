@@ -10,6 +10,14 @@ class Vitamina extends MY_Model{
 		parent::__construct();
 	}
 	
+	function juego_terminado(){
+
+	    $q = $this->db->query('select * from vars where id = 1 and fin < now()');
+	    return $q->num_rows();
+
+	}
+
+
 	function crear_nueva($categoria = 1){
 
 		// segun la categoría que venga seleccionaremos por random una vitamina
@@ -103,7 +111,7 @@ class Vitamina extends MY_Model{
 		$CI = & get_instance();
 		$CI->load->add_package_path(APPPATH.'third_party/bitauth/');
 		$CI->load->library('bitauth');
-		if (!$CI->bitauth->logged_in()) return false;
+		if (!$CI->bitauth->logged_in() || $this->juego_terminado()) return false;
 
 		// sacamos el tipo y el fichero de vitamina a $instancia_vitamina_id
 

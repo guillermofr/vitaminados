@@ -97,65 +97,92 @@ class Jugar extends CI_Controller {
 		}
 
 
-		// selector de juego que aparecerá en el siguiente turno
-		//TODO en lugar de poner un 0 para forzarlo hay que hacer un random o una secuencia
-		switch($this->bitauth->racha % $num_games) {
-		//switch(3) {
-			case 0:
-				$type = 'securimage';
-			break;
-			case 1:
-				$type = 'ayah';
-			break;
-			case 2:
-				$type = 'recaptcha';
-			break;
-			case 3:
-				$type = 'simple';
-			break;
-			//añadir aquí resto de juegos para que aparezcan
+		if ($this->bitauth->logged_in()){
 
-			default:
-				$type = 'recaptcha';
-			break;
+
+			// selector de juego que aparecerá en el siguiente turno
+			//TODO en lugar de poner un 0 para forzarlo hay que hacer un random o una secuencia
+			switch($this->bitauth->racha % $num_games) {
+			//switch(3) {
+				case 0:
+					$type = 'recaptcha';
+				break;
+				case 1:
+					$type = 'securimage';
+				break;
+				case 2:
+					$type = 'ayah';
+				break;
+				case 3:
+					$type = 'simple';
+				break;
+				//añadir aquí resto de juegos para que aparezcan
+
+				default:
+					$type = 'recaptcha';
+				break;
+			}
+
+			switch ($type){
+
+				case 'simple':
+
+					$rand1 = rand(1,$this->bitauth->racha);
+					$rand2 = rand(1,$this->bitauth->racha);
+
+					$this->session->set_userdata('simple_check',$rand1 + $rand2);
+
+					$data = array('type' => 'simple','rand1'=>$rand1,'rand2'=>$rand2);
+				break;
+
+				case 'recaptcha':
+					$data = array('type' => 'recaptcha'); 
+				break;
+
+				case 'ayah': 
+					$this->load->helper('ayah/ayah');
+					$ayah = new AYAH();
+					$data = array('type' => 'ayah','ayah_game'=> $ayah->getPublisherHTML());
+				break;
+
+				case 'securimage':
+					$data = array('type' => 'securimage');
+				break;
+
+			} 
+
+			$data['logueado'] = $this->bitauth->logged_in();
+			$data['user'] = ($data['logueado'])?$this->bitauth->get_user_by_id($this->bitauth->user_id):false;
+			$data['vitaminas'] = $this->vitamina->get_vitaminas();
+			$data['ranking'] = ($data['logueado'])?$this->usuario->get_rank($this->bitauth->user_id):'0';
+
+			if ($this->bitauth->clan != '') {
+				$data['clancolor'] = "#".substr(md5($this->bitauth->clan),0,6);
+			} else {
+				$data['clancolor'] = '#ffffff';
+			}
+
+			
+
+			$this->twiggy->set($data);
+			$this->twiggy->display('captchas/'.$type,$data);
+
+
+		} else {
+			$type = '';
+			$data = array('type' => '');
+			$data['logueado'] = $this->bitauth->logged_in();
+			$data['user'] = ($data['logueado'])?$this->bitauth->get_user_by_id($this->bitauth->user_id):false;
+			$data['vitaminas'] = $this->vitamina->get_vitaminas();
+			$data['ranking'] = ($data['logueado'])?$this->usuario->get_rank($this->bitauth->user_id):'0';
+
+			$this->twiggy->set($data);
+			$this->twiggy->display('jugar',$data);
 		}
-
-		switch ($type){
-
-			case 'simple':
-
-				$rand1 = rand(1,$this->bitauth->racha);
-				$rand2 = rand(1,$this->bitauth->racha);
-
-				$this->session->set_userdata('simple_check',$rand1 + $rand2);
-
-				$data = array('type' => 'simple','rand1'=>$rand1,'rand2'=>$rand2);
-			break;
-
-			case 'recaptcha':
-				$data = array('type' => 'recaptcha'); 
-			break;
-
-			case 'ayah': 
-				$this->load->helper('ayah/ayah');
-				$ayah = new AYAH();
-				$data = array('type' => 'ayah','ayah_game'=> $ayah->getPublisherHTML());
-			break;
-
-			case 'securimage':
-				$data = array('type' => 'securimage');
-			break;
-
-		}
+		
 
 
-		$data['logueado'] = $this->bitauth->logged_in();
-		$data['user'] = ($data['logueado'])?$this->bitauth->get_user_by_id($this->bitauth->user_id):false;
-		$data['vitaminas'] = $this->vitamina->get_vitaminas();
-		$data['ranking'] = ($data['logueado'])?$this->usuario->get_rank($this->bitauth->user_id):'0';
-
-		$this->twiggy->set($data);
-		$this->twiggy->display('captchas/'.$type,$data);
+		
 
 		
     }

@@ -49,13 +49,15 @@ class Api extends CI_Controller {
 
    		$html = '<p>Tu</p>';
 
-   		$html .= "<div class='target'>
-   				<input type='hidden' name='id' value='".$CI->bitauth->user_id."'/>
-   				<img class='target-img' src='http://1.gravatar.com/avatar/".$CI->bitauth->user_id."?s=50&d=monsterid&r=G' />
-   				<span class='target-nick'>".recortar_texto($CI->bitauth->fullname,10)."</span>
-   				<span class='target-puntos'>".$CI->bitauth->puntos."</span>
-   				<span class='target-racha'>combo<br>x".$CI->bitauth->racha."</span>
-   			</div>";
+      $clancolor = ($CI->bitauth->clan != null)?"#".substr(md5($CI->bitauth->clan),0,6):'#ffffff';
+
+      $html .= "<div class='target'>
+          <input type='hidden' name='id' value='".$CI->bitauth->user_id."'/>
+          <img class='target-img' style='border-color:$clancolor' src='http://1.gravatar.com/avatar/".$CI->bitauth->user_id."?s=50&d=monsterid&r=G' />
+          <span class='target-nick'>".recortar_texto($CI->bitauth->fullname,10)."</span>
+          <span class='target-puntos'>".$CI->bitauth->puntos."</span>
+          <span class='target-racha'>combo<br>x".$CI->bitauth->racha."</span>
+        </div>";
 
    		$html .= '<p>Los demás</p>';
    		
@@ -70,9 +72,12 @@ class Api extends CI_Controller {
           $logo = "";
         }
 
+       $clancolor = ($u->clan != null)?"#".substr(md5($u->clan),0,6):'#ffffff';
+
+
    			$html .= "<div class='target ".$participante."'>
    				<input type='hidden' name='id' value='".$u->user_id."'/>
-   				<img class='target-img' src='http://1.gravatar.com/avatar/".$u->user_id."?s=50&d=monsterid&r=G' />
+   				<img class='target-img' style='border-color:$clancolor' src='http://1.gravatar.com/avatar/".$u->user_id."?s=50&d=monsterid&r=G' />
    				<span class='target-nick'>".recortar_texto($u->fullname,10)."</span>
    				<span class='target-puntos'>".$u->puntos."</span>
    				<span class='target-racha'>combo<br>x".$u->racha."</span>
@@ -97,6 +102,7 @@ class Api extends CI_Controller {
 
       $rank = 1;
 
+
       //for ($i = 0 ; $i<14 ;$i++) 
       foreach ($usuarios as $u) {
         if ($u->participante) {
@@ -106,10 +112,11 @@ class Api extends CI_Controller {
           $participante = '';
           $logo = "";
         }
+        $clancolor = ($u->clan != null)?"#".substr(md5($u->clan),0,6):'#ffffff';
 
         $html .= "<div class='rank ".$participante."'>
           <input type='hidden' name='id' value='".$u->user_id."'/>
-          <img class='rank-img' src='http://1.gravatar.com/avatar/".$u->user_id."?s=50&d=monsterid&r=G' />
+          <img class='rank-img' style='border-color:$clancolor' src='http://1.gravatar.com/avatar/".$u->user_id."?s=50&d=monsterid&r=G' />
           <span class='rank-nick'>".recortar_texto($u->fullname,10)."</span>
           <span class='rank-puntos'>".$u->puntos."</span>
           <span class='rank-rank'>".$rank++."#</span>
@@ -133,10 +140,15 @@ class Api extends CI_Controller {
 
       $rank = 1;
 
+
+
       //for ($i = 0 ; $i<14 ;$i++) 
       foreach ($usuarios as $u) {
+
+       $clancolor = ($u->clan != null)?"#".substr(md5($u->clan),0,6):'#ffffff';
+
         $html .= "<div class='rank'> 
-          <img class='rank-img' src='http://1.gravatar.com/avatar/".$u->user_id."?s=50&d=monsterid&r=G' />
+          <img class='rank-img' style='border-color:$clancolor' src='http://1.gravatar.com/avatar/".$u->user_id."?s=50&d=monsterid&r=G' />
           <span class='rank-nick'>".recortar_texto($u->fullname,10)."</span>
           <span class='rank-puntos'>".$u->puntos."</span>
           <span class='rank-rank'>".$rank++."#</span>

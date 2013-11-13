@@ -10,6 +10,12 @@ class Usuario extends MY_Model{
 		parent::__construct();
 	}
 	
+	function juego_terminado(){
+
+	    $q = $this->db->query('select * from vars where id = 1 and fin < now()');
+	    return $q->num_rows();
+
+	}
 
 	function reset_racha(){
 		$CI = & get_instance();
@@ -27,7 +33,7 @@ class Usuario extends MY_Model{
 		$CI = & get_instance();
 		$CI->load->add_package_path(APPPATH.'third_party/bitauth/');
 		$CI->load->library('bitauth');
-		if (!$CI->bitauth->logged_in()) return false;
+		if (!$CI->bitauth->logged_in() || $this->juego_terminado()) return false;
 
 		$CI->bitauth->update_user(
 					$CI->bitauth->user_id,
@@ -41,7 +47,7 @@ class Usuario extends MY_Model{
 		$CI = & get_instance();
 		$CI->load->add_package_path(APPPATH.'third_party/bitauth/');
 		$CI->load->library('bitauth');
-		if (!$CI->bitauth->logged_in()) return false;
+		if (!$CI->bitauth->logged_in()  || $this->juego_terminado() ) return false;
 	
 		$user = $CI->bitauth->get_user_by_username($CI->bitauth->username);
 		$user = $user->user_id;
@@ -65,7 +71,7 @@ class Usuario extends MY_Model{
 
 	function get_ganadores(){
 
-		$res = $this->db->query("select * from bitauth_userdata where fullname != '' and participante = 1 order by puntos desc limit 3");
+		$res = $this->db->query("select * from bitauth_userdata where fullname != '' and participante = 1 order by puntos desc limit 2");
 		return $res->result();	
 	}
 
