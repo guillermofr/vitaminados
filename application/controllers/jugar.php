@@ -103,7 +103,7 @@ class Jugar extends CI_Controller {
 			// selector de juego que aparecerá en el siguiente turno
 			//TODO en lugar de poner un 0 para forzarlo hay que hacer un random o una secuencia
 			switch($this->bitauth->racha % $num_games) {
-			//switch(3) {
+			//switch(2) {
 				case 0:
 					$type = 'recaptcha';
 				break;
@@ -162,7 +162,11 @@ class Jugar extends CI_Controller {
 				$data['clancolor'] = '#ffffff';
 			}
 
-			
+			$fechafin = $this->usuario->get_fechafin();
+			$data['fechafin'] = date_parse($fechafin[0]->fin);
+
+			$data['ataques'] = $this->usuario->get_ataques($this->bitauth->user_id);
+
 
 			$this->twiggy->set($data);
 			$this->twiggy->display('captchas/'.$type,$data);
@@ -175,7 +179,8 @@ class Jugar extends CI_Controller {
 			$data['user'] = ($data['logueado'])?$this->bitauth->get_user_by_id($this->bitauth->user_id):false;
 			$data['vitaminas'] = $this->vitamina->get_vitaminas();
 			$data['ranking'] = ($data['logueado'])?$this->usuario->get_rank($this->bitauth->user_id):'0';
-
+				$fechafin = $this->usuario->get_fechafin();
+			$data['fechafin'] = date_parse($fechafin[0]->fin);
 			$this->twiggy->set($data);
 			$this->twiggy->display('jugar',$data);
 		}

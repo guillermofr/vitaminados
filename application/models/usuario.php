@@ -80,6 +80,28 @@ class Usuario extends MY_Model{
 		return $q->num_rows();
 	}
 
+	function get_fechafin(){
+		$q = $this->db->query("select fin from vars order by id desc limit 1");
+		return $q->result();
+	}
+
+	function get_ataques($user_id){
+		$q = $this->db->query("select v.nombre vitamina , v.id vitamina_id , u.fullname quien
+								from 
+									log l, 
+									bitauth_userdata u, 
+									vitamina v 
+								where 
+									l.vitamina_id = v.id and
+									u.user_id = l.from_user_id and
+									l.to_user_id = $user_id and
+									l.from_user_id != $user_id
+								order by 
+									fecha desc
+								limit 
+									5");
+		return $q->result();
+	}
 	
 
 	

@@ -1,6 +1,30 @@
 {% extends 'layout.twig' %}
 
 
+{% block countdown %}
+				<div style="display:inline-block">
+				<!-- START COUNTDOWN -->
+				<script src="/assets/js/countdown.js" type="text/javascript"></script>
+				<script type="application/javascript">
+
+				var myCountdownTest = new Countdown({
+												 	year	: {{fechafin.year}},
+													month	: {{fechafin.month}}, 
+													day		: {{fechafin.day}},
+													hour	: {{fechafin.hour}},
+													minute	: {{fechafin.minute}},
+													width	: 450, 
+													height	: 150,
+													rangeHi  : "day",
+													padding  : 0.7, 
+													});
+
+				</script>
+				<!-- END COUNTDOWN -->
+				<p>Para acabar la partida</p>
+				</div>
+{% endblock %}
+
 
 {% block content %}
 
@@ -48,18 +72,35 @@
 					    }
 					});
 
+					//$('#oculta_aviso').live('click',function(){$('#ataque').hide()});
+
 				</script>
+
+				<!--div id="ataque" style="display:none">
+					<br>
+					<div id="aviso">
+						<div>
+							<img src="/assets/img/meme/1.png" width="200px"/>
+						</div>
+						<div>
+							<span style="font-weight:bold;font-size:23px">Jugadorx ha usado "Ira de dios" sobre ti</span>
+						</div>
+					</div>
+					<div>
+						<button type="submit" class="btn btn-2 btn-2a" id="oculta_aviso">Ocultar aviso</button>
+					</div>
+				</div-->
 
 				<form id="form_juego" method="POST" action="/jugar" >
 
-					<h1>Hola {{ user.fullname }} </h1>
+					<h1 style="font-weight:normal">Hola {{ user.fullname }} </h1>
 					<h2>Rellena este captcha para conseguir puntos</h2>
 				    {% block captcha %}{% endblock %}
 
 				    <input type="hidden" name="type" value="{{ type }}"/>
 
 				    <span style="display:block;">
-				    	<button type="submit" class="btn btn-2 btn-2a">Validar captcha</button>
+				    	<button id="enviar_captcha" disabled="disabled" type="submit" class="disabled btn btn-2 btn-2a">Validar captcha <span class="timer">5</span></button>
 					</span>
 
 					  <h2>Racha de captchas: {{ user.racha }} </h2>
@@ -102,10 +143,9 @@
 									<div class="vitaminapack">
 										{% set porc = ((v.queda / 60) * 100) /  v.time %}
 									<canvas id="gauge{{v.instancia}}" time="{{v.time}}" name="{{ porc }}" class="gauge gauge_cat{{v.categoria}}"></canvas>
-									<img  class="md-trigger vitamina cat{{v.categoria}}" data-modal="modal-1" title="{{v.nombre}}" name="{{v.vitamina_id}}" id="{{v.instancia}}" src="https://identicons.github.com/{{v.vitamina_id}}.png" width="30px"/>
+									<img class="md-trigger vitamina cat{{v.categoria}}" data-modal="modal-1" title="{{v.nombre}}" name="{{v.vitamina_id}}" id="{{v.instancia}}" src="https://identicons.github.com/{{v.vitamina_id}}.png" width="30px"/>
+									
 									</div>
-
-
 								{% endfor %}
 							{% endif %}
 
@@ -118,11 +158,13 @@
 							{% if not ataques %}
 								<span>Nadie te ha atacado aún.</span>
 							{% else %}
+								<ul id="lista_ataques">
 								{% for a in ataques %}
-									
+									<li>{{ a.quien[0:10] }} <span>utilizó</span> <img title="{{a.vitamina}}" name="{{a.vitamina_id}}" src="https://identicons.github.com/{{a.vitamina_id}}.png" width="30px"/> <small style="font-size:10px">{{a.vitamina[0:50]}}</small></li>
 
 
 								{% endfor %}
+								</ul>
 							{% endif %}
 
 						</div>

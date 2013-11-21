@@ -18,8 +18,10 @@
 
 
 
+
 	
 	<script>
+
 
 
 		function createGauge(id,porc){
@@ -51,13 +53,8 @@
 		}
 
 
-
 		$(document).ready(function () {
-			
 
-			//TODO GAUGES EN LAS VITAMINAS
-			/*var value = 100;setInterval(function(){createGauge('gauge',value--);},1000)
-			createGauge('gauge',50);*/
 
 
 			$('.vitamina').live('click',function(e){
@@ -108,8 +105,19 @@
 			});
 
 			//actualizar los gauges
+			var timer = 4;
+			setTimeout(function(){
+				$("#enviar_captcha").removeClass("disabled").removeAttr('disabled');
 
-
+			},5000);
+			var refreshIntervalId = setInterval(function(){
+				if (timer == 0){
+					$("#enviar_captcha .timer").html('');
+					clearInterval(refreshIntervalId);
+				} else {
+					$("#enviar_captcha .timer").html(timer--);
+				}
+			},1000);
 
 		})
 	</script>
@@ -145,6 +153,7 @@
 			border-radius: 0 0 5px 5px;
 		}
 		.btn-2 {
+			white-space:nowrap;
 			background: #CD4436;
 			color: #fff;
 			box-shadow: 0 6px #A53629;
@@ -171,6 +180,16 @@
 			text-decoration:none;
 		}
 
+		.btn-2a.disabled:hover {
+			top: 0px;
+			box-shadow: 0 6px #888;
+		}
+
+		.btn-2.disabled {
+			background: #aaa;
+			color: #666;
+			box-shadow: 0 6px #888;
+		}
 
 		.md-content button {
 		display: inline-block;
@@ -368,6 +387,23 @@ left: 0px;
 #dimmok {
 margin-left: 165px;
 }
+
+#ataque {
+	background-color: #eee;
+	color: #444;
+	height: 375px;
+	border-top: 4px solid #932727;
+	border-bottom: 2px solid #FCA798;
+}
+
+#lista_ataques {
+	list-style: none;
+	white-space: nowrap;
+	margin: 0px;
+	padding: 0px;
+}
+
+
 	</style>
 
 
@@ -390,27 +426,8 @@ margin-left: 165px;
 				<h1>Vitaminados (Beta) <span>Un juego para putear a los demás y putearte tu mismo.</span></h1>
 				
 
-				<div style="display:inline-block">
-				<!-- START COUNTDOWN -->
-				<script src="/assets/js/countdown.js" type="text/javascript"></script>
-				<script type="application/javascript">
-
-				var myCountdownTest = new Countdown({
-												 	year	: 2013,
-													month	: 12, 
-													day		: 7,
-													width	: 450, 
-													height	: 150,
-													rangeHi  : "day",
-													padding  : 0.7, 
-													});
-
-
-
-				</script>
-				<!-- END COUNTDOWN -->
-				<p>Para acabar la partida</p>
-				</div>
+				
+{% block countdown %}{% endblock %}
 				
 			</header>
 			<section class="color-5">
