@@ -1,7 +1,7 @@
 <?php
 /* Fichero de ejemplo de vitamina avanzada */
 
-/*Esta vitamina intercambia las vitaminas del inventario del objetivo con las tuyas*/
+/*Esta vitamina borra 1 vitamina de la de tu adversario*/
 
 /*
 	Parametros disponibles

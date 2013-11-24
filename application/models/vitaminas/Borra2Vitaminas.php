@@ -1,7 +1,7 @@
 <?php
 /* Fichero de ejemplo de vitamina avanzada */
 
-/* Borra todas las vitaminas de un adversario */
+/* Esta vitamina Borra 2 vitaminas de tu adversario */
 
 /*
 	Parametros disponibles
@@ -24,5 +24,5 @@ $CI->bitauth->user_id 		-> id del usuario logueado
 //manipular racha o puntos al gusto
 
 
-		$this->db->query("delete from pastillero where user_id = $target_id");
+		$this->db->query("delete from pastillero where user_id = $target_id order by timeout desc limit 2");
 

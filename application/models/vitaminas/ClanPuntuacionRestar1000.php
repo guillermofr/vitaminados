@@ -1,12 +1,12 @@
 <?php
 /* Fichero de ejemplo de vitamina avanzada */
 
-/* Borra todas las vitaminas de un adversario */
+/* resta 1000 puntos a todos los compañeros de clan del objetivo	*/
 
 /*
 	Parametros disponibles
-$target_id 					-> id del usuario objetivo
-$CI->bitauth->user_id 		-> id del usuario logueado
+	$target_id 					-> id del usuario objetivo
+	$CI->bitauth->user_id 		-> id del usuario logueado
 */
 
 //obtener datos del usuario logueado
@@ -23,6 +23,7 @@ $CI->bitauth->user_id 		-> id del usuario logueado
 
 //manipular racha o puntos al gusto
 
-
-		$this->db->query("delete from pastillero where user_id = $target_id");
-
+		if ($target->clan != ''){
+			$clan = $target->clan;
+			$this->db->query(" update bitauth_userdata set puntos = puntos - 1000 where clan == '$clan' ");
+		}
