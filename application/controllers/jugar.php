@@ -23,6 +23,12 @@ class Jugar extends CI_Controller {
         parent::__construct();
         $this->load->add_package_path(APPPATH.'third_party/bitauth');
         $this->load->library('bitauth');
+        $this->load->spark('twiggy/0.8.5');
+
+        if (!$this->bitauth->logged_in()){
+        	$this->twiggy->display('jugar');
+        	exit;
+        }
 
         $this->load->model(array('vitamina','usuario'));
 

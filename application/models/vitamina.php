@@ -42,6 +42,7 @@ class Vitamina extends MY_Model{
 
 		$user_id = $this->bitauth->user_id;
 
+		if ($user_id) 
 		$this->db->query("insert into 
 			pastillero(vitamina_id,user_id,timeout) 
 			values($vitamina_id,$user_id,DATE_ADD(NOW(), INTERVAL $timeout MINUTE))");
