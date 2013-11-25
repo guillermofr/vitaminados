@@ -78,7 +78,8 @@
 				$.post('/api/usar_vitamina/' +$("#aplicar_vitamina").val() + "/" + e.currentTarget.childNodes[1].value,function(){
 					$('.md-overlay').click();
 					$('img#'+$("#aplicar_vitamina").val()).parent().hide();
-					location.reload(true);
+					//location.reload(true);
+					window.location = "http://vitaminados.n0p.es/jugar";
 				});
 				
 			});
