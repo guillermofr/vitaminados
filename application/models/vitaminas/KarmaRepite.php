@@ -24,7 +24,7 @@ $CI->bitauth->user_id 		-> id del usuario logueado
 
 //manipular racha o puntos al gusto
 
-		$q = $this->db->query("select l.vitamina_id , v.fichero 
+		$karmaq = $this->db->query("select l.vitamina_id , v.fichero 
 								from log l, vitamina v 
 								where
 		 						l.from_user_id = $target_id and 
@@ -32,8 +32,8 @@ $CI->bitauth->user_id 		-> id del usuario logueado
 
 		 						order by l.fecha desc limit 1");
 
-		if ($q->num_rows()){
-			$result = $q->result();
+		if ($karmaq->num_rows()){
+			$result = $karmaq->result();
 			$fichero = $result[0]->fichero;
 
 			include($fichero);
