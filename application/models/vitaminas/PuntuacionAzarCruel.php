@@ -22,7 +22,7 @@
 //manipular racha o puntos al gusto
 
 		$valor_aleatorio = rand(-10000,10000);
-		$target_racha = max(0,$target_racha+$valor_aleatorio);
+		$target_puntos = max(0,$target_puntos+$valor_aleatorio);
 
 //grabar los puntos del target y opcionalmente los del usuario registrado
 		$CI->bitauth->update_user(
