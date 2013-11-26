@@ -238,12 +238,13 @@
 
 		#form_juego {
 			width:49%;
-			float:left;
+			display:inline-block;
 		}
 
 		#info_juego {
 			width:49%;
-			float:right;
+			
+			display:inline-block;
 			text-align: left;
 			padding:50px;
 		}
@@ -251,13 +252,21 @@
 		#info_juego .ficha-titulo{
 			font-size: 30px;
 			margin: 20px;
+			white-space: nowrap;
+		}
+
+		@media (max-width: 1000px){
+
+			#form_juego .ficha-titulo {
+				font-size:25px;
+			}
 		}
 
 		#info_juego .ficha-img {
 			position: absolute;
 			right: 0px;
 			margin-right: 19px;
-			width: 166px;
+			width: 114px;
 			border-radius: 81px;
 			border: 8px solid white;
 			padding: 9px;
@@ -401,8 +410,24 @@ margin-left: 165px;
 	padding: 0px;
 }
 
+@media (max-width: 1000px){
+	#form_juego , #info_juego {
+		display: block;
+		width: 100%;
+	}
+}
+
+@media (max-width: 1000px){
+
+	#form_juego span.ficha-titulo {
+		font-size:25px !important;
+	}
+}
+
 
 	</style>
+
+
 
 
 

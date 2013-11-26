@@ -92,7 +92,7 @@ class Api extends CI_Controller {
    	}
 
 
-    function load_ranking(){
+    function load_ranking($user_id = 0){
 
       $this->load->model('usuario');
 
@@ -112,9 +112,15 @@ class Api extends CI_Controller {
           $participante = '';
           $logo = "";
         }
+
+        $class = "";
+        if ($user_id == $u->user_id){
+          $class = "here";
+        }
+
         $clancolor = ($u->clan != null)?"#".substr(md5($u->clan),0,6):'#ffffff';
 
-        $html .= "<div class='rank ".$participante."'>
+        $html .= "<div class='rank $participante $class'>
           <input type='hidden' name='id' value='".$u->user_id."'/>
           <img class='rank-img' style='border-color:$clancolor' src='http://1.gravatar.com/avatar/".$u->user_id."?s=50&d=monsterid&r=G' />
           <span class='rank-nick'>".recortar_texto($u->fullname,10)."</span>
