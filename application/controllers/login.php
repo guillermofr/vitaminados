@@ -71,15 +71,15 @@ class Login extends CI_Controller {
 			$this->email->subject('Link de acceso');
 			$this->email->message("Pincha en el enlace para entrar en la web a jugar: <a href=/login/in/$code'>Enlace</a>");	
 
-			echo "Simulación de link recibido en correo<br><a href='/login/in/$code'>$code</a>"; exit;
+			//echo "Simulación de link recibido en correo<br><a href='/login/in/$code'>$code</a>"; exit;
 
-			/*if ($this->email->send()){
+			if ($this->email->send()){
 				$this->twiggy->set(array('enviado'=>true));	
 				$this->twiggy->display('info/enviado');
 			} else {
 				$this->twiggy->set(array('enviado'=>false));	
 	    		$this->twiggy->display('info/enviado');
-			}*/
+			}
     	} else {
 			$this->twiggy->set(array('enviado'=>false));	
 	    	$this->twiggy->display('/jugar');
