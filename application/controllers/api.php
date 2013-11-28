@@ -123,7 +123,7 @@ class Api extends CI_Controller {
         $html .= "<div class='rank $participante $class'>
           <input type='hidden' name='id' value='".$u->user_id."'/>
           <img class='rank-img' style='border-color:$clancolor' src='http://1.gravatar.com/avatar/".$u->user_id."?s=50&d=monsterid&r=G' />
-          <span class='rank-nick'>".recortar_texto($u->fullname,10)."</span>
+          <span class='rank-nick'>".recortar_texto($u->fullname,17)."</span>
           <span class='rank-puntos'>".$u->puntos."</span>
           <span class='rank-rank'>".$rank++."#</span>
           <span class='rank-racha'>combo<br>x".$u->racha."</span>
