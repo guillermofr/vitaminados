@@ -10,8 +10,12 @@
 	max-width: 1000px;
 }
 
-#listado_vitaminas tr{
+#listado_vitaminas tr.odd{
+	background-color:#CD4436;
+}
 
+#listado_vitaminas tr.even{
+	background-color:#CF4F41;
 }
 
 #listado_vitaminas th{
@@ -25,9 +29,9 @@
 }
 
 .info_section{
-color: #CD4436;
-font-size: 74px;
-margin-bottom: -5px;
+	color: #CD4436;
+	font-size: 74px;
+	margin-bottom: -5px;
 }
 
 .info_img1 {
@@ -77,7 +81,7 @@ li span {
  		cuando el tiempo termine ganará la partida</p>
 
  	<p>Para obtener puntos tendrémos que rellenar captchas de forma repetitiva y 
- 		super aburrida xDD, pero hacer rachas de 10 seguidos tiene premio!!!</p>
+ 		super aburrida xDD, pero hacer rachas de 5 seguidos tiene premio!!!</p>
 
  	<p>Cada racha de 5 seguidos sin fallar obtendreis poderosas vitaminas que 
  		podréis usar sobre vosotros o sobre los demás jugadores. Estas vitaminas 
@@ -133,7 +137,7 @@ li span {
 				 	<!--th>Categoría</th-->
 			 	</tr>
 		 	{% for v in vitaminas %}
-			 	<tr>
+			 	<tr {% if loop.index%2 %}class="odd"{% else %}class="even"{% endif %}>
 				 	<td><img clasS="info_img{{ v.categoria }}" src="https://identicons.github.com/{{v.id}}.png" width="50px" /> </td>
 				 	<td>{{ v.nombre }}</td>
 				 	<td>{{ v.descripcion }}</td>
