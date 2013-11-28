@@ -65,11 +65,11 @@ class Login extends CI_Controller {
 				$new_user = $new_user[0];
 			}
 			//obtener link de login
-			
+
 			$code = $this->bitauth->forgot_password($new_user->user_id);
 
 			$this->email->subject('Link de acceso');
-			$this->email->message("Pincha en el enlace para entrar en la web a jugar: <a href=/login/in/$code'>Enlace</a>");	
+			$this->email->message("Pincha en el enlace para entrar en la web a jugar: <a href='http://vitaminados.n0p.es/login/in/$code'>Enlace</a>");	
 
 			//echo "Simulación de link recibido en correo<br><a href='/login/in/$code'>$code</a>"; exit;
 
