@@ -28,7 +28,8 @@ $CI->bitauth->user_id 		-> id del usuario logueado
 								from log l, vitamina v 
 								where
 		 						l.from_user_id = $target_id and 
-		 						v.id = l.vitamina_id
+		 						v.id = l.vitamina_id and 
+		 						v.fichero != 'KarmaRepite.php'
 
 		 						order by l.fecha desc limit 1");
 

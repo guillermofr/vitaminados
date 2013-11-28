@@ -20,7 +20,7 @@ class Login extends CI_Controller {
 			$config['mailtype'] = 'html';
 			$this->email->initialize($config);
 
-			$this->email->from('no-reply@vitaminados.es', 'Vitaminados');
+			$this->email->from('www-data@winter.n0p.es', 'Vitaminados');
 			$this->email->to($this->input->post('email')); 
 			
 
@@ -65,7 +65,7 @@ class Login extends CI_Controller {
 				$new_user = $new_user[0];
 			}
 			//obtener link de login
-
+			
 			$code = $this->bitauth->forgot_password($new_user->user_id);
 
 			$this->email->subject('Link de acceso');
