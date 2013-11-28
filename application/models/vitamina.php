@@ -126,6 +126,33 @@ class Vitamina extends MY_Model{
 		$q = $query->result();
 
 		if ($query->num_rows()){
+
+			//check si tiene escudos
+			$shield_q = $this->db->query("select * from pastillero p , vitamina v
+				where 
+					p.timeout > NOW() and 
+					p.user_id = $target_id and 
+					v.id = p.vitamina_id and
+					v.fichero = 'Escudo.php'");
+
+			if ($shield_q->num_rows()){
+				$shield_res = $shield_q->result();
+
+				$shield_id = $shield_res[0]->vitamina_id;
+				
+				//si tiene escudos le quitamos el más viejo
+				$this->db->query("  update pastillero
+									set timeout = NOW()
+									where user_id = $target_id AND
+									vitamina_id = $shield_id AND 
+									timeout > NOW()
+									order by timeout asc
+									limit 1
+									");
+
+			}
+
+			//ejecutar vitamina
 			include('vitaminas/'.$q[0]->fichero);
 			//deshabilitar
 			$this->db->query("update pastillero set timeout = 0 where id= $instancia_vitamina_id");
