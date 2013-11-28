@@ -104,7 +104,7 @@
 					</span>
 
 					  <h2>Racha de captchas: {{ user.racha }} </h2>
-					    <p>Cada racha de 10 captchas obtendrás una vitamina, con racha de 50 supervitamina!</p>
+					    <p>Cada racha de 5 captchas obtendrás una vitamina, con racha de 50 supervitamina!</p>
 					    <p>Si llegas a una racha de 500 podrás obtener vitaminas capaces de romper el juego! O_o</p>
 				</form>
 
@@ -160,7 +160,7 @@
 							{% else %}
 								<ul id="lista_ataques">
 								{% for a in ataques %}
-									<li>{{ a.quien[0:10] }} <span>utilizó</span> <img title="{{a.vitamina}}" name="{{a.vitamina_id}}" src="https://identicons.github.com/{{a.vitamina_id}}.png" width="30px"/> <small style="font-size:10px">{{a.vitamina[0:50]}}</small></li>
+									<li>{{ a.quien[0:10] }} <small>utilizó</small> <img title="{{a.vitamina}}" name="{{a.vitamina_id}}" src="https://identicons.github.com/{{a.vitamina_id}}.png" width="30px"/> <small style="font-size:10px">{{a.vitamina[0:50]}}</small> <small>contra tí!</small></li>
 
 
 								{% endfor %}
