@@ -709,7 +709,7 @@ class Securimage
                 if (!is_null($this->session_name) && trim($this->session_name) != '') {
                     session_name(trim($this->session_name)); // set session name if provided
                 }
-                session_start();
+                @session_start();
             }
         }
     }
