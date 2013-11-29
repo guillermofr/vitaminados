@@ -1,0 +1,11 @@
+{% extends 'jugar.twig' %}
+
+
+{% block captcha %}
+<div style="width: 364px;margin-left: auto;margin-right: auto;">	
+{{keycaptcha_game|raw}}
+</div>
+<input type="hidden" name="capcode" id="capcode" value="false" />
+<input type="hidden" value="Save" id="postbut" class="button" />
+
+{% endblock %}

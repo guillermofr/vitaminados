@@ -60,6 +60,9 @@ class Jugar extends CI_Controller {
 				case 'securimage':
 					include('includes/securimage_check.php');
 				break;
+				case 'keycaptcha':
+					include('includes/keycaptcha_check.php');
+				break;
 
 				default:
 					// hackerrr!!
@@ -109,7 +112,7 @@ class Jugar extends CI_Controller {
 			// selector de juego que aparecerá en el siguiente turno
 			//TODO en lugar de poner un 0 para forzarlo hay que hacer un random o una secuencia
 			switch($this->bitauth->racha % $num_games) {
-			//switch(2) {
+			//switch(4) {
 				case 0:
 					$type = 'recaptcha';
 				break;
@@ -121,6 +124,9 @@ class Jugar extends CI_Controller {
 				break;
 				case 3:
 					$type = 'simple';
+				break;
+				case 4:
+					$type = 'keycaptcha';
 				break;
 				//añadir aquí resto de juegos para que aparezcan
 
@@ -153,6 +159,12 @@ class Jugar extends CI_Controller {
 
 				case 'securimage':
 					$data = array('type' => 'securimage');
+				break;
+
+				case 'keycaptcha':
+					$this->load->helper('keycaptcha/keycaptcha');
+					$kc_o = new KeyCAPTCHA_CLASS();
+					$data = array('type' => 'keycaptcha','keycaptcha_game' => $kc_o->render_js());
 				break;
 
 			} 
