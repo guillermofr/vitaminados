@@ -35,7 +35,7 @@ class Jugar extends CI_Controller {
     }
 
     public function index(){
-    	$num_games = 4;
+    	$num_games = 5;
 
 		//change this code after install
 		$this->load->spark('twiggy/0.8.5');
