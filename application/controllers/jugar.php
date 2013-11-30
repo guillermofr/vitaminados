@@ -117,16 +117,16 @@ class Jugar extends CI_Controller {
 					$type = 'recaptcha';
 				break;
 				case 1:
-					$type = 'securimage';
+					$type = 'keycaptcha';
 				break;
 				case 2:
-					$type = 'ayah';
-				break;
-				case 3:
 					$type = 'simple';
 				break;
+				case 3:
+					$type = 'ayah';
+				break;
 				case 4:
-					$type = 'keycaptcha';
+					$type = 'securimage';
 				break;
 				//añadir aquí resto de juegos para que aparezcan
 
