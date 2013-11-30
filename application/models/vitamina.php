@@ -18,7 +18,7 @@ class Vitamina extends MY_Model{
 	}
 
 
-	function crear_nueva($categoria = 1){
+	function crear_nueva($categoria = 1,$user_id = 0){
 
 		// segun la categoría que venga seleccionaremos por random una vitamina
 
@@ -40,7 +40,8 @@ class Vitamina extends MY_Model{
 			$vitamina_id = $res_vitaminas[$random]['id'];
 			$timeout = 	 $res_vitaminas[$random]['time'];
 
-		$user_id = $this->bitauth->user_id;
+		if ($user_id == 0)
+			$user_id = $this->bitauth->user_id;
 
 		if ($user_id) 
 		$this->db->query("insert into 

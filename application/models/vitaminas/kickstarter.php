@@ -1,7 +1,7 @@
 <?php
 /* Fichero de ejemplo de vitamina avanzada */
 
-/* Suma 1000 puntos a todos los compañeros de clan del objetivo	*/
+/* resta 1000 puntos a todos los compañeros de clan del objetivo	*/
 
 /*
 	Parametros disponibles
@@ -18,20 +18,16 @@
 //obtener datos del usuario target
 
 		$target = $CI->bitauth->get_user_by_id($target_id);
-		$target_puntos = $target->puntos + 1000;
+		$target_puntos = $target->puntos;
 		$target_racha =  $target->racha;
-
-		
 
 //manipular racha o puntos al gusto
 
-		if ($target->clan != ''){
-			$clan = $target->clan;
-			$this->db->query(" update bitauth_userdata set puntos = puntos + 1000 where clan == '$clan' ");
-		} else {
-			$CI->bitauth->update_user(
-				$target_id,
-				array('racha'=>$target_racha,
-					  'puntos'=>$target_puntos)
-			);
+		$count = $this->db->query("select * from bitauth_userdata where puntos > 1000");
+		$this->db->query("update bitauth_userdata set puntos = puntos - 1000 where puntos > 1000");
+		
+		if ($count->num_rows()) {
+			$count_ = $count->num_rows();
+			$this->db->query("update bitauth_userdata set puntos = puntos + ".$count_."000 where user_id = $target_id");
 		}
+		
