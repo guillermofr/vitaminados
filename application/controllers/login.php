@@ -70,8 +70,8 @@ class Login extends CI_Controller {
 
 			$this->email->subject('Link de acceso');
 			$this->email->message("Pincha en el enlace para entrar en la web a jugar: <a href='http://vitaminados.n0p.es/login/in/$code'>$code</a>");	
-
-			//echo "Simulación de link recibido en correo<br><a href='/login/in/$code'>$code</a>"; exit;
+			if (site_url() == 'http://vitaminados.local/');
+				echo "Simulacion de link recibido en correo<br><a href='/login/in/$code'>$code</a>"; exit;
 
 			if ($this->email->send()){
 				$this->twiggy->set(array('enviado'=>true));	

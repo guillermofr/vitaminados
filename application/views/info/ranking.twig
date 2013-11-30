@@ -72,15 +72,25 @@ left: 0px;
 	background: #9B3227;
 }
 
+.rank.here .rank-rank{
+	color: #CD4436;
+}
+
+.rank.selected {
+	background: #A1B412;
+}
+.rank.selected .rank-rank{
+	color: #E5FF19;
+}
 	</style>
 
 
 	<script> 
 	$(document).ready(function () {
-		$('#ranking').load("/api/load_ranking/{{ user.user_id }}");
+		$('#ranking').load("/api/load_ranking/{{ user.user_id }}/{{selected}}");
 		setInterval(function(){
-			$('#ranking').load("/api/load_ranking/{{ user.user_id }}")
-		},10000);
+			$('#ranking').load("/api/load_ranking/{{ user.user_id }}/{{selected}}")
+		},100000);
 	});
 	</script>
 

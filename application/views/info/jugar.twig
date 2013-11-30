@@ -137,7 +137,7 @@ li span {
 				 	<!--th>Categoría</th-->
 			 	</tr>
 		 	{% for v in vitaminas %}
-			 	<tr {% if loop.index%2 %}class="odd"{% else %}class="even"{% endif %}>
+			 	<tr id ="vitamina{{v.id}}" {% if loop.index%2 %}class="odd"{% else %}class="even"{% endif %}>
 				 	<td><img clasS="info_img{{ v.categoria }}" src="https://identicons.github.com/{{v.id}}.png" width="50px" /> </td>
 				 	<td>{{ v.nombre }}</td>
 				 	<td>{{ v.descripcion }}</td>

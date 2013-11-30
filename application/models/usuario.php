@@ -86,7 +86,7 @@ class Usuario extends MY_Model{
 	}
 
 	function get_ataques($user_id){
-		$q = $this->db->query("select v.nombre vitamina , v.id vitamina_id , u.fullname quien
+		$q = $this->db->query("select v.nombre vitamina , v.id vitamina_id , u.fullname quien , u.user_id quien_id , l.fecha 
 								from 
 									log l, 
 									bitauth_userdata u, 

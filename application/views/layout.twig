@@ -12,6 +12,7 @@
 		<link rel="stylesheet" type="text/css" href="/assets/css/component.css" />
 		<script src="/assets/js/jquery.min.js"></script>
 		<script src="/assets/js/modernizr.custom.js"></script>
+		<script src="/assets/js/jquery.timeago.js" type="text/javascript"></script>
 
 
 		<script src="/assets/js/gauge.min.js"></script>
@@ -116,6 +117,8 @@
 					$("#enviar_captcha .timer").html(timer--);
 				}
 			},1000);
+
+			$('abbr.timeago').timeago();
 
 		})
 	</script>
@@ -406,9 +409,22 @@ left: 0px;
 
 #lista_ataques {
 	list-style: none;
-	white-space: nowrap;
 	margin: 0px;
 	padding: 0px;
+}
+
+#lista_ataques li{
+	margin-bottom: 10px;
+}
+
+#lista_ataques a ,#lista_ataques a:hover ,#lista_ataques a:visited{
+	color:tomato;
+	text-decoration: none;
+}
+
+#lista_ataques img {
+	position: relative;
+	top: 7px;
 }
 
 @media (max-width: 1000px){
@@ -425,6 +441,11 @@ left: 0px;
 	}
 }
 
+
+.timeago {
+display: block;
+font-size: 13px;
+}
 
 	</style>
 

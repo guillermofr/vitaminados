@@ -160,7 +160,15 @@
 							{% else %}
 								<ul id="lista_ataques">
 								{% for a in ataques %}
-									<li>{{ a.quien[0:10] }} <small>utilizó</small> <img title="{{a.vitamina}}" name="{{a.vitamina_id}}" src="https://identicons.github.com/{{a.vitamina_id}}.png" width="30px"/> <small style="font-size:10px">{{a.vitamina[0:50]}}</small> <small>contra tí!</small></li>
+									<li>
+										<abbr class="timeago" title="{{a.fecha}}"></abbr>
+										<a href="/info/ranking/{{ a.quien_id }}"> {{ a.quien[0:10] }} </a>
+										<small>te lanzó </small> 
+										<a href="/info#vitamina{{a.vitamina_id}}"><img title="{{a.vitamina}}" name="{{a.vitamina_id}}" src="https://identicons.github.com/{{a.vitamina_id}}.png" width="30px"/> 
+										<small>{{a.vitamina[0:50]}}</small> 
+										</a>
+
+									</li>
 
 
 								{% endfor %}

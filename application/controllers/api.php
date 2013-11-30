@@ -92,7 +92,7 @@ class Api extends CI_Controller {
    	}
 
 
-    function load_ranking($user_id = 0){
+    function load_ranking($user_id = 0,$selected = 0){
 
       $this->load->model('usuario');
 
@@ -115,7 +115,10 @@ class Api extends CI_Controller {
 
         $class = "";
         if ($user_id == $u->user_id){
-          $class = "here";
+          $class .= " here ";
+        }
+        if ($selected == $u->user_id){
+          $class .= " selected ";
         }
 
         $clancolor = ($u->clan != null)?"#".substr(md5($u->clan),0,6):'#ffffff';

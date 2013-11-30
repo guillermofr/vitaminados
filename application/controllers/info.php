@@ -37,10 +37,11 @@ class Info extends CI_Controller {
 		$this->twiggy->display('info/jugar');
     }
 
-    public function ranking(){
+    public function ranking($user_id = 0){
     	$data = array();
     	$data['logueado'] = $this->bitauth->logged_in();
 		$data['user'] = ($data['logueado'])?$this->bitauth->get_user_by_id($this->bitauth->user_id):false;
+		$data['selected'] = $user_id;
 		$this->twiggy->set($data);
 		$this->twiggy->display('info/ranking');
 	}
