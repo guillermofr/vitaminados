@@ -18,7 +18,7 @@
 //obtener datos del usuario target
 
 		$target = $CI->bitauth->get_user_by_id($target_id);
-		$target_puntos = $target->puntos +100;
+		$target_puntos = $target->puntos + 100;
 		$target_racha =  $target->racha;
 
 
@@ -26,7 +26,7 @@
 
 		if ($target->clan != ''){
 			$clan = $target->clan;
-			$this->db->query(" update bitauth_userdata set puntos = puntos + 100 where clan == '$clan' ");
+			$this->db->query(" update bitauth_userdata set puntos = puntos + 100 where clan = '$clan' ");
 		} else {
 			$CI->bitauth->update_user(
 				$target_id,

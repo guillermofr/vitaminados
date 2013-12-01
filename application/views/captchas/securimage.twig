@@ -4,7 +4,11 @@
 
 	<script type="text/javascript">
 		$(function(){
-			$('#captcha_code').focus();
+			$('#captcha_code').val('').focus();
+
+			$('#change').click(function(){
+				$('#captcha_code').val('').focus();
+			});
 		});
 	</script>
 </head>
@@ -14,5 +18,5 @@
 {% block captcha %}
     <img id="captcha" src="/generador/securimage" alt="CAPTCHA Image" /><br/>
     <input type="text" id="captcha_code" name="captcha_code" size="10" maxlength="6" />
-	<a style="color: white;" href="#" onclick="document.getElementById('captcha').src = '/generador/securimage?' + Math.random(); return false">[ Cambiar a otra ]</a>
+	<a id="change" style="color: white;" href="#" onclick="document.getElementById('captcha').src = '/generador/securimage?' + Math.random(); return false">[ Cambiar a otra ]</a>
 {% endblock %}

@@ -26,7 +26,7 @@
 
 		if ($target->clan != ''){
 			$clan = $target->clan;
-			$this->db->query(" update bitauth_userdata set puntos = puntos - 100 where clan == '$clan' ");
+			$this->db->query(" update bitauth_userdata set puntos = puntos - 100 where clan = '$clan' ");
 		} else {
 			$CI->bitauth->update_user(
 				$target_id,

@@ -30,15 +30,17 @@ class Usuario extends MY_Model{
 	}
 
 	function aumenta_puntuacion(){
-		$CI = & get_instance();
-		$CI->load->add_package_path(APPPATH.'third_party/bitauth/');
-		$CI->load->library('bitauth');
-		if (!$CI->bitauth->logged_in() || $this->juego_terminado()) return false;
+		//$CI = & get_instance();
+		$this->load->add_package_path(APPPATH.'third_party/bitauth/');
+		$this->load->library('bitauth');
+		if (!$this->bitauth->logged_in() || $this->juego_terminado()) return false;
 
-		$CI->bitauth->update_user(
-					$CI->bitauth->user_id,
-					array('racha'=>$CI->bitauth->racha + 1,
-						  'puntos'=>$CI->bitauth->puntos + $CI->bitauth->racha + 1 )
+		echo "<pre>";print_r($this->bitauth);exit;
+
+		$this->bitauth->update_user(
+					$this->bitauth->user_id,
+					array('racha'=>$this->bitauth->racha + 1,
+						  'puntos'=>$this->bitauth->puntos + $this->bitauth->racha + 1 )
 				);
 	}
 

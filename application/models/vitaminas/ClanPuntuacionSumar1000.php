@@ -22,12 +22,11 @@
 		$target_racha =  $target->racha;
 
 		
-
 //manipular racha o puntos al gusto
 
 		if ($target->clan != ''){
 			$clan = $target->clan;
-			$this->db->query(" update bitauth_userdata set puntos = puntos + 1000 where clan == '$clan' ");
+			$this->db->query(" update bitauth_userdata set puntos = puntos + 1000 where clan = '$clan' ");
 		} else {
 			$CI->bitauth->update_user(
 				$target_id,

@@ -30,7 +30,10 @@ class Jugar extends CI_Controller {
         	exit;
         }
 
+
         $this->load->model(array('vitamina','usuario'));
+		
+		        
 
     }
 

@@ -18,7 +18,8 @@ class Vitamina extends MY_Model{
 	}
 
 
-	function crear_nueva($categoria = 1,$user_id = 0){
+	// el tercer parametro es para forzar la vitamina creada
+	function crear_nueva($categoria = 1,$user_id = 0,$param_vitamina_id = 0){
 
 		// segun la categoría que venga seleccionaremos por random una vitamina
 
@@ -30,6 +31,9 @@ class Vitamina extends MY_Model{
 		*/
 
 		//buscamos las vitaminas de dicha categoría y las contamos
+
+			
+
 			$vitaminas = $this->db->query("select * from vitamina where categoria = $categoria");
 			$num_vitaminas = $vitaminas->num_rows();
 			$res_vitaminas = $vitaminas->result_array();
@@ -38,6 +42,7 @@ class Vitamina extends MY_Model{
 			$random = rand(0,$num_vitaminas-1);
 
 			$vitamina_id = $res_vitaminas[$random]['id'];
+			if ($param_vitamina_id) $vitamina_id = $param_vitamina_id;
 			$timeout = 	 $res_vitaminas[$random]['time'];
 
 		if ($user_id == 0)
@@ -151,10 +156,12 @@ class Vitamina extends MY_Model{
 									limit 1
 									");
 
+			} else {
+				
+				//ejecutar vitamina
+				include('vitaminas/'.$q[0]->fichero);
 			}
 
-			//ejecutar vitamina
-			include('vitaminas/'.$q[0]->fichero);
 			//deshabilitar
 			$this->db->query("update pastillero set timeout = 0 where id= $instancia_vitamina_id");
 			//meterlo en el log
