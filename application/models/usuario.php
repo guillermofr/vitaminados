@@ -35,7 +35,7 @@ class Usuario extends MY_Model{
 		$this->load->library('bitauth');
 		if (!$this->bitauth->logged_in() || $this->juego_terminado()) return false;
 
-		echo "<pre>";print_r($this->bitauth);exit;
+		//echo "<pre>";print_r($this->bitauth);exit;
 
 		$this->bitauth->update_user(
 					$this->bitauth->user_id,
