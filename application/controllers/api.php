@@ -173,6 +173,10 @@ class Api extends CI_Controller {
     function usar_vitamina($instancia_vitamina_id = 0,$target_id = 0){
       $this->load->model(array('usuario' , 'vitamina'));
 
+      $this->load->add_package_path(APPPATH.'third_party/bitauth/');
+      $this->load->library('bitauth');
+      if (!$this->bitauth->logged_in()) return false;
+
       if (!$instancia_vitamina_id || !$target_id) return false;
 
       //update de valores
