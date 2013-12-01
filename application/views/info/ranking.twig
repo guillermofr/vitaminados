@@ -82,15 +82,21 @@ left: 0px;
 .rank.selected .rank-rank{
 	color: #E5FF19;
 }
+
+.rank-img {
+	width: 56px;
+	height: 56px;
+}
+
 	</style>
 
 
 	<script> 
 	$(document).ready(function () {
 		$('#ranking').load("/api/load_ranking/{{ user.user_id }}/{{selected}}");
-		setInterval(function(){
+		/*setInterval(function(){
 			$('#ranking').load("/api/load_ranking/{{ user.user_id }}/{{selected}}")
-		},100000);
+		},100000);*/
 	});
 	</script>
 
