@@ -17,20 +17,23 @@ class Usuario extends MY_Model{
 
 	}
 
-	function reset_racha(){
-		$CI = & get_instance();
-		$CI->load->add_package_path(APPPATH.'third_party/bitauth/');
-		$CI->load->library('bitauth');
-		if (!$CI->bitauth->logged_in()) return false;
+	function get_usuario($user_id){
+		$q = $this->db->query("select * from bitauth_userdata where user_id = $user_id");
+	    return $q->result();
+	}
 
-		$CI->bitauth->update_user(
-						$CI->bitauth->user_id,
+	function reset_racha(){
+		$this->load->add_package_path(APPPATH.'third_party/bitauth/');
+		$this->load->library('bitauth');
+		if (!$this->bitauth->logged_in()) return false;
+
+		$this->bitauth->update_user(
+						$this->bitauth->user_id,
 						array('racha'=>0)
 					);
 	}
 
 	function aumenta_puntuacion(){
-		//$CI = & get_instance();
 		$this->load->add_package_path(APPPATH.'third_party/bitauth/');
 		$this->load->library('bitauth');
 		if (!$this->bitauth->logged_in() || $this->juego_terminado()) return false;
@@ -46,12 +49,11 @@ class Usuario extends MY_Model{
 
 	function get_targets(){
 
-		$CI = & get_instance();
-		$CI->load->add_package_path(APPPATH.'third_party/bitauth/');
-		$CI->load->library('bitauth');
-		if (!$CI->bitauth->logged_in()  || $this->juego_terminado() ) return false;
+		$this->load->add_package_path(APPPATH.'third_party/bitauth/');
+		$this->load->library('bitauth');
+		if (!$this->bitauth->logged_in()  || $this->juego_terminado() ) return false;
 	
-		$user = $CI->bitauth->get_user_by_username($CI->bitauth->username);
+		$user = $this->bitauth->get_user_by_username($this->bitauth->username);
 		$user = $user->user_id;
 		
 		$res = $this->db->query("select * from bitauth_userdata where user_id != $user and fullname != '' order by puntos desc");

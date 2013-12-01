@@ -30,11 +30,18 @@ class Jugar extends CI_Controller {
         	exit;
         }
 
-
         $this->load->model(array('vitamina','usuario'));
-		
-		        
+        
+        //update de valores
+        $user_db = $this->usuario->get_usuario($this->bitauth->user_id);
+        $this->bitauth->update_user(
+			$this->bitauth->user_id,
+			array('racha'=>$user_db[0]->racha,
+				  'puntos'=>$user_db[0]->puntos)
+		);
 
+		
+		       
     }
 
     public function index(){

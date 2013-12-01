@@ -61,12 +61,12 @@ class Vitamina extends MY_Model{
 	}
 
 	function get_vitaminas(){
-		$CI = & get_instance();
-		$CI->load->add_package_path(APPPATH.'third_party/bitauth/');
-		$CI->load->library('bitauth');
-		if (!$CI->bitauth->logged_in()) return false;
+		
+		$this->load->add_package_path(APPPATH.'third_party/bitauth/');
+		$this->load->library('bitauth');
+		if (!$this->bitauth->logged_in()) return false;
 
-		$user_id = $CI->bitauth->user_id;
+		$user_id = $this->bitauth->user_id;
 		$result = $this->db->query("select 
 				p.id instancia, 
 				p.vitamina_id, 
@@ -97,12 +97,11 @@ class Vitamina extends MY_Model{
 
 
 	function vitamina_usable($instancia_vitamina_id){
-		$CI = & get_instance();
-		$CI->load->add_package_path(APPPATH.'third_party/bitauth/');
-		$CI->load->library('bitauth');
-		if (!$CI->bitauth->logged_in()) return false;
+		$this->load->add_package_path(APPPATH.'third_party/bitauth/');
+		$this->load->library('bitauth');
+		if (!$this->bitauth->logged_in()) return false;
 
-		$q = $this->db->query("select * from pastillero where id = $instancia_vitamina_id and user_id = ". $CI->bitauth->user_id . " and timeout > NOW() ");
+		$q = $this->db->query("select * from pastillero where id = $instancia_vitamina_id and user_id = ". $this->bitauth->user_id . " and timeout > NOW() ");
 		
 		if ($q->num_rows()){
 			return true;

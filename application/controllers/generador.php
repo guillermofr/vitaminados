@@ -45,10 +45,8 @@ class Generador extends CI_Controller {
 			$own_puntos = $own->puntos;
 			$own_racha = $own->racha;
 
-
-
-        	$image->perturbation = $own_racha /300;
-			$image->num_lines = $own_racha/14; 
+        	$image->perturbation = min($own_racha /300,2);
+			$image->num_lines = min($own_racha/14,40); 
 
         } else {
 

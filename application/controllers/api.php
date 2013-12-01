@@ -175,6 +175,15 @@ class Api extends CI_Controller {
 
       if (!$instancia_vitamina_id || !$target_id) return false;
 
+      //update de valores
+      $user_db = $this->usuario->get_usuario($target_id);
+      $this->bitauth->update_user(
+      $target_id,
+      array('racha'=>$user_db[0]->racha,
+          'puntos'=>$user_db[0]->puntos)
+      );
+
+
       if ($this->vitamina->vitamina_usable($instancia_vitamina_id) && $this->usuario->target_usable($target_id)){
         //podemos hacer cambios
 
