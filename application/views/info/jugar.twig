@@ -78,26 +78,21 @@ li span {
 	
  	<h2>¿Cómo se juega a esto?</h2>
  <div style="max-width:800px;display:inline-block">
- 	<p>Este juego trata de tener más puntos que nadie, el que tenga más puntos
- 		cuando el tiempo termine ganará la partida</p>
+ 	<p>Este juego consiste en intentar conseguir más puntos que "naide", el que obtenga 
+ 		mayor puntuación antes de que el tiempo se agote, ganará la partida.</p>
 
- 	<p>Para obtener puntos tendrémos que rellenar captchas de forma repetitiva y 
- 		super aburrida xDD, cada capcha hecho incrementará tu combo de captchas seguidos y 
- 		te dará tantos puntos como combos lleves.</p>
+ 	<p>Para conseguir los puntos, tendréis que rellenar tantos captchas como podáis de forma repetitva y súper aburrida XDD. Cada captcha validado incrementará tu cobo de captchas seguidos, y te dará tantos puntos como combos lleves.</p>
 
- 	<p>Cada racha de 5 seguidos sin fallar obtendreis poderosas vitaminas que 
- 		podréis usar sobre vosotros o sobre los demás jugadores. Estas vitaminas 
- 		pueden mejorar o empeorar las puntuaciones de los demás!</p>
+ 	<p>Por cada racha de 5 seguidos que obtengáis, obtendréis poderosas vitaminas que podréis utilizar sobre vosotros mismos o sobre el resto de jugadores. Estas vitaminas, pueden mejorar o empeorar las puntuaciones de los demás !!</p>
 
- 	<p>Cada racha de 50 tendréis super vitaminas!!! usarlas rápido que se inutilizan
- 		con el tiempo</p>
+ 	<p>Cuando consigáis una racha de 50 captchas, obtendréis una Súper Vitamina!! tenéis que usarla rápido, ya que se inutilizan con el paso del tiempo !!</p>
 
- 	<p>Si consigues llegar a una racha de 500 captchas tendrás una vitamina tan poderosa que 
- 		te podría catapultar al primer puesto de la tabla!</p>
+ 	<p>Por último, si consiguiéseis llegar a una racha de 500 captchas ( cosa chunga xDD ) obtendréis una Vitamina tan poderosa que te pordría catapultar hasta llegar al primer puesto de la lista!!!</p>
 
- 	<p>Resumen! vitaminas verdes cada 5 (combos de 5, 10, 15, 20...) las amarillas cada 50 (50, 100, 150...) y las rojas todopoderosas cada 500 (500, 1000...)</p>
+ 	<p>En cuanto a las Vitaminas, deciros que las Verdes salen cada 5 captchas acertados ( es decir, combos de 5,10,15..facil no ? XD ) las Amarillas saldrán cada racha de 50 capthas ( es decir, 50, 100, 150... más de lo mismo ) y por último están las Rojas, que son las TodoPoderosas, que saldrán cada racha de 500 captchas acertados ( 500,1000 ... ^^ )</p>
 
- 	<p>mucha suerte!</p>
+ 	<p>Y eso es todo, mucha suerte y a jugar!!!</p>
+
 </div>
 <br clear="left" />
  	<a href="/jugar" class="btn btn-2 btn-2a">Jugar!</a>
@@ -111,7 +106,7 @@ li span {
 
  		<h2>Captchas</h2>
  		<img src="/assets/img/captchas.png" />
- 		<p>6 tipos de captchas que irán rotando e incrementando su dificultad a medida que los combos o rachas sean más largos</p>
+ 		<p>6 tipos de captchas que irán rotando e incrementando su dificultad a medida que los combos o rachas sean más largos.</p>
  		<h2>Vitaminas</h2>
  		<img src="/assets/img/timer.png" />
  		<p>Cada una de las vitaminas que tengas en el inventario tendrá un tiempo restante para poder usarla.<br> Este tiempo
@@ -125,8 +120,8 @@ li span {
 	 	<p>Las vitaminas se pueden dividir en 3 categorías:</p>
 	 	<ul>
 
-	 			<li><span style="border-color:tomato">SuperMegaVitaminas</span> Se obtienen al rellenar 500 capchas seguidos sin fallar. Tienen un gran poder y son capaces de desbalancear el juego</li>
-	 			<li><span style="border-color:gold">SuperVitaminas</span> Se obtienen cada vez que rellenes 50 seguidas sin fallar, sus efectos son poderosos pero no tan drásticos.</li>
+	 			<li><span style="border-color:tomato">SúperMegaVitaminas</span> Se obtienen al rellenar 500 capchas seguidos sin fallar. Tienen un gran poder y son capaces de desbalancear el juego</li>
+	 			<li><span style="border-color:gold">SúperVitaminas</span> Se obtienen cada vez que rellenes 50 seguidas sin fallar, sus efectos son poderosos pero no tan drásticos.</li>
 	 			<li><span style="border-color:#7ECFA7">Vitaminas</span> Son las más comunes y pueden llegar a molestar mucho. Úsalas con sabiduría y podrás fastidiar a tus enemigos.</li>
 	 	</ul>
 
@@ -137,7 +132,7 @@ li span {
 			 		<th></th>
 				 	<th>Nombre</th>
 				 	<th>Descripción/efectos</th>
-				 	<th>Tiempo en caducar(minutos)</th>
+				 	<th>Caduca en</th>
 				 	<!--th>Categoría</th-->
 			 	</tr>
 		 	{% for v in vitaminas %}
@@ -145,7 +140,7 @@ li span {
 				 	<td><img clasS="info_img{{ v.categoria }}" src="https://identicons.github.com/{{v.id}}.png" width="50px" /> </td>
 				 	<td>{{ v.nombre }}</td>
 				 	<td>{{ v.descripcion }}</td>
-				 	<td>{{ v.time }}</td>
+				 	<td>{{ v.time }} min</td>
 				 	<!--td>{{ v.categoria }}</td-->
 			 	</tr>
 		 	{% endfor %}
