@@ -45,7 +45,7 @@ class Jugar extends CI_Controller {
     }
 
     public function index(){
-    	$num_games = 5;
+    	$num_games = 6;
 
 		//change this code after install
 		$this->load->spark('twiggy/0.8.5');
@@ -72,6 +72,9 @@ class Jugar extends CI_Controller {
 				break;
 				case 'keycaptcha':
 					include('includes/keycaptcha_check.php');
+				break;
+				case 'minteye':
+					include('includes/minteye_check.php');
 				break;
 
 				default:
@@ -121,8 +124,13 @@ class Jugar extends CI_Controller {
 
 			// selector de juego que aparecerá en el siguiente turno
 			//TODO en lugar de poner un 0 para forzarlo hay que hacer un random o una secuencia
-			switch($this->bitauth->racha % $num_games) {
-			//switch(4) {
+			if ((($this->bitauth->racha+1) % 5) == 0) {
+				//forzamos el chungo para pillar vitaminas
+				$next = 4; //securimage
+			} else {
+				$next = rand(0,$num_games); // random
+			}
+			switch($next) {
 				case 0:
 					$type = 'recaptcha';
 				break;
@@ -137,6 +145,9 @@ class Jugar extends CI_Controller {
 				break;
 				case 4:
 					$type = 'securimage';
+				break;
+				case 5:
+					$type = 'minteye';
 				break;
 				//añadir aquí resto de juegos para que aparezcan
 
@@ -175,6 +186,13 @@ class Jugar extends CI_Controller {
 					$this->load->helper('keycaptcha/keycaptcha');
 					$kc_o = new KeyCAPTCHA_CLASS();
 					$data = array('type' => 'keycaptcha','keycaptcha_game' => $kc_o->render_js());
+				break;
+
+				case 'minteye':
+					$this->load->helper('minteye/adscaptchalib');
+					$captchaId  = '5869';   // Set your captcha id here
+					$publicKey  = 'e88fb747-e4be-43a8-b04e-dd3a367cf670';   // Set your public key here
+					$data = array('type' => 'minteye','minteye_game' => GetCaptcha($captchaId, $publicKey));
 				break;
 
 			} 
