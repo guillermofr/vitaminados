@@ -1,5 +1,5 @@
 <?php
-/* Vitamina: Regalas todos tus puntos a un adversario */
+/* Vitamina: pones la puntuación de tu adversario como la tuya y la tuya pasa a ser 0 */
 
 /*
 	Parametros disponibles
@@ -32,7 +32,7 @@
 		
 		$CI->bitauth->update_user(
 			$target_id,
-			array('puntos'=> $target_puntos + $own_puntos)
+			array('puntos'=> $own_puntos)
 			);
 	}
 		

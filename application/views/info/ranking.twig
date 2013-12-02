@@ -94,9 +94,9 @@ left: 0px;
 	<script> 
 	$(document).ready(function () {
 		$('#ranking').load("/api/load_ranking/{{ user.user_id }}/{{selected}}");
-		/*setInterval(function(){
+		setInterval(function(){
 			$('#ranking').load("/api/load_ranking/{{ user.user_id }}/{{selected}}")
-		},100000);*/
+		},100000);
 	});
 	</script>
 
