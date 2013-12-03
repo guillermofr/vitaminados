@@ -24,7 +24,11 @@ class Debug extends CI_Controller {
 	}	
 
 	public function give($vitamina_id = 0){
-		if ($vitamina_id != 0) {
+		
+        echo "cerrado el debug"; exit;
+
+
+        if ($vitamina_id != 0) {
 			$this->vitamina->crear_nueva('1','0',$vitamina_id);
 			echo "vitamina id=".$vitamina_id. " creada.";
 		}
