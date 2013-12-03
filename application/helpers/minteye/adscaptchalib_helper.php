@@ -10,7 +10,9 @@ Author URI: http://www.minteye.com
 
 $ADSCAPTCHA_API = 'api.minteye.com';
 
-function getCaptcha($captchaId, $publicKey) {
+function getCaptcha() {
+	$captchaId  = '5869';   // Set your captcha id here
+	$publicKey  = 'e88fb747-e4be-43a8-b04e-dd3a367cf670';   // Set your public key here
    	$ADSCAPTCHA_API = 'api.minteye.com';
    	global $ADSCAPTCHA_API;
 

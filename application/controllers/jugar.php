@@ -199,10 +199,8 @@ class Jugar extends CI_Controller {
 				break;
 
 				case 'minteye':
-					$this->load->helper('minteye/adscaptchalib');
-					$captchaId  = '5869';   // Set your captcha id here
-					$publicKey  = 'e88fb747-e4be-43a8-b04e-dd3a367cf670';   // Set your public key here
-					$data = array('type' => 'minteye','minteye_game' => GetCaptcha($captchaId, $publicKey));
+					$this->load->helper('minteye/adscaptchalib');	
+					$data = array('type' => 'minteye','minteye_game' => GetCaptcha());
 				break;
 
 			} 
