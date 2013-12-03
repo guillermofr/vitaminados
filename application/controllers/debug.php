@@ -22,9 +22,6 @@ class Debug extends CI_Controller {
     public function index(){
         ?>
     	<h1>menu</h1>
-        <ul>
-            <li><a href="/debug/backup">Hacer backup right now!</a></li>
-        </ul>
 
         <?php
 	}	

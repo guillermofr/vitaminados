@@ -130,7 +130,13 @@ class Jugar extends CI_Controller {
 			} else {
 				$next = rand(0,$num_games); // random
 			}
+
+			if ($this->usuario->juego_terminado()) $next = -1;
+
 			switch($next) {
+				case -1:
+					$type = 'terminado';
+				break;
 				case 0:
 					$type = 'recaptcha';
 				break;
@@ -157,7 +163,11 @@ class Jugar extends CI_Controller {
 			}
 
 			switch ($type){
+				case 'terminado':
 
+					$this->usuario->save_winners();
+					$data = array('type' => 'terminado');
+				break;
 				case 'simple':
 
 					$rand1 = rand(1,$this->bitauth->racha);
@@ -210,6 +220,7 @@ class Jugar extends CI_Controller {
 
 			$fechafin = $this->usuario->get_fechafin();
 			$data['fechafin'] = date_parse($fechafin[0]->fin);
+			$data['fin'] = $fechafin[0]->terminada;
 
 			$data['ataques'] = $this->usuario->get_ataques($this->bitauth->user_id);
 
@@ -227,6 +238,7 @@ class Jugar extends CI_Controller {
 			$data['ranking'] = ($data['logueado'])?$this->usuario->get_rank($this->bitauth->user_id):'0';
 				$fechafin = $this->usuario->get_fechafin();
 			$data['fechafin'] = date_parse($fechafin[0]->fin);
+			$data['now'] = date_parse($fechafin[0]->now);
 			$this->twiggy->set($data);
 			$this->twiggy->display('jugar',$data);
 		}

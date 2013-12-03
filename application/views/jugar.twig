@@ -3,6 +3,8 @@
 {% block jugar %}Actualizar{% endblock %}
 
 {% block countdown %}
+
+				{% if fin %}
 				<div style="display:inline-block">
 				<!-- START COUNTDOWN -->
 				<script src="/assets/js/countdown.js" type="text/javascript"></script>
@@ -22,8 +24,11 @@
 
 				</script>
 				<!-- END COUNTDOWN -->
-				<p>Para acabar la partida</p>
+				<p>Para acabar la partida </p>
 				</div>
+				{% else %}
+				<p>Partida terminada</p>
+				{% endif %}
 {% endblock %}
 
 
@@ -94,19 +99,22 @@
 
 				<form id="form_juego" method="POST" action="/jugar#otravez" >
 
+					{% block presubmit %}
 					<h1 style="font-weight:normal">Hola {{ user.fullname }} </h1>
-					<h2>Rellena este captcha para conseguir puntos</h2>
+					<p>Rellena este captcha para conseguir puntos</p>
+					{% endblock %}
 				    {% block captcha %}{% endblock %}
 
 				    <input type="hidden" name="type" value="{{ type }}"/>
-
+				     {% block submit %}
 				    <span style="display:block;">
 				    	<button id="enviar_captcha" disabled="disabled" type="submit" class="disabled btn btn-2 btn-2a">Validar captcha <span class="timer">5</span></button>
 					</span>
 
-					  <h2>Racha de captchas: {{ user.racha }} </h2>
+					  <p style="font-size:30px">Racha de captchas: <span style="font-size:50px">{{ user.racha }}</span></p>
 					    <p>Cada racha de 5 captchas obtendrás una vitamina, con racha de 50 supervitamina!</p>
 					    <p>Si llegas a una racha de 500 podrás obtener vitaminas capaces de romper el juego! O_o</p>
+					 {% endblock %}
 				</form>
 
 

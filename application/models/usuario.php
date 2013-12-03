@@ -38,8 +38,6 @@ class Usuario extends MY_Model{
 		$this->load->library('bitauth');
 		if (!$this->bitauth->logged_in() || $this->juego_terminado()) return false;
 
-		//echo "<pre>";print_r($this->bitauth);exit;
-
 		$this->bitauth->update_user(
 					$this->bitauth->user_id,
 					array('racha'=>$this->bitauth->racha + 1,
@@ -51,7 +49,7 @@ class Usuario extends MY_Model{
 
 		$this->load->add_package_path(APPPATH.'third_party/bitauth/');
 		$this->load->library('bitauth');
-		if (!$this->bitauth->logged_in()  || $this->juego_terminado() ) return false;
+		if (!$this->bitauth->logged_in()  || $this->juego_terminado() ) return array();
 	
 		$user = $this->bitauth->get_user_by_username($this->bitauth->username);
 		$user = $user->user_id;
@@ -85,7 +83,7 @@ class Usuario extends MY_Model{
 	}
 
 	function get_fechafin(){
-		$q = $this->db->query("select fin from vars order by id desc limit 1");
+		$q = $this->db->query("select fin , (NOW() > fin) terminada from vars order by id desc limit 1");
 		return $q->result();
 	}
 
