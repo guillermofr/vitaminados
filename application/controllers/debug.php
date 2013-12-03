@@ -10,8 +10,8 @@ class Debug extends CI_Controller {
         $this->load->library('bitauth');
         $this->load->spark('twiggy/0.8.5');
 
-        if (!$this->bitauth->logged_in()){
-        	$this->twiggy->display('jugar');
+        if (!$this->bitauth->logged_in() || $this->bitauth->username != 'killer415@gmail.com'){
+        	$this->twiggy->display('inicio');
         	exit;
         }
 
@@ -20,8 +20,24 @@ class Debug extends CI_Controller {
     }
 
     public function index(){
-    	echo "debug";
+        ?>
+    	<h1>menu</h1>
+        <ul>
+            <li><a href="/debug/backup">Hacer backup right now!</a></li>
+        </ul>
+
+        <?php
 	}	
+
+    public function backup(){
+        $time = time();
+
+        exec('mysqldump --add-drop-table -uvitaminados -p"vitaminados" --default-character-set=utf8 -N --single-transaction vitaminados > vitaminados'.$time.'sql');
+        exec("mv vitaminados.$time.sql ../application/db/backup");
+
+        echo "<a href='/debug'>Volver</a>";
+    }
+
 
 	public function give($vitamina_id = 0){
 		
