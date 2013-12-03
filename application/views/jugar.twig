@@ -1,5 +1,6 @@
 {% extends 'layout.twig' %}
 
+{% block jugar %}Actualizar{% endblock %}
 
 {% block countdown %}
 				<div style="display:inline-block">
@@ -208,15 +209,16 @@
     {% else %}
 
     <h2>Necesitas estar logueado para participar en la partida</h2>
-    <form method="POST" action="/login">
-    	<label for="email">Introduce tu correo electrónico</label>
+    <form style="width: 56%;margin: auto;" method="POST" action="/login">
+    	<label for="email">Introduce el correo electrónico con el que te diste de alta en la <b>MurciaLanParty</b>.</label>
     	<input type="email" name="email" placeholder="Correo electrónico" id="login_input"/>
     	<button type="submit" class="btn btn-2 btn-2a">Login</button>
-    	<p style="width: 56%;margin: auto;">
-    	Esta página no necesita preguntarte una clave o contraseña, al darnos tu 
+    	<p>Esta página no necesita preguntarte una clave o contraseña, al darnos tu 
     	dirección de correo, la comprobaremos en la base de datos de la Murcia lan party y 
     	te enviaremos un correo con un link para entrar a jugar.</p>
-    	<p>Sólo los participantes de la MLP podrán optar a premios</p>
+    	<p>Al darnos tu correo de registro en la <b>MurciaLanParty</b>, podremos reconocerte como participante y podrás optar a los premios de la competición.</p>
+    	<p>Los usuarios registrados que no sean participantes podrán entrar a jugar sin opción a premio.</p>
+    	<p>No hay ningún problema por tener multicuenta para participar</p>
     </form>
 
 

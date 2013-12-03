@@ -449,6 +449,9 @@ display: block;
 font-size: 13px;
 }
 
+a {
+	text-decoration: none;
+}
 	</style>
 
 
@@ -470,7 +473,7 @@ font-size: 13px;
 						<a id="cerrar_session" href="/login/out">Cerrar Sessión</a>
 					</nav>
 				{% endif %}
-				<h1>Vitaminados (Beta) <span>Un juego para putear a los demás y putearte tu mismo.</span></h1>
+				<h1><a href="/" style="color:#89867e">Vitaminados</a> (Beta) <span>Un juego para putear a los demás y putearte tu mismo.</span></h1>
 				
 
 				
@@ -481,7 +484,7 @@ font-size: 13px;
 				<nav class="cl-effect-4">
 					<a style="font-size:16px" href="/info">¿Cómo se juega!?</a>
 					<a style="font-size:16px" href="/info/ranking">¿Quién va ganando?</a>
-					<a style="font-size:40px" href="/jugar">¡Jugar!</a>
+					<a style="font-size:40px" href="/jugar">{% block jugar %}¡Jugar!{% endblock %}</a>
 					<a style="font-size:16px" href="/info/developer">¿Quién ha hecho esta mierda?</a>
 					<a style="font-size:16px" href="/info/premios">Premios</a>
 				</nav>
