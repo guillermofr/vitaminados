@@ -30,9 +30,9 @@
 			$primos = $familia->num_rows();
 
 			$total = $this->db->query("select sum(puntos) total from bitauth_userdata where clan = '$clan'");
-			$sumatotal = $familia->results();
+			$sumatotal = $total->results();
 
-			$media = $sumatotal / $primos;
+			$media = $sumatotal[0]->total / $primos;
 			
 			$this->db->query("update bitauth_userdata set puntos = $media where clan ='$clan'");
 
