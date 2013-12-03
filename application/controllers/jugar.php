@@ -238,7 +238,7 @@ class Jugar extends CI_Controller {
 			$data['ranking'] = ($data['logueado'])?$this->usuario->get_rank($this->bitauth->user_id):'0';
 				$fechafin = $this->usuario->get_fechafin();
 			$data['fechafin'] = date_parse($fechafin[0]->fin);
-			$data['now'] = date_parse($fechafin[0]->now);
+			$data['fin'] = $fechafin[0]->terminada;
 			$this->twiggy->set($data);
 			$this->twiggy->display('jugar',$data);
 		}
