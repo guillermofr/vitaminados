@@ -30,7 +30,7 @@
 			$primos = $familia->num_rows();
 
 			$total = $this->db->query("select sum(puntos) total from bitauth_userdata where clan = '$clan'");
-			$sumatotal = $total->results();
+			$sumatotal = $total->result();
 
 			$media = $sumatotal[0]->total / $primos;
 			

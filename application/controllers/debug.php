@@ -29,21 +29,8 @@ class Debug extends CI_Controller {
         <?php
 	}	
 
-    public function backup(){
-        $time = time();
-
-        exec('mysqldump --add-drop-table -uvitaminados -p"vitaminados" --default-character-set=utf8 -N --single-transaction vitaminados > vitaminados'.$time.'sql');
-        exec("mv vitaminados.$time.sql ../application/db/backup");
-
-        echo "<a href='/debug'>Volver</a>";
-    }
-
-
 	public function give($vitamina_id = 0){
 		
-        echo "cerrado el debug"; exit;
-
-
         if ($vitamina_id != 0) {
 			$this->vitamina->crear_nueva('1','0',$vitamina_id);
 			echo "vitamina id=".$vitamina_id. " creada.";
