@@ -79,9 +79,12 @@ class Api extends CI_Controller {
    				<input type='hidden' name='id' value='".$u->user_id."'/>
    				<img class='target-img' style='border-color:$clancolor' src='http://1.gravatar.com/avatar/".$u->user_id."?s=50&d=monsterid&r=G' />
    				<span class='target-nick'>".recortar_texto($u->fullname,10)."</span>
-   				<span class='target-puntos'>".$u->puntos."</span>
-   				<span class='target-racha'>combo<br>x".$u->racha."</span>
-          ".$logo."
+   				<span class='target-puntos'>".$u->puntos."</span>";
+   				
+          if ($u->racha)
+          $html .= "<span class='target-racha'>combo<br>x".$u->racha."</span>";
+          
+          $html .= $logo."
    			</div>";
    		}
 
@@ -128,9 +131,11 @@ class Api extends CI_Controller {
           <img class='rank-img' style='border-color:$clancolor' src='http://1.gravatar.com/avatar/".$u->user_id."?s=50&d=monsterid&r=G' />
           <span class='rank-nick' >".recortar_texto($u->fullname,17)."</span>
           <span class='rank-puntos'>".$u->puntos."</span>
-          <span class='rank-rank'>".$rank++."#</span>
-          <span class='rank-racha'>combo<br>x".$u->racha."</span>
-          ".$logo."
+          <span class='rank-rank'>".$rank++."#</span>";
+          if ($u->racha)
+          $html .= "<span class='rank-racha'>combo<br>x".$u->racha."</span>";
+          
+          $html .= $logo."
         </div>";
       }
 
