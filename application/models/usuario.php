@@ -16,6 +16,12 @@ class Usuario extends MY_Model{
 	    return $q->num_rows();
 
 	}
+	function juego_empezado(){
+
+	    $q = $this->db->query('select * from vars where id = 1 and inicio < now()');
+	    return $q->num_rows();
+
+	}
 
 	function get_usuario($user_id){
 		$q = $this->db->query("select * from bitauth_userdata where user_id = $user_id");
@@ -84,6 +90,11 @@ class Usuario extends MY_Model{
 
 	function get_fechafin(){
 		$q = $this->db->query("select fin , (NOW() > fin) terminada from vars order by id desc limit 1");
+		return $q->result();
+	}
+
+	function get_fechainicio(){
+		$q = $this->db->query("select inicio from vars order by id desc limit 1");
 		return $q->result();
 	}
 

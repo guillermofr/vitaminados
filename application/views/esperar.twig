@@ -1,0 +1,57 @@
+{% extends 'layout.twig' %}
+
+{% block jugar %}Actualizar{% endblock %}
+
+{% block countdown %}
+		
+	<p>Esperando para comenzar</p>
+				
+{% endblock %}
+
+
+{% block content %}
+
+
+	<style>
+	#contenedor {
+		text-align: center;
+		margin: auto;
+		width: 549px;
+		margin-top: 56px;
+		background: white;
+		border-radius: 100px;
+		padding: 50px;
+		box-shadow: 0px 5px 0px #cd4436;
+	}
+
+	#time_left {
+		color:#cd4436;
+	}
+
+	</style>
+
+	<div id="contenedor">
+	<script src="/assets/js/countdown.js" type="text/javascript"></script>
+	<script type="application/javascript">
+
+		function countdownComplete(){
+				  	location.reload();
+				}
+		var myCountdownTest = new Countdown({
+													 	year	: {{inicio.year}},
+														month	: {{inicio.month}}, 
+														day		: {{inicio.day}},
+														hour	: {{inicio.hour}},
+														minute	: {{inicio.minute}},
+														width	: 450, 
+														height	: 150,
+														rangeHi  : "day",
+														padding  : 0.7,
+														onComplete	: countdownComplete
+														});
+	</script>
+	<br>
+	<h2 id="time_left">Tiempo para inicio de partida OFICIAL</h2>
+	</div>
+
+{% endblock %}

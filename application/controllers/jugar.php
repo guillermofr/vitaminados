@@ -24,13 +24,23 @@ class Jugar extends CI_Controller {
         $this->load->add_package_path(APPPATH.'third_party/bitauth');
         $this->load->library('bitauth');
         $this->load->spark('twiggy/0.8.5');
+ 		$this->load->model(array('vitamina','usuario'));
+
+        //blocqueado el juego
+ 		if (!$this->usuario->juego_empezado()){
+ 			$inicio = $this->usuario->get_fechainicio();
+ 			$data = array('inicio' => date_parse($inicio[0]->inicio));
+ 			$this->twiggy->set($data);
+      	 	$this->twiggy->display('esperar',$data);
+       		exit;
+ 		}
 
         if (!$this->bitauth->logged_in()){
         	$this->twiggy->display('jugar');
         	exit;
         }
 
-        $this->load->model(array('vitamina','usuario'));
+       
         
         //update de valores
         $user_db = $this->usuario->get_usuario($this->bitauth->user_id);
