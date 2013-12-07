@@ -104,6 +104,13 @@ class Usuario extends MY_Model{
 		return $q->result();
 	}
 
+	function get_hora_servidor(){
+		$q = $this->db->query("select now() as ahora");
+		$r = $q->result();
+		$date = date_parse($r[0]->ahora); 
+		return (($date['hour']<10)?'0'.$date['hour']:$date['hour']).":".(($date['minute']<10)?'0'.$date['minute']:$date['minute']).":".(($date['second']<10)?'0'.$date['second']:$date['second']);
+	}
+
 	function get_ataques($user_id){
 		$q = $this->db->query("select v.nombre vitamina , v.id vitamina_id , u.fullname quien , u.user_id quien_id , l.fecha 
 								from 

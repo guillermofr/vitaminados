@@ -236,7 +236,7 @@ class Jugar extends CI_Controller {
 			$data['fin'] = $fechafin[0]->terminada;
 
 			$data['random'] = rand(10000,99999);
-
+			$data['horaservidor'] = $this->usuario->get_hora_servidor();
 			$data['ataques'] = $this->usuario->get_ataques($this->bitauth->user_id);
 
 
@@ -254,6 +254,7 @@ class Jugar extends CI_Controller {
 			$fechafin = $this->usuario->get_fechafin();
 			$data['fechafin'] = date_parse($fechafin[0]->fin);
 			$data['fin'] = $fechafin[0]->terminada;
+
 			$this->twiggy->set($data);
 			$this->twiggy->display('jugar',$data);
 		}
