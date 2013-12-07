@@ -17,7 +17,6 @@
 
 //obtener datos del usuario target
 
-		
 
 
 //manipular racha o puntos al gusto
@@ -37,6 +36,10 @@
 			);
 
 		} else {
+			$target = $CI->bitauth->get_user_by_id($target_id);
+			$target_puntos = $target->puntos;
+			$target_racha =  $target->racha;
+
 			$CI->bitauth->update_user(
 				$target_id,
 				array('racha'=>$target_racha,
