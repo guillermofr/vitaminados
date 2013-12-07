@@ -36,7 +36,12 @@ class Jugar extends CI_Controller {
  		}
 
         if (!$this->bitauth->logged_in()){
-        	$this->twiggy->display('jugar');
+        	$data = array();
+        	$fechafin = $this->usuario->get_fechafin();
+			$data['fechafin'] = date_parse($fechafin[0]->fin);
+			$data['fin'] = $fechafin[0]->terminada;
+			$this->twiggy->set($data);
+			$this->twiggy->display('jugar',$data);
         	exit;
         }
 
@@ -246,7 +251,7 @@ class Jugar extends CI_Controller {
 			$data['user'] = ($data['logueado'])?$this->bitauth->get_user_by_id($this->bitauth->user_id):false;
 			$data['vitaminas'] = $this->vitamina->get_vitaminas();
 			$data['ranking'] = ($data['logueado'])?$this->usuario->get_rank($this->bitauth->user_id):'0';
-				$fechafin = $this->usuario->get_fechafin();
+			$fechafin = $this->usuario->get_fechafin();
 			$data['fechafin'] = date_parse($fechafin[0]->fin);
 			$data['fin'] = $fechafin[0]->terminada;
 			$this->twiggy->set($data);
