@@ -230,6 +230,8 @@ class Jugar extends CI_Controller {
 			$data['fechafin'] = date_parse($fechafin[0]->fin);
 			$data['fin'] = $fechafin[0]->terminada;
 
+			$data['random'] = rand(10000,99999);
+
 			$data['ataques'] = $this->usuario->get_ataques($this->bitauth->user_id);
 
 

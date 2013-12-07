@@ -16,7 +16,7 @@
 {% endblock %}
 
 {% block captcha %}
-    <img id="captcha" src="/generador/securimage" alt="CAPTCHA Image" /><br/>
+    <img id="captcha" src="/generador/securimage?nocache={{random}}" alt="CAPTCHA Image" /><br/>
     <input type="text" id="captcha_code" name="captcha_code" size="10" maxlength="6" />
-	<a id="change" style="color: white;" href="#" onclick="document.getElementById('captcha').src = '/generador/securimage?' + Math.random(); return false">[ Cambiar a otra ]</a>
+	<a id="change" style="color: white;" href="#" onclick="document.getElementById('captcha').src = '/generador/securimage?nocache=' + Math.random(); return false">[ Cambiar a otra ]</a>
 {% endblock %}
