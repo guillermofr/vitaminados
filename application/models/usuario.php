@@ -71,7 +71,7 @@ class Usuario extends MY_Model{
 		$this->db->query("SET @rowno = 0;");
 		$q = $this->db->query("
 				select rn as rank from (select *,@rowno:=@rowno+1 `rn` from bitauth_userdata bu where fullname != '' order by bu.puntos desc, bu.racha desc) as sub
-				where user_id = 111");
+				where user_id = $user_id");
 		$res = $q->result();
 
 		return $res[0]->rank . "#";
