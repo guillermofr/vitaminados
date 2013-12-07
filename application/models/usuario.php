@@ -66,7 +66,7 @@ class Usuario extends MY_Model{
 
 	function get_rank($user_id){
 
-		$q = $this->db->query("select count(1) rank from bitauth_userdata where fullname != '' and puntos > (select puntos from bitauth_userdata where user_id = $user_id) group by puntos");
+		$q = $this->db->query("select count(1) rank from bitauth_userdata where fullname != '' and puntos > (select puntos from bitauth_userdata where user_id = $user_id) group by puntos,fullname");
 
 		return $q->num_rows() +1 . "#";
 	}
