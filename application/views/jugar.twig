@@ -2,16 +2,7 @@
 
 {% block jugar %}Actualizar{% endblock %}
 
-<script type="application/javascript">
 
-	$(function(){
-		setTimeout(function(){
-			$(".puntos").html({{puntos_post}});
-			$(".suma").addClass("quitapuntos");
-		},1500);
-	});
-
-</script>
 
 
 {% block countdown_timer %}
@@ -69,6 +60,16 @@
 
 {% block content %}
 
+	<script type="application/javascript">
+
+	$(function(){
+		setTimeout(function(){
+			$(".puntos").html({{puntos_post}});
+			$(".suma").addClass("quitapuntos");
+		},1500);
+	});
+
+	</script>
 
 	{% if logueado %}
 
