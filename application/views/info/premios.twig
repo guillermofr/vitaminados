@@ -70,18 +70,16 @@ left: 69px;
 	<script> 
 	$(document).ready(function () {
 		$('#ranking').load("/api/load_ganadores");
+
+		setInterval(function(){
+			$('#timer').load("/api/timer");
+		},1000);
 	});
 	</script>
 
 
  	<h2>Premiados</h2>
- 	<p><strong>Primera edición</strong></p>
- 	<p>JuNo y Spammer</p>
-
- 	<p><strong>Edición extended</strong></p>
- 	<p>ErofostiesDFD  y Danielsan26</p>
-
-	<br/>
+ 	
 	<p>Ganadores actuales del concurso, cambiará según transcurra el juego.</p>
  	
  	<div id="ranking"></div>
@@ -90,13 +88,5 @@ left: 69px;
  	<p>La organización Murcia Lan Party premiará a los dos primeros clasificados<br> con <span style="font-size:30px">40 euros</span> para el primero<br> y <span style="font-size:30px">20 euros</span> para el segundo.</p>
  	<p>Recordamos que los premiados serán los dos primeros participantes de la Murcia Lan Party<br> con mejores puntuaciones, los jugadores que no están inscritos<br> en la Murcia Lan Party no optan a premio.</p>
 
- 	<h2>Premios edición extended</h2>
- 	<p>Para la segunda edición se dará <span style="font-size:30px">trofeo honorífico</span></p>
-
- 	<h2>Premios edición "last day"</h2>
- 	<p>Se celebrará el domingo hasta las 23:59:00</p>
-	<p>Para la edición de partida de último día se dará <span style="font-size:30px">trofeo honorífico</span></p>
- 	
- 	
 
 {% endblock %}

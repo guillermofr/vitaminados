@@ -47,7 +47,7 @@ class Usuario extends MY_Model{
 		$this->bitauth->update_user(
 					$this->bitauth->user_id,
 					array('racha'=>$this->bitauth->racha + 1,
-						  'puntos'=>$this->bitauth->puntos + $this->bitauth->racha + 1 )
+						  'puntos'=>$this->bitauth->puntos + ($this->bitauth->racha +1 )* 10 )
 				);
 	}
 
@@ -60,7 +60,29 @@ class Usuario extends MY_Model{
 		$user = $this->bitauth->get_user_by_username($this->bitauth->username);
 		$user = $user->user_id;
 		
-		$res = $this->db->query("select * from bitauth_userdata where user_id != $user and fullname != '' order by puntos desc");
+		$res = $this->db->query("select *,user_id as id1,
+	(select count(*)
+			from 
+				pastillero p, vitamina v
+			where
+				p.vitamina_id = v.id and 
+				v.categoria = 1 and
+				user_id = id1 and timeout > NOW()) as red,
+	(select count(*)
+			from 
+				pastillero p, vitamina v
+			where
+				p.vitamina_id = v.id and 
+				v.categoria = 2 and
+				user_id = id1 and timeout > NOW()) as yellow,
+	(select count(*)
+			from 
+				pastillero p, vitamina v
+			where
+				p.vitamina_id = v.id and 
+				v.categoria = 3 and
+				user_id = id1 and timeout > NOW()) as green 
+	from bitauth_userdata where user_id != $user and fullname != '' order by puntos desc");
 		return $res->result();	
 	}
 

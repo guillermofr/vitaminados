@@ -2,7 +2,7 @@
 
 {% block jugar %}Actualizar{% endblock %}
 
-{% block countdown1 %}
+{% block countdown %}
 
 				{% if not fin %}
 				<div style="display:inline-block">
@@ -27,9 +27,18 @@
 													onComplete	: countdownComplete
 													});
 
+
+				$(function(){
+					setTimeout(function(){
+						$(".puntos").html({{puntos_post}});
+						$(".suma").addClass("quitapuntos");
+					},1500);
+				});
+
+
 				</script>
 				<!-- END COUNTDOWN -->
-				<p>Partida extraoficial!, "last day edition" ver anteriores premiados en sección premios</p>
+
 
 				</div>
 				{% else %}
@@ -39,7 +48,7 @@
 
 
 
-{% block countdown %}
+{% block countdown_unlimited %}
 				
 				<div style="display:inline-block;font-size: 250px;line-height: 100px;">
 					&#x221e;
@@ -116,11 +125,20 @@
 					</div>
 				</div-->
 
+				<div>
+					<h1 style="font-weight:normal">{{ user.fullname }} </h1>
+					<div>Puntuación</div>
+					<div>
+						<span class="puntos">{{ puntos_pre }}</span><span class="suma"> +{{ suma }}</span> 
+					</div>
+
+				</div>
+
 				<form id="form_juego" method="POST" action="/jugar#otravez" >
 
 					{% block presubmit %}
-					<h1 style="font-weight:normal">Hola {{ user.fullname }} </h1>
-					<p>Rellena este captcha para conseguir puntos</p>
+					<p>Para <strong>ganar</strong> debes obtener puntos rellenando capchas y si haces <strong>rachas largas</strong> sin fallar obtendrás <strong>vitaminas</strong> para putear a los demás</p>
+
 					{% endblock %}
 				    {% block captcha %}{% endblock %}
 
@@ -142,9 +160,6 @@
 
 					<div class="ficha">
 						<img style="border-color:{{clancolor}}" class="ficha-img" src="http://1.gravatar.com/avatar/{{user.user_id}}?s=200&d=monsterid&r=G"/>
-
-						<div>Usuario<span class="ficha-titulo">{{ user.fullname }}</span></div>
-						<div>Puntuación<span class="ficha-titulo">{{ user.puntos }}</span> </div>
 						<div>Posición en ranking<span class="ficha-titulo">{{ranking}}</span> </div>
 						<div>Hora del servidor<span class="ficha-titulo">{{horaservidor}}</span> </div>
 

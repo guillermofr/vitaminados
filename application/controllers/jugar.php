@@ -62,6 +62,10 @@ class Jugar extends CI_Controller {
     public function index(){
     	$num_games = 6;
 
+    	$puntos_pre = $puntos_pre = $this->bitauth->puntos;
+    	$puntos_post =$puntos_pre = $this->bitauth->puntos;
+    	$suma= 0;
+
 		//change this code after install
 		$this->load->spark('twiggy/0.8.5');
 
@@ -102,7 +106,11 @@ class Jugar extends CI_Controller {
 			if ($captchacorrecto) {
 				//TODO contabilizar combos y adjudicar vitaminas nueva
 
+				$puntos_pre = $this->bitauth->puntos;
+				$suma = ($this->bitauth->racha +1) *10;
+
 				$this->usuario->aumenta_puntuacion();
+				$puntos_post = $this->bitauth->puntos;
 
 				//aumentar puntuación según el combo
 
@@ -239,6 +247,11 @@ class Jugar extends CI_Controller {
 			$data['horaservidor'] = $this->usuario->get_hora_servidor();
 			$data['ataques'] = $this->usuario->get_ataques($this->bitauth->user_id);
 
+			$data['puntos_pre'] = $puntos_pre;
+			$data['puntos_post'] = $puntos_post;
+			$data['suma'] = $suma;
+
+			//echo "<pre>";print_r($data);exit;
 
 			$this->twiggy->set($data);
 			$this->twiggy->display('captchas/'.$type,$data);

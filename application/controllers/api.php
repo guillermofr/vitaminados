@@ -66,10 +66,11 @@ class Api extends CI_Controller {
 
         if ($u->participante) {
           $participante = 'participante';
-          $logo = "<img title='Participante' class='target-logo' src='http://www.murcialanparty.com/mlp13/nimagenes/logo.png' />";
+          $logo = "<ul class='target-ver-vitaminas'><li class='green number$u->green'>$u->green</li><li class='yellow number$u->yellow'>$u->yellow</li><li class='red number$u->red'>$u->red</li></ul>
+                   <img title='Participante' class='target-logo' src='http://www.murcialanparty.com/mlp13/nimagenes/logo.png' />";
         } else {
           $participante = '';
-          $logo = "";
+          $logo = "<ul class='target-ver-vitaminas'><li class='green number$u->green'>$u->green</li><li class='yellow number$u->yellow'>$u->yellow</li><li class='red number$u->red'>$u->red</li></ul>";
         }
 
        $clancolor = ($u->clan != null)?"#".substr(md5($u->clan),0,6):'#ffffff';
@@ -206,6 +207,22 @@ class Api extends CI_Controller {
 
 
     }
+
+
+    function load_timer(){
+
+      $this->load->model(array('vitamina','usuario'));
+
+      $fechafin = $this->usuario->get_fechafin();
+
+      $data['fechafin'] = date_parse($fechafin[0]->fin);
+      $data['fin'] = $fechafin[0]->terminada;
+      $data['actual'] = date('Y-m-d ');
+      echo "<pre>";
+      print_r($data);
+
+    }
+
 	
 }
 

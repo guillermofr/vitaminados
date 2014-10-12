@@ -40,9 +40,9 @@ class Vitamina extends MY_Model{
 		
 		//hacemos un random para seleccionar una
 			$random = rand(0,$num_vitaminas-1);
+			if ($param_vitamina_id) $random = $param_vitamina_id;
 
 			$vitamina_id = $res_vitaminas[$random]['id'];
-			if ($param_vitamina_id) $vitamina_id = $param_vitamina_id;
 			$timeout = 	 $res_vitaminas[$random]['time'];
 
 		if ($user_id == 0)
@@ -73,6 +73,7 @@ class Vitamina extends MY_Model{
 				v.time, 
 				p.timeout, 
 				UNIX_TIMESTAMP(p.timeout) - UNIX_TIMESTAMP(NOW()) as queda,
+				NOW() as now,
 				v.nombre, 
 				v.descripcion, 
 				v.categoria 
