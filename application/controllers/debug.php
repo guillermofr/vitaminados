@@ -15,14 +15,18 @@ class Debug extends CI_Controller {
         	exit;
         }
 
-        $this->load->model(array('vitamina','usuario'));
+        $this->load->model(array('vitamina','usuario','admin'));
 		
     }
 
     public function index(){
         ?>
     	<h1>menu</h1>
-
+            <ul>
+                <li><a href="/debug/usuarios">Usuarios</a></li>
+                <li><a href="/debug/vitaminas">Vitaminas</a></li>
+                <li><a href="/debug/fechas">Fechas</a></li>
+            </ul>
         <?php
 	}	
 
@@ -33,5 +37,47 @@ class Debug extends CI_Controller {
 			echo "vitamina id=".$vitamina_id. " creada.";
 		}
 	}
+
+    public function usuarios(){
+
+    }
+    
+    public function vitaminas(){
+   
+            if (isset($_POST['nombre'])){
+
+                $data = array(
+                    'id' => $this->input->post('id'),
+                    'nombre' => $this->input->post('nombre'),
+                    'descripcion' => $this->input->post('descripcion'),
+                    'time' => $this->input->post('time'),
+                    'categoria' => $this->input->post('categoria'),
+                    'fichero' => $this->input->post('fichero'),
+                    );
+
+                $this->admin->save_vitamina($data);
+            }
+
+            $vitaminas = $this->vitamina->get_listado();
+            $ficheros = scandir(APPPATH."models/vitaminas");
+            $data = array(
+                'ficheros' => $ficheros,
+                'title' => "Listado de vitaminas",
+                'vitaminas' => $vitaminas
+            );
+
+
+           // echo "<pre>"; print_r($data);exit;
+            $this->twiggy->set($data);
+            $this->twiggy->display('debug/vitaminas',$data);
+        
+
+    }
+    
+    public function fechas(){
+
+    }
+
+
 }
 

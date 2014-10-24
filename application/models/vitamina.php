@@ -133,7 +133,7 @@ class Vitamina extends MY_Model{
 
 		if ($query->num_rows()){
 
-			//check si tiene escudos
+			//check si tiene escudos y no le estás aplicando un escudo (los escudos se acumulan)
 			$shield_q = $this->db->query("select * from pastillero p , vitamina v
 				where 
 					p.timeout > NOW() and 
@@ -141,7 +141,7 @@ class Vitamina extends MY_Model{
 					v.id = p.vitamina_id and
 					v.fichero = 'Escudo.php'");
 
-			if ($shield_q->num_rows()){
+			if ($shield_q->num_rows() && $q[0]->fichero != 'Escudo.php'){
 				$shield_res = $shield_q->result();
 
 				$shield_id = $shield_res[0]->vitamina_id;

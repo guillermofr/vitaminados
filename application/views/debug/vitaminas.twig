@@ -1,0 +1,90 @@
+{% extends 'debug/layout.twig' %}
+
+
+{% block content %}
+
+	<style>
+
+	.color1 {
+		background-color: tomato;
+	}
+
+	.color2 {
+		background-color: gold;
+	}
+
+	.color3 {
+		background-color: limegreen;
+	}
+
+	input, button, select, textarea {
+	font-family: inherit;
+	font-size: inherit;
+	line-height: inherit;
+	height: 25px;
+	}
+
+	</style>
+	
+
+	<h3>Nueva vitamina</h3>
+
+		<span class="col-xs-1">id</span>
+		<span class="col-xs-2">nombre</span>
+		<span class="col-xs-1">tiempo</span>
+		<span class="col-xs-1">tipo</span>
+		<span class="col-xs-2">fichero</span>
+		<span class="col-xs-4">descripción</span>
+		<span class="col-xs-1">guardar</span>
+
+	<form method="post" action="" >
+		<span class="col-xs-1" style="text-align:right">Nueva</span>
+		<input class="col-xs-2" type="text" name="nombre" value=""/>
+		<input class="col-xs-1" type="text" name="time" value=""/>
+		<select class="col-xs-1" name="categoria">
+			<option value="1">1</option><option value="2">2</option><option value="3">3</option>
+		</select>
+		<select class="col-xs-2" name="fichero">
+			{% for f in ficheros %}
+			<option value="{{f}}">{{f}}</option>
+			{% endfor %}
+		</select>
+		<input class="col-xs-4" type="text" name="descripcion" value=""/>
+		<button class="col-xs-1 btn">Guardar</button>
+	</form>
+
+
+	<h3>Vitaminas</h3>
+
+	<span class="col-xs-1">id</span>
+		<span class="col-xs-2">nombre</span>
+		<span class="col-xs-1">tiempo</span>
+		<span class="col-xs-1">tipo</span>
+		<span class="col-xs-2">fichero</span>
+		<span class="col-xs-4">descripción</span>
+		<span class="col-xs-1">guardar</span>
+
+	{% for v in vitaminas %}
+
+	<form method="post" action="" >
+		<span class="col-xs-1 color{{v.categoria}}" style="text-align:right">
+			<input class="col-xs-2" type="hidden" name="id" value="{{v.id}}"/>	
+			{{v.id}}
+		</span>
+		<input class="col-xs-2" type="text" name="nombre" value="{{v.nombre}}"/>
+		<input class="col-xs-1" type="text" name="time" value="{{v.time}}"/>
+		<input class="col-xs-1" type="text" name="categoria" value="{{v.categoria}}"/>
+		<select class="col-xs-2" name="fichero">
+			{% for f in ficheros %}
+			<option value="{{f}}" {% if v.fichero == f %}selected{% endif %}>{{f}}</option>
+			{% endfor %}
+		</select>
+		<input class="col-xs-4" type="text" name="descripcion" value='{{v.descripcion |raw}}'/>
+		<button class="col-xs-1 btn">Guardar</button>
+	</form>
+
+
+	{% endfor %}
+
+
+{% endblock %}
