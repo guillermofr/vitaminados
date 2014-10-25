@@ -232,8 +232,8 @@ padding-top: 14px;
 }
 
 .target img {
-float: left;
-margin-top: 13px;
+float: right;
+margin-top: 17px;
 border-radius: 35px;
 border: outset 5px #E5FF19;
 }
@@ -258,13 +258,14 @@ border-top: solid 6px #E5FF19;
 
 .target .target-racha {
 position: absolute;
-bottom: 24px;
+bottom: 20px;
 background: #CDE707;
 border-radius: 30px;
 padding: 4px;
 color: #444;
 font-size: 12px;
 left: 69px;
+white-space: nowrap;
 }
 
 .target-logo {
@@ -279,9 +280,25 @@ left: 69px;
 	border: 0px !important;
 	width: 30px;
 	position: absolute;
-	left: -16px;
+	left: 4px;
 	line-height: 9px;
 	top: 1px;
+}
+
+#ranking .target-ver-vitaminas {
+	border: 0px !important;
+	width: 30px;
+	position: absolute;
+	line-height: 20px;
+	top: 10px;
+	right: 13px;
+	left: auto;
+}
+
+.target-ver-vitaminas .counter {
+position: relative;
+left: -7px;
+bottom: 2px;
 }
 
 .target-ver-vitaminas .red {
@@ -293,15 +310,18 @@ left: 69px;
 .target-ver-vitaminas .green {
 	list-style-image: url(/assets/img/green.png);
 }
+.target-ver-vitaminas .blue {
+	list-style-image: url(/assets/img/blue.png);
+}
 
 .target-ver-vitaminas .number0 {
 	display: none;
 }
 
 .target-ver-vitaminas li {
-margin-bottom: -6px;
+margin-bottom: -7px;
 font-size: 15px;
-list-style-position: inside;
+list-style-position: outside;
 }
 
 #dimmok {

@@ -81,7 +81,15 @@ class Usuario extends MY_Model{
 			where
 				p.vitamina_id = v.id and 
 				v.categoria = 3 and
-				user_id = id1 and timeout > NOW()) as green 
+				user_id = id1 and timeout > NOW()) as green,
+	(select count(*)
+			from 
+				pastillero p, vitamina v
+			where
+				p.vitamina_id = v.id and 
+				v.fichero = 'Escudo.php' and
+				user_id = id1 and timeout > NOW()) as shields
+
 	from bitauth_userdata where user_id != $user and fullname != '' order by puntos desc");
 		return $res->result();	
 	}
@@ -101,7 +109,39 @@ class Usuario extends MY_Model{
 
 	function get_ranking(){
 
-		$res = $this->db->query("select * from bitauth_userdata where fullname != '' order by puntos desc, racha desc");
+		$res = $this->db->query("select *,user_id as id1,
+
+			(select count(*)
+			from 
+				pastillero p, vitamina v
+			where
+				p.vitamina_id = v.id and 
+				v.categoria = 1 and
+				user_id = id1 and timeout > NOW()) as red,
+	(select count(*)
+			from 
+				pastillero p, vitamina v
+			where
+				p.vitamina_id = v.id and 
+				v.categoria = 2 and
+				user_id = id1 and timeout > NOW()) as yellow,
+	(select count(*)
+			from 
+				pastillero p, vitamina v
+			where
+				p.vitamina_id = v.id and 
+				v.categoria = 3 and
+				user_id = id1 and timeout > NOW()) as green,
+	(select count(*)
+			from 
+				pastillero p, vitamina v
+			where
+				p.vitamina_id = v.id and 
+				v.fichero = 'Escudo.php' and
+				user_id = id1 and timeout > NOW()) as shields
+
+
+			from bitauth_userdata where fullname != '' order by puntos desc, racha desc");
 		return $res->result();	
 	}
 

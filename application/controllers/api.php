@@ -66,12 +66,22 @@ class Api extends CI_Controller {
 
         if ($u->participante) {
           $participante = 'participante';
-          $logo = "<ul class='target-ver-vitaminas'><li class='green number$u->green'>$u->green</li><li class='yellow number$u->yellow'>$u->yellow</li><li class='red number$u->red'>$u->red</li></ul>
-                   <img title='Participante' class='target-logo' src='http://www.murcialanparty.com/mlp13/nimagenes/logo.png' />";
+          $logo = "<ul class='target-ver-vitaminas'>
+          <li class='blue number$u->shields'><span class='counter'>$u->shields</span></li>
+          <li class='green number$u->green'><span class='counter'>$u->green</span></li>
+          <li class='yellow number$u->yellow'><span class='counter'>$u->yellow</span></li>
+          <li class='red number$u->red'><span class='counter'>$u->red</span></li>
+          </ul>
+          <img title='Participante' class='target-logo' src='http://www.murcialanparty.com/mlp13/nimagenes/logo.png' />";
         } else {
           $participante = '';
-          $logo = "<ul class='target-ver-vitaminas'><li class='green number$u->green'>$u->green</li><li class='yellow number$u->yellow'>$u->yellow</li><li class='red number$u->red'>$u->red</li></ul>";
-        }
+          $logo = "<ul class='target-ver-vitaminas'>
+          <li class='blue number$u->shields'><span class='counter'>$u->shields</span></li>
+          <li class='green number$u->green'><span class='counter'>$u->green</span></li>
+          <li class='yellow number$u->yellow'><span class='counter'>$u->yellow</span></li>
+          <li class='red number$u->red'><span class='counter'>$u->red</span></li>
+          </ul>";    
+       }
 
        $clancolor = ($u->clan != null)?"#".substr(md5($u->clan),0,6):'#ffffff';
 
@@ -111,10 +121,21 @@ class Api extends CI_Controller {
       foreach ($usuarios as $u) {
         if ($u->participante) {
           $participante = 'participante';
-          $logo = "<img title='Participante' class='rank-logo' src='http://www.murcialanparty.com/mlp13/nimagenes/logo.png' />";
+          $logo = "<ul class='target-ver-vitaminas'>
+          <li class='blue number$u->shields'><span class='counter'>$u->shields</span></li>
+          <li class='green number$u->green'><span class='counter'>$u->green</span></li>
+          <li class='yellow number$u->yellow'><span class='counter'>$u->yellow</span></li>
+          <li class='red number$u->red'><span class='counter'>$u->red</span></li>
+          </ul>
+          <img title='Participante' class='rank-logo' src='http://www.murcialanparty.com/mlp13/nimagenes/logo.png' />";
         } else {
           $participante = '';
-          $logo = "";
+          $logo = "<ul class='target-ver-vitaminas'>
+          <li class='blue number$u->shields'><span class='counter'>$u->shields</span></li>
+          <li class='green number$u->green'><span class='counter'>$u->green</span></li>
+          <li class='yellow number$u->yellow'><span class='counter'>$u->yellow</span></li>
+          <li class='red number$u->red'><span class='counter'>$u->red</span></li>
+          </ul>";
         }
 
         $class = "";

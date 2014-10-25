@@ -137,7 +137,7 @@
 					<h1 style="font-weight:normal">{{ user.fullname }} </h1>
 					<div>Puntuación</div>
 					<div>
-						<span class="puntos">{{ puntos_pre }}</span><span class="suma"> +{{ suma }}</span> 
+						<span class="puntos">{{ puntos_pre }}</span>{% if suma %}<span class="suma"> +{{ suma }}</span>{% endif %}
 					</div>
 
 				</div>
@@ -169,7 +169,7 @@
 					<div class="ficha">
 						<img style="border-color:{{clancolor}}" class="ficha-img" src="http://1.gravatar.com/avatar/{{user.user_id}}?s=200&d=monsterid&r=G"/>
 						<div>Posición en ranking<span class="ficha-titulo">{{ranking}}</span> </div>
-						<div>Hora del servidor<span class="ficha-titulo">{{horaservidor}}</span> </div>
+						<div>Hora del servidor<span class="ficha-titulo">{{horaservidor}} </span></div>
 
 					</div>
 					<!--div><span class="ficha-titulo">Efectos activos</div>
@@ -183,7 +183,10 @@
 
 						</div-->
 
-					<div><span class="ficha-titulo">Vitaminas disponibles</span> <br/>
+
+					
+
+					<div><span class="ficha-titulo">Vitaminas disponibles</span> 
 						
 
 						<div id="vitaminero" >
@@ -203,7 +206,7 @@
 
 						</div>
 
-					<div><span class="ficha-titulo">Últimos 5 ataques contra ti</span> <br/>
+					<div><span class="ficha-titulo">Últimos 5 ataques contra ti</span> 
 					
 						<div id="efectos" >
 							
