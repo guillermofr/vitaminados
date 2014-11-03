@@ -1,0 +1,56 @@
+{% extends 'debug/layout.twig' %}
+
+
+{% block content %}
+
+	<style>
+
+	.color1 {
+		background-color: tomato;
+	}
+
+	.color2 {
+		background-color: gold;
+	}
+
+	.color3 {
+		background-color: limegreen;
+	}
+
+	input, button, select, textarea {
+	font-family: inherit;
+	font-size: inherit;
+	line-height: inherit;
+	height: 25px;
+	}
+
+	</style>
+	
+
+
+	<h3>fechas</h3>
+
+	<span class="col-xs-1 col-xs-offset-2">id</span>
+	<span class="col-xs-2">inicio</span>
+	<span class="col-xs-2">fin</span>
+	<span class="col-xs-5">&nbsp;</span>
+
+	{% for v in vars %}
+
+	<form method="post" action="" >
+		<span class="col-xs-1 col-xs-offset-2" style="text-align:right">
+			<input type="hidden" name="id" value="{{v.id}}"/>	
+			{{v.id}}
+		</span>
+		<input class="col-xs-2" type="text" name="inicio" value="{{v.inicio}}"/>
+		<input class="col-xs-2" type="text" name="fin" value="{{v.fin}}"/>
+		
+		<button class="col-xs-2 btn btn-primary">Guardar</button>
+		<span class="col-xs-3"></span>
+	</form>
+
+
+	{% endfor %}
+
+
+{% endblock %}

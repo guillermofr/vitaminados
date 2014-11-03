@@ -76,6 +76,27 @@ class Debug extends CI_Controller {
     
     public function fechas(){
 
+            if (isset($_POST['id'])){
+
+                $data = array(
+                    'id' => $this->input->post('id'),
+                    'inicio' => $this->input->post('inicio'),
+                    'fin' => $this->input->post('fin')
+                    );
+
+                $this->admin->save_fechas($data);
+            }
+
+            $vars = $this->admin->get_vars();
+            
+            $data = array(
+                'vars' => $vars
+            );
+
+           // echo "<pre>"; print_r($data);exit;
+            $this->twiggy->set($data);
+            $this->twiggy->display('debug/fechas',$data);
+
     }
 
 

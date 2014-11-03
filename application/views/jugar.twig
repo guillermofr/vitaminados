@@ -2,10 +2,7 @@
 
 {% block jugar %}Actualizar{% endblock %}
 
-
-
-
-{% block countdown_timer %}
+{% block countdown %}
 
 				{% if not fin %}
 				<div style="display:inline-block">
@@ -40,13 +37,23 @@
 
 				</div>
 				{% else %}
-				<p>Partida terminada</p>
+
+					{% if restantes %}
+
+						<h3>Ya no se pueden obtener más vitaminas, pero la partida no termina hasta que no se usen todas las vitaminas obtenidas</h3>
+						<h1>Quedan <big>0</big> vitaminas en juego.</h1>
+
+					{% else %}
+
+						<h1>Partida terminada, visita <a style="color:tomato" href="/info/premios">"Premios"</a> para saber los ganadores. Gracias por participar!! =)</h1>
+
+					{% endif %}
 				{% endif %}
 {% endblock %}
 
 
 
-{% block countdown %}
+{% block countdown_unlimited %}
 				
 				<div style="display:inline-block;font-size: 250px;line-height: 100px;">
 					&#x221e;
@@ -167,7 +174,7 @@
 				<div id="info_juego">
 
 					<div class="ficha">
-						<img style="border-color:{{clancolor}}" class="ficha-img" src="http://1.gravatar.com/avatar/{{user.user_id}}?s=200&d=monsterid&r=G"/>
+						<img title="Tú" style="border-color:{{clancolor}}" class="ficha-img" src="http://1.gravatar.com/avatar/{{user.user_id}}?s=200&d=monsterid&r=G"/>
 						<div>Posición en ranking<span class="ficha-titulo">{{ranking}}</span> </div>
 						<div>Hora del servidor<span class="ficha-titulo">{{horaservidor}} </span></div>
 

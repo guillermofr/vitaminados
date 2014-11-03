@@ -48,7 +48,7 @@ class Vitamina extends MY_Model{
 		if ($user_id == 0)
 			$user_id = $this->bitauth->user_id;
 
-		if ($user_id) 
+		if ($user_id && !$this->juego_terminado()) 
 		$this->db->query("insert into 
 			pastillero(vitamina_id,user_id,timeout) 
 			values($vitamina_id,$user_id,DATE_ADD(NOW(), INTERVAL $timeout MINUTE))");
@@ -118,7 +118,7 @@ class Vitamina extends MY_Model{
 		$CI = & get_instance();
 		$CI->load->add_package_path(APPPATH.'third_party/bitauth/');
 		$CI->load->library('bitauth');
-		if (!$CI->bitauth->logged_in() || $this->juego_terminado()) return false;
+		if (!$CI->bitauth->logged_in()) return false;
 
 		// sacamos el tipo y el fichero de vitamina a $instancia_vitamina_id
 

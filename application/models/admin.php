@@ -27,4 +27,24 @@ class Admin extends MY_Model{
 
 	}
 
+	function save_fechas($data){
+		if (isset($data['id'])) {
+			//edita vitamina existente
+
+			$this->db->where('id', $data['id']);
+			$this->db->update('vars', $data); 
+
+		} else {
+			//crea una vitamina nueva
+
+			$this->db->insert('vars', $data); 
+
+		}
+	}
+
+	function get_vars(){
+		$data = $this->db->get('vars'); 
+		return $data->result_array();
+	}
+
 }
