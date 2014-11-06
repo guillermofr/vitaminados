@@ -57,16 +57,29 @@
 
 
 			$('.vitamina').live('click',function(e){
+
 				$('#modal-1 h3').html(e.currentTarget.title);
 				$('#modal-1 img.modal-image').attr('src',e.currentTarget.src);
 				$('#modal-1 span.modal-text').load("/api/load_vitamina_desc/"+e.currentTarget.name);
 				$('#modal-1 button.md-use').attr('name',e.currentTarget.id);	
+
+				if ($(e.target).hasClass('cat1')) {
+					$('#modal-1 .md-content').attr('class','md-content cat1');
+				}
+				if ($(e.target).hasClass('cat2')) {
+					$('#modal-1 .md-content').attr('class','md-content cat2');
+				}
+				if ($(e.target).hasClass('cat3')) {
+					$('#modal-1 .md-content').attr('class','md-content cat3');
+				}
+
 			});
 
 			$('#modal-1 button.md-use').live('click',function(e){
 				$('#modal-2 h3').html('Seleccionar objetivo');
 				$('#modal-2 #aplicar_vitamina').val(e.currentTarget.name);
 				$('#modal-2 .md-content div').load("/api/load_targets");
+				$('#modal-2 .md-cancel').html('x');
 
 			});
 

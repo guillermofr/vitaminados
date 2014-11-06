@@ -84,8 +84,7 @@ h2 {
 			border-image-width: initial;
 			border-image-outset: initial;
 			border-image-repeat: initial;
-			padding: 0.6em 1.2em;
-			background: #549B08;
+			padding: 5px 8px 6px 9px !important;
 			color: rgb(255, 255, 255);
 			font-family: Lato, Calibri, Arial, sans-serif;
 			font-size: 1em;
@@ -95,6 +94,7 @@ h2 {
 			display: inline-block;
 			margin: 3px 2px;
 			border-radius: 2px;
+			background: rgba(0, 0, 0, 0.08);
 		}
 
 		#nick_input,#login_input{
@@ -214,6 +214,39 @@ overflow-y: auto;
 overflow-x: hidden;
 }
 
+.md-content.cat1 {
+	color: #fff;
+	background: tomato;
+	position: relative;
+	border-radius: 3px;
+	margin: 0 auto;
+}
+.md-content.cat1 button{
+	background-color:#DA5730 !important;
+}
+
+.md-content.cat2 {
+	color: #fff;
+	background: rgb(239, 190, 0);
+	position: relative;
+	border-radius: 3px;
+	margin: 0 auto;
+}
+.md-content.cat2 button{
+	background-color:#D2A71F;
+}
+
+.md-content.cat3 {
+	color: #fff;
+	background: limegreen;
+	position: relative;
+	border-radius: 3px;
+	margin: 0 auto;
+}
+.md-content.cat3 button{
+	background-color:#08BE1F;
+}
+
 .target:hover {
 background: #E5FF19;
 color: #444;
@@ -226,7 +259,7 @@ display: inline-block;
 width: 122PX;
 padding: 11px;
 margin: 2px 4px;
-background: #4F4F4F;
+background: #A2C22F;
 padding-left: 30px;
 padding-top: 14px;
 }
@@ -408,4 +441,26 @@ display: block;
 	color: rgba(255,255,255,0);
 	margin-left: -63px;
 
+}
+
+#modal-2 button.md-cancel {
+float: left;
+position: absolute;
+top: -14px;
+right: 15px;
+}
+
+.md-overlay {
+position: fixed;
+width: 100%;
+height: 100%;
+visibility: hidden;
+top: 0;
+left: 0;
+z-index: 1000;
+opacity: 0;
+background: rgba(0, 0, 0, 0.37);
+-webkit-transition: all 0.3s;
+-moz-transition: all 0.3s;
+transition: all 0.3s;
 }

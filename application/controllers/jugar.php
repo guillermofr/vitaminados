@@ -250,6 +250,7 @@ class Jugar extends CI_Controller {
 			$data['puntos_pre'] = $puntos_pre;
 			$data['puntos_post'] = $puntos_post;
 			$data['suma'] = $suma;
+			$data['restantes'] = $this->vitamina->restantes();
 
 			//echo "<pre>";print_r($data);exit;
 
@@ -267,6 +268,7 @@ class Jugar extends CI_Controller {
 			$fechafin = $this->usuario->get_fechafin();
 			$data['fechafin'] = date_parse($fechafin[0]->fin);
 			$data['fin'] = $fechafin[0]->terminada;
+			$data['restantes'] = $this->vitamina->restantes();
 
 			$this->twiggy->set($data);
 			$this->twiggy->display('jugar',$data);

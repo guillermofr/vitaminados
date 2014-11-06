@@ -42,7 +42,7 @@ class Usuario extends MY_Model{
 	function aumenta_puntuacion(){
 		$this->load->add_package_path(APPPATH.'third_party/bitauth/');
 		$this->load->library('bitauth');
-		if (!$this->bitauth->logged_in() || $this->juego_terminado()) return false;
+		if (!$this->bitauth->logged_in()) return false;
 
 		$this->bitauth->update_user(
 					$this->bitauth->user_id,
@@ -55,7 +55,7 @@ class Usuario extends MY_Model{
 
 		$this->load->add_package_path(APPPATH.'third_party/bitauth/');
 		$this->load->library('bitauth');
-		if (!$this->bitauth->logged_in()  || $this->juego_terminado() ) return array();
+		if (!$this->bitauth->logged_in() ) return array();
 	
 		$user = $this->bitauth->get_user_by_username($this->bitauth->username);
 		$user = $user->user_id;

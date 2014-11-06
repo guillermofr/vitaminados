@@ -99,7 +99,7 @@ class Api extends CI_Controller {
    			</div>";
    		}
 
-   		$html .= "<br clear='left'/><button class='md-cancel'>Cancelar</button>";
+   		$html .= "<br clear='left'/><button class='md-cancel'>X</button>";
 
    		echo $html;
 

@@ -17,6 +17,11 @@ class Vitamina extends MY_Model{
 
 	}
 
+	function restantes(){
+		$q = $this->db->query('select * from pastillero where timeout > now()');
+	    return $q->num_rows();
+	}
+
 
 	// el tercer parametro es para forzar la vitamina creada
 	function crear_nueva($categoria = 1,$user_id = 0,$param_vitamina_id = 0){
