@@ -39,7 +39,7 @@ class Login extends CI_Controller {
 				//obtener datos de la mlp para registrarlo o registrarlo sin nick
 
 				$this->load->helper('inti');
-				$url = 'http://murcialanparty.com/mlp13/jsonrpc.php';
+				$url = 'http://murcialanparty.com/mlp14/jsonrpc.php';
 
 			    $client = new JsonIntiClient($url);
 				// Params request
