@@ -68,6 +68,7 @@
 
 	<form method="post" action="" >
 		<span class="col-xs-1 color{{v.categoria}}" style="text-align:right">
+
 			<input class="col-xs-2" type="hidden" name="id" value="{{v.id}}"/>	
 			{{v.id}}
 		</span>
@@ -80,7 +81,9 @@
 			{% endfor %}
 		</select>
 		<input class="col-xs-4" type="text" name="descripcion" value='{{v.descripcion |raw}}'/>
-		<button class="col-xs-1 btn">Guardar</button>
+		<div class="col-xs-1">
+			<button class="btn">Guardar</button>
+		</div>
 	</form>
 
 

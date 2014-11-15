@@ -160,7 +160,12 @@
 				    <input type="hidden" name="type" value="{{ type }}"/>
 				     {% block submit %}
 				    <span style="display:block;">
-				    	<button id="enviar_captcha" disabled="disabled" type="submit" class="disabled btn btn-2 btn-2a">Validar captcha <span class="timer">5</span></button>
+				    	<button id="enviar_captcha" disabled="disabled" type="submit" class="disabled btn btn-2 btn-2a">Validar captcha <br>por <big style="font-size: 30px;">{{ user.racha + 1 }}0</big> puntos {% if not canchange %} y <big style="font-size: 30px;">1</big> vitamina!{% endif %}<br><span class="timer">5</span> </button>
+				    	{% if (canchange) %}
+				    		<div><a class="" href="/jugar" style="color: rgb(255, 163, 163);">Este capcha no me gusta, dame otro!!</a></div>
+				    		{% else %}
+				    		<div><span style="color: rgb(255, 163, 163);">Este tipo de captcha no se puede cambiar U_U</span></div>
+				    	{% endif %}
 					</span>
 
 					  <p style="font-size:30px">Racha de captchas: <span style="font-size:50px">{{ user.racha }}</span></p>
@@ -174,7 +179,8 @@
 				<div id="info_juego">
 
 					<div class="ficha">
-						<img title="Tú" style="border-color:{{clancolor}}" class="ficha-img" src="http://1.gravatar.com/avatar/{{user.user_id}}?s=200&d=monsterid&r=G"/>
+						<!--img title="Tú" style="border-color:{{clancolor}}" class="ficha-img" src="http://1.gravatar.com/avatar/{{user.user_id}}?s=200&d=monsterid&r=G"/-->
+						<img title="Tú" style="border-color:{{clancolor}}" class="ficha-img" src="http://vanillicon.com/{{md5}}_200.png"/>
 						<div>Posición en ranking<span class="ficha-titulo">{{ranking}}</span> </div>
 						<div>Hora del servidor<span class="ficha-titulo">{{horaservidor}} </span></div>
 

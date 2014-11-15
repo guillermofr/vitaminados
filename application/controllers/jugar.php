@@ -144,11 +144,12 @@ class Jugar extends CI_Controller {
 
 		if ($this->bitauth->logged_in()){
 
-
+			$canchange = true;
 			// selector de juego que aparecerá en el siguiente turno
 			//TODO en lugar de poner un 0 para forzarlo hay que hacer un random o una secuencia
 			if ((($this->bitauth->racha+1) % 5) == 0) {
 				//forzamos el chungo para pillar vitaminas
+				$canchange = false;
 				$next = 4; //securimage
 			} else {
 				$next = rand(0,$num_games); // random
@@ -227,11 +228,12 @@ class Jugar extends CI_Controller {
 				break;
 
 			} 
-
+			$data['canchange'] = $canchange;
 			$data['logueado'] = $this->bitauth->logged_in();
 			$data['user'] = ($data['logueado'])?$this->bitauth->get_user_by_id($this->bitauth->user_id):false;
 			$data['vitaminas'] = $this->vitamina->get_vitaminas();
 			$data['ranking'] = ($data['logueado'])?$this->usuario->get_rank($this->bitauth->user_id):'0';
+			$data['md5'] = ($data['logueado'])?md5($this->bitauth->get_user_by_id($this->bitauth->user_id)->user_id):false;
 
 			if ($this->bitauth->clan != '') {
 				$data['clancolor'] = "#".substr(md5($this->bitauth->clan),0,6);

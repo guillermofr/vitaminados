@@ -53,7 +53,7 @@ class Api extends CI_Controller {
 
       $html .= "<div class='target'>
           <input type='hidden' name='id' value='".$CI->bitauth->user_id."'/>
-          <img class='target-img' style='border-color:$clancolor' src='http://1.gravatar.com/avatar/".$CI->bitauth->user_id."?s=50&d=monsterid&r=G' />
+          <img class='target-img' style='border-color:$clancolor' src='http://vanillicon.com/".md5($CI->bitauth->user_id)."_50.png' />
           <span class='target-nick'>".recortar_texto($CI->bitauth->fullname,10)."</span>
           <span class='target-puntos'>".$CI->bitauth->puntos."</span>
           <span class='target-racha'>combo<br>x".$CI->bitauth->racha."</span>
@@ -88,7 +88,7 @@ class Api extends CI_Controller {
 
    			$html .= "<div class='target ".$participante."'>
    				<input type='hidden' name='id' value='".$u->user_id."'/>
-   				<img class='target-img' style='border-color:$clancolor' src='http://1.gravatar.com/avatar/".$u->user_id."?s=50&d=monsterid&r=G' />
+   				<img class='target-img' style='border-color:$clancolor' src='http://vanillicon.com/".md5($u->user_id)."_50.png' />
    				<span class='target-nick'>".recortar_texto($u->fullname,10)."</span>
    				<span class='target-puntos'>".$u->puntos."</span>";
    				
@@ -146,11 +146,12 @@ class Api extends CI_Controller {
           $class .= " selected ";
         }
 
-        $clancolor = ($u->clan != null)?"#".substr(md5($u->clan),0,6):'#ffffff';
+        $clancolor = ($u->clan != null)?"#".substr(md5($u->clan),0,6):'#ffffff';http://vanillicon.com/{{md5}}_200.png
 
         $html .= "<div class='rank $participante $class'>
           <input type='hidden' name='id' value='".$u->user_id."'/>
-          <img class='rank-img' style='border-color:$clancolor' src='http://1.gravatar.com/avatar/".$u->user_id."?s=50&d=monsterid&r=G' />
+          <!--img class='rank-img' style='border-color:$clancolor' src='http://1.gravatar.com/avatar/".$u->user_id."?s=50&d=monsterid&r=G' /-->
+          <img class='rank-img' style='border-color:$clancolor' src='http://vanillicon.com/".md5($u->user_id)."_50.png' />
           <span class='rank-nick' >".recortar_texto($u->fullname,17)."</span>
           <span class='rank-puntos'>".$u->puntos."</span>
           <span class='rank-rank'>".$rank++."#</span>";
@@ -184,7 +185,7 @@ class Api extends CI_Controller {
        $clancolor = ($u->clan != null)?"#".substr(md5($u->clan),0,6):'#ffffff';
 
         $html .= "<div class='rank'> 
-          <img class='rank-img' style='border-color:$clancolor' src='http://1.gravatar.com/avatar/".$u->user_id."?s=100&d=monsterid&r=G' />
+          <img class='rank-img' style='border-color:$clancolor' src='http://vanillicon.com/".md5($u->user_id)."_100.png' />
           <span class='rank-nick' style='border-color:$clancolor'>".recortar_texto($u->fullname,10)."</span>
           <span class='rank-puntos' style='border-color:$clancolor'>".recortar_texto($u->clan,10)."</span>
           <span class='rank-rank'>".$rank++."#</span>

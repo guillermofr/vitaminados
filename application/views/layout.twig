@@ -78,6 +78,7 @@
 			$('#modal-1 button.md-use').live('click',function(e){
 				$('#modal-2 h3').html('Seleccionar objetivo');
 				$('#modal-2 #aplicar_vitamina').val(e.currentTarget.name);
+				$('#modal-2 .md-content div').html("<center>Cargando gentuza...</center>");
 				$('#modal-2 .md-content div').load("/api/load_targets");
 				$('#modal-2 .md-cancel').html('x');
 
