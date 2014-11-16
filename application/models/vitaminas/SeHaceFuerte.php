@@ -12,7 +12,7 @@ $CI->bitauth->user_id 		-> id del usuario logueado
 
 		//la vitamina cambia de dueño
 	
-		$query = $this->db->query("select 600 - (UNIX_TIMESTAMP(timeout)-UNIX_TIMESTAMP(NOW())) AS points from pastillero where id = $instancia_vitamina_id");
+		$getpoints = $this->db->query("select 600 - (UNIX_TIMESTAMP(timeout)-UNIX_TIMESTAMP(NOW())) AS points from pastillero where id = $instancia_vitamina_id");
 
 		$res = $getpoints->result_array();
 
