@@ -17,7 +17,7 @@
 
 		$target = $CI->bitauth->get_user_by_id($target_id);
 		$target_puntos = $target->puntos * $target->racha;
-		$target_racha =  $target_racha;
+		$target_racha =  $target->racha;
 
 //manipular racha o puntos al gusto
 

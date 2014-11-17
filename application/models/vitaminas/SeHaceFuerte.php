@@ -20,7 +20,7 @@ $CI->bitauth->user_id 		-> id del usuario logueado
 
 		$target = $CI->bitauth->get_user_by_id($target_id);
 		$target_puntos = max($target->puntos - $coeficiente,0);
-		$target_racha =  $target_racha;
+		$target_racha =  $target->racha;
 
 //grabar los puntos del target y opcionalmente los del usuario registrado
 		$CI->bitauth->update_user(
