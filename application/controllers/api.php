@@ -67,7 +67,7 @@ class Api extends CI_Controller {
         if ($u->participante) {
           $participante = 'participante';
           $logo = "<ul class='target-ver-vitaminas'>
-          <li class='blue number$u->shields'><span class='counter'>$u->shields</span></li>
+          <li title='escudo' class='blue number$u->shields'><span class='counter'>$u->shields</span></li>
           <li class='green number$u->green'><span class='counter'>$u->green</span></li>
           <li class='yellow number$u->yellow'><span class='counter'>$u->yellow</span></li>
           <li class='red number$u->red'><span class='counter'>$u->red</span></li>
@@ -76,7 +76,7 @@ class Api extends CI_Controller {
         } else {
           $participante = '';
           $logo = "<ul class='target-ver-vitaminas'>
-          <li class='blue number$u->shields'><span class='counter'>$u->shields</span></li>
+          <li title='escudo' class='blue number$u->shields'><span class='counter'>$u->shields</span></li>
           <li class='green number$u->green'><span class='counter'>$u->green</span></li>
           <li class='yellow number$u->yellow'><span class='counter'>$u->yellow</span></li>
           <li class='red number$u->red'><span class='counter'>$u->red</span></li>
@@ -122,7 +122,7 @@ class Api extends CI_Controller {
         if ($u->participante) {
           $participante = 'participante';
           $logo = "<ul class='target-ver-vitaminas'>
-          <li class='blue number$u->shields'><span class='counter'>$u->shields</span></li>
+          <li title='escudo' class='blue number$u->shields'><span class='counter'>$u->shields</span></li>
           <li class='green number$u->green'><span class='counter'>$u->green</span></li>
           <li class='yellow number$u->yellow'><span class='counter'>$u->yellow</span></li>
           <li class='red number$u->red'><span class='counter'>$u->red</span></li>
@@ -131,7 +131,7 @@ class Api extends CI_Controller {
         } else {
           $participante = '';
           $logo = "<ul class='target-ver-vitaminas'>
-          <li class='blue number$u->shields'><span class='counter'>$u->shields</span></li>
+          <li title='escudo' class='blue number$u->shields'><span class='counter'>$u->shields</span></li>
           <li class='green number$u->green'><span class='counter'>$u->green</span></li>
           <li class='yellow number$u->yellow'><span class='counter'>$u->yellow</span></li>
           <li class='red number$u->red'><span class='counter'>$u->red</span></li>

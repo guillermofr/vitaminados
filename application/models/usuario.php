@@ -104,7 +104,10 @@ class Usuario extends MY_Model{
 				where user_id = $user_id");
 		$res = $q->result();
 
+		if ($q->num_rows())
 		return $res[0]->rank . "#";
+		else 
+		return "-";
 	}
 
 	function get_ranking(){
