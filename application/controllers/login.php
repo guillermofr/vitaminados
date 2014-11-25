@@ -69,7 +69,7 @@ class Login extends CI_Controller {
 			$code = $this->bitauth->forgot_password($new_user->user_id);
 
 			$this->email->subject('Link de acceso');
-			$this->email->message("Pincha en el enlace para entrar en la web a jugar: <a href='http://vitaminados.n0p.es/login/in/$code'>$code</a>");	
+			$this->email->message("Pincha en el enlace para entrar en la web a jugar: <a href='".site_url()."login/in/$code'>".site_url()."login/in/$code</a>");	
 			if (site_url() == 'http://vitaminados.local/'){
 				echo "Simulacion de link recibido en correo<br><a href='/login/in/$code'>$code</a>"; exit;
 			}
