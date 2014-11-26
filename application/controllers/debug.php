@@ -33,7 +33,13 @@ class Debug extends CI_Controller {
 	public function give($vitamina_id = 0){
 		
         if ($vitamina_id != 0) {
-			$this->vitamina->crear_nueva('1','0',$vitamina_id);
+            $user_id = $this->bitauth->user_id;
+
+
+			$this->db->query("insert into 
+            pastillero(vitamina_id,user_id,timeout) 
+            values($vitamina_id,$user_id,DATE_ADD(NOW(), INTERVAL 30 MINUTE))");
+
 			echo "vitamina id=".$vitamina_id. " creada.";
 		}
 	}

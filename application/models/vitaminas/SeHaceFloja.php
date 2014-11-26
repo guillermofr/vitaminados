@@ -14,9 +14,11 @@ $CI->bitauth->user_id 		-> id del usuario logueado
 	
 		$getpoints = $this->db->query("select UNIX_TIMESTAMP(timeout)-UNIX_TIMESTAMP(NOW()) AS points from pastillero where id = $instancia_vitamina_id");
 
-		$res = $getpoints->result_array();
+		$res = $getpoints->result();
 
-		$coeficiente = $res['points'];
+		$coeficiente = intval($res[0]->points);
+
+
 
 		$target = $CI->bitauth->get_user_by_id($target_id);
 		$target_puntos = max($target->puntos - $coeficiente,0);
