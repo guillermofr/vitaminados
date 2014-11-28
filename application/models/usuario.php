@@ -204,7 +204,7 @@ class Usuario extends MY_Model{
 								order by 
 									l.fecha desc
 								limit 
-									25");
+									250");
 		return $q->result();
 	}
 	
