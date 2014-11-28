@@ -466,3 +466,10 @@ background: rgba(0, 0, 0, 0.37);
 -moz-transition: all 0.3s;
 transition: all 0.3s;
 }
+
+div#efectos.smaller {
+font-size: 17px;
+line-height: 17px;
+max-width: 1000px;
+margin: auto;
+}

@@ -5,6 +5,40 @@
 	
 	<img id="dimmok" src="/assets/img/cape.png"/>
  	<h5>by kiLLeR415</h5>
+
+	<span class="ficha-titulo">Últimos 25 ataques</span> 
+<div id="efectos" class="smaller">
+ 	{% if not ataques %}
+		<span>No hay ataques aún</span>
+	{% else %}
+		<ul id="lista_ataques">
+		{% for a in ataques %}
+
+			{% if a.from_user_id == a.to_user_id %}
+				<li>
+					<abbr class="timeago" title="{{a.fecha}}"></abbr>
+					<a href="/info/ranking/{{ a.from_user_id }}"> {{ a.fromfull[0:10] }} </a>
+					<small>ha usado sobre sí la vitamina  </small> 
+					<a href="/info#vitamina{{a.vitamina_id}}"><img title="{{a.vitamina}}" name="{{a.vitamina_id}}" src="https://identicons.github.com/{{a.vitamina_id}}.png" width="30px"/> 
+					<small>{{a.vitamina[0:50]}}</small> 
+					</a>
+				</li>
+			{% else %}
+				<li>
+					<abbr class="timeago" title="{{a.fecha}}"></abbr>
+					<a href="/info/ranking/{{ a.from_user_id }}"> {{ a.fromfull[0:10] }} </a>
+					<small>ha lanzado a  </small> 
+					<a href="/info/ranking/{{ a.to_user_id }}"> {{ a.tofull[0:10] }} </a>
+					<small>la vitamina </small>
+					<a href="/info#vitamina{{a.vitamina_id}}"><img title="{{a.vitamina}}" name="{{a.vitamina_id}}" src="https://identicons.github.com/{{a.vitamina_id}}.png" width="30px"/> 
+					<small>{{a.vitamina[0:50]}}</small> 
+					</a>
+				</li>
+			{% endif %}
+		{% endfor %}
+		</ul>
+	{% endif %}
+</div>
  	
 
 {% endblock %}

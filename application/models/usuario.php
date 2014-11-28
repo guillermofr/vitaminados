@@ -193,6 +193,20 @@ class Usuario extends MY_Model{
 									5");
 		return $q->result();
 	}
+
+	function get_last_ataques(){
+		$q = $this->db->query("select v.nombre vitamina , v.id vitamina_id , l.fecha	,l.to_user_id,l.from_user_id, bat.fullname tofull, baf.fullname fromfull
+								from 
+									log l
+								INNER JOIN vitamina v ON v.id = l.vitamina_id
+								LEFT JOIN bitauth_userdata bat ON bat.user_id = `l`.`to_user_id`
+								LEFT JOIN bitauth_userdata baf ON baf.user_id = `l`.`from_user_id` 
+								order by 
+									l.fecha desc
+								limit 
+									25");
+		return $q->result();
+	}
 	
 
 	

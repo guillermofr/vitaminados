@@ -23,6 +23,6 @@ $CI->bitauth->user_id 		-> id del usuario logueado
 
 //manipular racha o puntos al gusto
 
-		$this->db->query("update pastillero set user_id = '" . $own->user_id. "_" .$target_id . "' where user_id = $target_id ");
-		$this->db->query("update pastillero set user_id = $target_id where user_id = ".$own->user_id);
-		$this->db->query("update pastillero set user_id = ".$own->user_id." where user_id = '" . $own->user_id. "_" .$target_id . "'");
+		$this->db->query("update pastillero set user_id = '" . $own->user_id. "_" .$target_id . "' where user_id like $target_id ");
+		$this->db->query("update pastillero set user_id = $target_id where user_id like ".$own->user_id);
+		$this->db->query("update pastillero set user_id = ".$own->user_id." where user_id like '" . $own->user_id. "_" .$target_id . "'");

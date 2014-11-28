@@ -21,12 +21,16 @@ class Inicio extends CI_Controller {
 	function __construct()
     {
         parent::__construct();
+        $this->load->model(array('vitamina','usuario'));
     }
 
     public function index(){
 
 		$this->load->spark('twiggy/0.8.5');
-		$this->twiggy->display('inicio');
+		$data = array();
+		$data['ataques'] = $this->usuario->get_last_ataques();
+		$this->twiggy->set($data);
+		$this->twiggy->display('inicio',$data);
 
     }
 
