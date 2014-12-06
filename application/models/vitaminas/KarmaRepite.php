@@ -26,8 +26,9 @@ $CI->bitauth->user_id 		-> id del usuario logueado
 
 		$karmaq = $this->db->query("select l.vitamina_id , v.fichero 
 								from log l, vitamina v 
-								where
+								where 
 		 						l.from_user_id = $target_id and 
+		 						l.to_user_id != $target_id and 
 		 						v.id = l.vitamina_id and 
 		 						v.fichero != 'KarmaRepite.php'
 
