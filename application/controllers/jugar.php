@@ -155,6 +155,8 @@ class Jugar extends CI_Controller {
 				$next = rand(0,$num_games); // random
 			}
 
+			
+
 			if ($this->usuario->juego_terminado()) $next = -1;
 
 			switch($next) {
@@ -168,7 +170,7 @@ class Jugar extends CI_Controller {
 					$type = 'keycaptcha';
 				break;
 				case 2:
-					$type = 'simple';
+					$type = 'minteye';
 				break;
 				case 3:
 					$type = 'ayah';
