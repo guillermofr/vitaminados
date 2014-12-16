@@ -207,6 +207,18 @@ class Api extends CI_Controller {
 
       if (!$instancia_vitamina_id || !$target_id) return false;
 
+      //atajos para los bots para autoaplicar
+      if ($target_id == "me") {
+        $target_id = $this->bitauth->user_id;
+      } 
+
+      //atajos para los bots para aplicar al primero
+      if ($target_id == "first") {
+        $target_id = $this->usuario->get_first_id();
+      }
+
+
+
       //update de valores
       $user_db = $this->usuario->get_usuario($target_id);
       $this->bitauth->update_user(

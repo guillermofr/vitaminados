@@ -102,6 +102,20 @@ class Jugar extends CI_Controller {
 				break;
 			}
 
+
+
+			//bypass de bots
+			if(site_url() == 'http://vitaminados.local/'){
+					
+				$captchacorrecto = false;
+				$bot_success = rand(0,100);
+
+				if ($bot_success > $this->bitauth->racha / 5) {
+					$captchacorrecto = true;
+				}
+			}
+
+
 			//acción por defecto al rellenar captchas
 			if ($captchacorrecto) {
 				//TODO contabilizar combos y adjudicar vitaminas nueva

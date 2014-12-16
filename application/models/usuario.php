@@ -227,7 +227,12 @@ class Usuario extends MY_Model{
 									250");
 		return $q->result();
 	}
+
+	function get_first_id() {
+		$q = $this->db->query("select user_id from bitauth_userdata order by puntos desc limit 1");
+		$res = $q->result();
+		return $res[0]->user_id;
+	}
 	
 
-	
 }
