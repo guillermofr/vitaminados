@@ -3,7 +3,7 @@ vitaminados
 
 Minijuego para la MurciaLanParty
 
-Ver demo -> http://vitaminados.n0p.es
+Ver demo -> http://vitaminados-murcialanparty.rhcloud.com/
 
 ###Instalación en local:
 -bajarse el repositorio y ponerlo en vhost vitaminados.local para que funcionen las keys
